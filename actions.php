@@ -12,10 +12,13 @@ use Languages\Lang_database as lang;
 $lang = new lang();
 $fun = new fun();
 $l = $lang->GetLanguage();
-if (isset($_GET['language'])) {
-    $lang_get = $_GET['language'];
-    if ($lang_get == 'ar' || $lang_get == 'en') {
-        $_SESSION['lang'] = $lang_get;
+if (isset($_GET['change_language'])) {
+    if ($l == 'ar' || $l == 'en') {
+        if ($l == 'ar') {
+            $_SESSION['lang'] = 'en';
+        } else {
+            $_SESSION['lang'] = 'ar';
+        }
     } else {
         $_SESSION['lang'] = 'en';
     }

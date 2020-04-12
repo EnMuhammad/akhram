@@ -27,6 +27,7 @@ DEFINE('CONTACT_TABLE', 'contact_us');
 DEFINE('TAGS_TABLE', 'tags');
 DEFINE('VID_TABLE', 'videos');
 DEFINE('SETTING_TABLE', 'web_setting');
+DEFINE('COMPANY_TABLE', 'company');
 
 
 

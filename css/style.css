@@ -1,10 +1,6 @@
-/*Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
---*/
+@import url('https://fonts.googleapis.com/css2?family=Amiri&family=Cairo&display=swap');
 @font-face {
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
     src: url(../fonts/Montserrat-Regular.ttf) format('truetype');
 }
 
@@ -135,7 +131,7 @@ h1, h2, h3, h4, h5, h6, label, p {
 .bottom-head h6 {
     font-size: 1em;
     color: #919090;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
     margin: 0.5em 0 0;
 }
 
@@ -258,7 +254,7 @@ i.deal {
     font-size: 2em;
     text-align: center;
     margin: 0em 0 0;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
 }
 
 .logo h1 a {
@@ -518,7 +514,7 @@ ul.callbacks_tabs.callbacks1_tabs {
 .caption {
     position: absolute;
     top: 43%;
-    left: 13%;
+    /*left: 13%;*/
 }
 
 .caption h3 {
@@ -526,7 +522,7 @@ ul.callbacks_tabs.callbacks1_tabs {
     font-size: 3em;
     text-transform: uppercase;
     display: inline-block;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Cairo', 'Montserrat-Regular';
     padding: 0 0 0.3em;
 }
 
@@ -548,7 +544,7 @@ ul.callbacks_tabs.callbacks1_tabs {
     color: #fff;
     font-size: 3em;
     padding: 0 0 1.3em;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
 }
 
 .content-grid h3:after, .content-grid h3:before {
@@ -562,7 +558,7 @@ ul.callbacks_tabs.callbacks1_tabs {
 }
 
 .content-grid {
-    background: url(../images/back1.jpg);
+    background: url(../images/HomePage/back1.jpg);
     width: 100%;
     min-height: 500px;
     background-size: cover;
@@ -580,18 +576,19 @@ ul.callbacks_tabs.callbacks1_tabs {
 
 .most-1 h5 {
     font-size: 1.2em;
-    color: #27DA93;
+    color: #082e1f;
     padding: 0em 0 0.3em;
-    font-family: 'Montserrat-Regular';
+    text-align: center;
+    font-family: 'Cairo', 'Montserrat-Regular';
 }
 
 .most-1 h5 a {
     text-decoration: none;
-    color: #27DA93;
+    color: #082e1f;
 }
 
 .most-1 h5 a:hover {
-    color: #000;
+    color: #535353;
 }
 
 .most-1 p {
@@ -627,12 +624,24 @@ img.zoom-img {
     -moz-transform: scale(1, 1);
     -moz-transition-timing-function: ease-out;
     -moz-transition-duration: 250ms;
+    -webkit-border-top-left-radius: 20px;
+    -webkit-border-top-right-radius: 20px;
+    -moz-border-radius-topleft: 20px;
+    -moz-border-radius-topright: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 }
 
 a.mask {
     text-decoration: none;
     overflow: hidden;
     display: block;
+    -webkit-border-top-left-radius: 20px;
+    -webkit-border-top-right-radius: 20px;
+    -moz-border-radius-topleft: 20px;
+    -moz-border-radius-topright: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 }
 
 /*--services--*/
@@ -641,7 +650,7 @@ a.mask {
     color: #000;
     font-size: 3em;
     padding: 0 0 0.3em;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
 }
 
 .service-top h3:after, .service-top h3:before {
@@ -677,7 +686,7 @@ a.mask {
 .ser-top h4 {
     font-size: 1.4em;
     text-transform: uppercase;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
     color: #27da93;
 }
 
@@ -819,7 +828,7 @@ a.mask {
     color: #000;
     font-size: 1.3em;
     margin: 0.8em 0;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
 }
 
 .text-1 p {
@@ -917,7 +926,7 @@ a.more:hover {
     color: #000;
     font-size: 3em;
     padding: 0 0 0.3em;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
 }
 
 .project h3:after, .project h3:before {
@@ -946,7 +955,7 @@ a.more:hover {
 }
 
 .mid-content {
-    background: #27da93;
+    background: #fe0001;
     padding: 2em;
     width: 35%;
     margin: 5em auto 0;
@@ -956,7 +965,7 @@ a.more:hover {
 .mid-content h3 {
     text-transform: uppercase;
     font-size: 2.7em;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
     color: #fff;
 }
 
@@ -965,6 +974,7 @@ a.more:hover {
     margin: 0.5em 0 0em;
     line-height: 2em;
     color: #fff;
+    font-family: 'Cairo', 'Montserrat-Regular';
 }
 
 a.more-in {
@@ -1039,7 +1049,7 @@ a.more-in:hover {
     color: #000;
     font-size: 3em;
     padding: 0 0 0.3em;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
 }
 
 .content-bottom h3:after, .content-bottom h3:before {
@@ -1094,7 +1104,7 @@ i.dolor {
 .men span {
     color: #27da93;
     font-size: 1.2em;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
 }
 
 .men p {
@@ -1129,7 +1139,7 @@ i.dolor {
     color: #000;
     font-size: 3em;
     padding: 0 0 1em;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
 }
 
 .content-bottom1 h3:after, .content-bottom1 h3:before {
@@ -1160,7 +1170,7 @@ i.dolor {
     font-size: 1.5em;
     color: #fff;
     margin: 0 0 0.7em;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
 }
 
 .footer-top-at {
@@ -1214,7 +1224,7 @@ ul.nav-bottom li a:hover {
 
 .footer-logo h2 {
     font-size: 2em;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
 }
 
 .footer-logo h2 a {
@@ -1284,7 +1294,7 @@ ul.social li i:hover {
     font-size: 2em;
     text-transform: uppercase;
     display: inline-block;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
     padding: 0 0 0.3em;
     float: left;
     margin-top: 3.8em;
@@ -1379,7 +1389,7 @@ ul.kid-menu li.menu-kid-left {
 
 .price-top h4, .price-top1 h4 {
     font-size: 1.2em;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
     color: #27da93;
     margin: 0 0 0.5em;
 }
@@ -1416,7 +1426,7 @@ select.in-drop {
     font-size: 3em;
     color: #000;
     margin: 0 0 0.4em;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
     text-align: center;
 }
 
@@ -1521,7 +1531,7 @@ figure.effect-layla figcaption::after {
 figure.effect-layla h4 {
     margin-top: 14%;
     font-size: 1.2em;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
     opacity: 0;
     -webkit-transform: translate3d(0, -10px, 0);
     transform: translate3d(0, -10px, 0);
@@ -1611,7 +1621,7 @@ figure.effect-layla:hover {
 figure.effect-layla h4 {
     margin-top: 90%;
     font-size: 1.2em;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
     opacity: 0;
     -webkit-transform: translate3d(0, -10px, 0);
     transform: translate3d(0, -10px, 0);
@@ -1679,7 +1689,7 @@ figure.effect-layla h4.effect3 {
 
 .pre-top h5 {
     font-size: 1.5em;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
 }
 
 .pre-top p {
@@ -1693,7 +1703,7 @@ figure.effect-layla h4.effect3 {
     font-size: 3em;
     color: #000;
     margin: 0 0 1em;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
     text-align: center;
 }
 
@@ -1735,7 +1745,7 @@ span.fur-money {
 .fur1 h6 {
     color: #27da93;
     font-size: 1em;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
     margin: 0.3em 0;
 }
 
@@ -1857,7 +1867,7 @@ option.rm {
 .single-bottom h4 {
     font-size: 1.3em;
     color: #27da93;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
 }
 
 /*--checkbox--*/
@@ -1908,7 +1918,7 @@ option.rm {
 .buy-single h3 {
     font-size: 1.5em;
     color: #000;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
 }
 
 .buy-single {
@@ -1933,7 +1943,7 @@ option.rm {
     text-transform: uppercase;
     color: #27DA93;
     margin: 0 0 0.5em;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
 }
 
 .middle-side p {
@@ -2066,7 +2076,7 @@ a.in-box:hover {
 .single-box-right h4 {
     font-size: 1.3em;
     color: #27DA93;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
 }
 
 /*--//single--*/
@@ -2085,14 +2095,14 @@ a.in-box:hover {
 .map-buy-single h4 {
     font-size: 1.5em;
     color: #000;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
     padding: 1em 0;
 }
 
 .buy-sin h4 {
     font-size: 1.5em;
     color: #000;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
 }
 
 .buy-sin p {
@@ -2125,7 +2135,7 @@ a.in-box:hover {
 .video-pre h4 {
     font-size: 1.5em;
     color: #000;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
     padding: 1em 0;
 }
 
@@ -2140,7 +2150,7 @@ a.in-box:hover {
 .home-loan h3, .bank-bottom1 h3 {
     font-size: 3em;
     color: #000;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
     margin: 0em 0 1em;
     text-align: center;
 }
@@ -2253,7 +2263,7 @@ a.in-box:hover {
     font-size: 3em;
     color: #000;
     margin: 0 0 0.8em;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
     text-align: center;
 }
 
@@ -2269,7 +2279,7 @@ a.in-box:hover {
 
 .loan-col h4, .loan-col1 h4 {
     color: #27da93;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
     padding: 1em 0;
     font-size: 1.2em;
 }
@@ -2390,7 +2400,7 @@ label.hvr-sweep-to-right {
     text-align: center;
     color: #000;
     font-size: 3em;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
 }
 
 .dealers h3:after, .dealers h3:before {
@@ -2406,7 +2416,7 @@ label.hvr-sweep-to-right {
 .dealer h4 {
     font-size: 1.8em;
     color: #000;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
     text-transform: uppercase;
 }
 
@@ -2428,7 +2438,7 @@ label.hvr-sweep-to-right {
     color: #27DA93;
     width: 78%;
     line-height: 1.3em;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
 }
 
 .dealer-grid-top h6 a {
@@ -2461,7 +2471,7 @@ label.hvr-sweep-to-right {
 
 .top-deal1 h5 {
     font-size: 1.2em;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
 }
 
 .top-deal1 h5 a {
@@ -2487,7 +2497,7 @@ label.hvr-sweep-to-right {
 .dealer-top h4 {
     font-size: 1.8em;
     color: #000;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
     text-transform: uppercase;
 }
 
@@ -2513,7 +2523,7 @@ label.hvr-sweep-to-right {
 .about-head h3 {
     font-size: 3em;
     text-align: center;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
     margin: 0 0 0.5em;
 }
 
@@ -2531,7 +2541,7 @@ label.hvr-sweep-to-right {
     font-size: 1.3em;
     width: 72%;
     line-height: 1.6em;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
     margin: 0.5em auto;
 }
 
@@ -2571,13 +2581,13 @@ label.hvr-sweep-to-right {
     color: #000;
     font-size: 2em;
     text-transform: uppercase;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
 }
 
 .about-mid h6 {
     font-size: 1.4em;
     margin: 1em 0 0.7em;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
     line-height: 1.5em;
 }
 
@@ -2608,7 +2618,7 @@ label.hvr-sweep-to-right {
     line-height: 1.5em;
     text-transform: uppercase;
     margin: 0 0 0.5em;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
 }
 
 .about-middle {
@@ -2620,7 +2630,7 @@ label.hvr-sweep-to-right {
     font-size: 3em;
     color: #000;
     text-align: center;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
     margin: 0 0 0.3em;
 }
 
@@ -2643,7 +2653,7 @@ label.hvr-sweep-to-right {
     font-size: 1.4em;
     text-transform: uppercase;
     color: #27DA93;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
 }
 
 .beautiful label {
@@ -2673,7 +2683,7 @@ label.hvr-sweep-to-right {
 .bottom-about h4 {
     color: #27da93;
     font-size: 1.3em;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
     line-height: 1.5em;
 }
 
@@ -2710,7 +2720,7 @@ label.hvr-sweep-to-right {
 .content-events h3 {
     font-size: 3em;
     color: #000;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
     text-align: center;
     margin: 0 0 0.5em;
 }
@@ -2732,13 +2742,13 @@ label.hvr-sweep-to-right {
     border-bottom: 1px solid #000;
     width: 50%;
     padding: 0 0 0.2em;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
     margin: 0 0 0.5em;
 }
 
 .event h6 {
     font-size: 1.2em;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
     display: block;
 }
 
@@ -2768,7 +2778,7 @@ label.hvr-sweep-to-right {
 .blog h3 {
     font-size: 3em;
     color: #000;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
     text-align: center;
     margin: 0 0 1em;
 }
@@ -2788,7 +2798,7 @@ label.hvr-sweep-to-right {
     text-transform: uppercase;
     font-size: 1.1em;
     margin: 1em 0 0.3em;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
     color: #27DA93;
 }
 
@@ -2879,7 +2889,7 @@ ul.blog-links li a i {
     color: #27da93;
     margin-bottom: 0.8em;
     text-transform: uppercase;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
 }
 
 .blog-img {
@@ -2967,7 +2977,7 @@ img.media-object {
 h4.media-heading {
     font-size: 1.2em;
     color: #27da93;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
 }
 
 .media-body p {
@@ -3012,7 +3022,7 @@ h4.media-heading {
     font-size: 2em;
     color: #000;
     margin-bottom: 1em;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
 }
 
 .leave {
@@ -3032,7 +3042,7 @@ h4.media-heading {
 .contact h3 {
     font-size: 3em;
     color: #000;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
     text-align: center;
 }
 
@@ -3095,7 +3105,7 @@ p.text-contact {
     display: block;
     color: #000;
     font-size: 2em;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
     margin: 0 0 0.7em;
 }
 
@@ -3103,7 +3113,7 @@ p.text-contact {
     display: block;
     color: #27DA93;
     font-size: 1.3em;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
 }
 
 .contact-address1 {
@@ -3136,7 +3146,7 @@ p.text-contact {
 .terms h3 {
     font-size: 3em;
     color: #000;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
     padding: 0 0 0.5em;
     text-align: center;
 }
@@ -3154,7 +3164,7 @@ p.text-contact {
 .terms h4 {
     font-size: 1.5em;
     color: #27da93;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
 }
 
 .terms p {
@@ -3200,7 +3210,7 @@ ul.terms-start li a i {
 .privacy h3 {
     font-size: 3em;
     color: #000;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
     padding: 0 0 0.3em;
     text-align: center;
 }
@@ -3218,7 +3228,7 @@ ul.terms-start li a i {
 .privacy h4 {
     font-size: 1.5em;
     color: #27da93;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
 }
 
 .privacy p {
@@ -3273,7 +3283,7 @@ p.privacy-para {
     text-align: center;
     color: #000;
     font-size: 3em;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
     margin: 0 0 1em;
 }
 
@@ -3396,7 +3406,7 @@ ul.login-icons li:nth-child(2), ul.login-icons li:nth-child(4) {
     font-size: 1.3em;
     color: #000;
     margin-top: 9px;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
 }
 
 .create a {
@@ -3446,7 +3456,7 @@ ul.login-icons li:nth-child(2), ul.login-icons li:nth-child(4) {
     text-align: center;
     color: #000;
     font-size: 3em;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
     margin: 0 0 1em;
 }
 
@@ -3498,7 +3508,7 @@ ul.login-icons li:nth-child(2), ul.login-icons li:nth-child(4) {
     text-align: center;
     color: #000;
     font-size: 3em;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
     margin: 0 0 1em;
 }
 
@@ -3519,7 +3529,7 @@ ul.login-icons li:nth-child(2), ul.login-icons li:nth-child(4) {
 .questions h5 {
     color: #27da93;
     font-size: 1.3em;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
     line-height: 1.6em;
 }
 
@@ -3540,7 +3550,7 @@ ul.login-icons li:nth-child(2), ul.login-icons li:nth-child(4) {
     text-align: center;
     color: #000;
     font-size: 3em;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
     margin: 0 0 1em;
 }
 
@@ -3564,7 +3574,7 @@ ul.login-icons li:nth-child(2), ul.login-icons li:nth-child(4) {
     font-size: 1.4em;
     color: #27DA93;
     margin: 0.5em 0;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
 }
 
 ul.career-start {
@@ -3604,7 +3614,7 @@ h3.typo1 {
     text-align: center;
     color: #000;
     font-size: 3em;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Amiri', 'Montserrat-Regular';
     margin: 0 0 1em;
 }
 

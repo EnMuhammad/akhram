@@ -5,7 +5,7 @@ HTML5 display definitions
 ========================================================================== */
 
 /* * Corrects `block` display not defined in IE 6/7/8/9 and Firefox 3. */
-
+@import url('https://fonts.googleapis.com/css2?family=Amiri&display=swap');
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary {
     display: block;
 }
@@ -47,7 +47,7 @@ html {
 /* * Addresses `font-family` inconsistency between `textarea` and other form
 * elements. */
 html, button, input, select, textarea {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Amiri', 'Lato', sans-serif;
 }
 
 /* * Addresses margins handled incorrectly in IE 6/7. */
@@ -99,7 +99,7 @@ p, pre {
 
 /* * Corrects font family set oddly in IE 6, Safari 4/5, and Chrome. */
 code, kbd, pre, samp {
-    font-family: monospace, serif;
+    font-family: 'Amiri', monospace, serif;
     _font-family: 'courier new', monospace;
     font-size: 1em;
 }
@@ -397,7 +397,7 @@ nav ul {
 .navigation nav ul li a {
     color: #1B1B1B;
     font-size: 0.9em;
-    font-family: 'Oxygen-Regular';
+    font-family: 'Amiri', 'Oxygen-Regular';
     margin: 0.3em 1em !important;
     text-align: center;
     display: block !important;

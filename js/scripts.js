@@ -12,6 +12,12 @@ $(window).on("scroll", function () {
     }
 });
 $(function () {
+    $('.change_lang').on('click', function (e) {
+        e.preventDefault();
+        $.get('index.php?action&change_language', function () {
+            window.location.reload();
+        });
+    });
     $('.nav_slide_button').click(function () {
         $('.pull').slideToggle();
     });

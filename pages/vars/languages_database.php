@@ -22,6 +22,10 @@ class Lang_database
     function Translations()
     {
         $this->data_set = array(
+            'CHANGE_LANG' => array('ar' => 'English', 'en' => 'العربية'),
+            'ALIGN' => array('ar' => 'right', 'en' => 'left'),
+            'ALIGN_NATIVE' => array('ar' => 'left', 'en' => 'right'),
+            'DIR' => array('ar' => 'rtl', 'en' => 'ltr'),
             'TITLE' => array('ar' => '', 'en' => ''),
             'LANGUAGES' => array('ar' => 'اللغة', 'en' => 'Language'),
             'HOME' => array('ar' => ' الرئيسية', 'en' => 'Home'),
@@ -29,12 +33,14 @@ class Lang_database
             'TERMS' => array('ar' => 'شروط الاستخدام', 'en' => 'Terms and conditions'),
             'PRIVACY' => array('ar' => 'سياسة الخصوصية', 'en' => 'privacy policy'),
             'ABOUT' => array('ar' => 'عنا', 'en' => 'About us'),
+            'ABOUT_COMPANY' => array('ar' => 'عن الشركة', 'en' => 'About Company'),
             'NEWS' => array('ar' => 'الأخبـار والانشطة', 'en' => 'News & Activities'),
             'CONTACT' => array('ar' => 'تواصل معنا', 'en' => 'Contact Us'),
             'ADDRESS' => array('ar' => 'العنوان', 'en' => 'Address'),
             'PHONE' => array('ar' => 'رقم الهاتف', 'en' => 'Phone'),
             'EMAIL' => array('ar' => 'البريد الالكتروني', 'en' => 'Email Address'),
             'SUBSCRIBE' => array('ar' => 'أشترك', 'en' => 'Subscribe'),
+            'READ_MORE' => array('ar' => 'أقراء المزيد', 'en' => 'Read More'),
             //// - Add Here - ///
             'LATEST_PROJECTS' => array('ar' => 'أخر المشاريع', 'en' => 'Latest Projects'),
             'services' => array('ar' => 'الخدمات', 'en' => 'Services'),

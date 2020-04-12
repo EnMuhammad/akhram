@@ -10,9 +10,12 @@ $l = $lang->GetLanguage();
 prs::unSetData();
 prs::$table = SERVICES_TABLE;
 $serv = '';
+$serv_bottom = '';
+$i = 0;
 foreach (prs::select__record() as $t => $s) {
+
     $serv .= '
-    <div class=" bottom-head">
+    <div class=" bottom-head" style="float:' . $trans['ALIGN'][$l] . '">
         <a href="Services/' . $s['id'] . '/' . str_replace(' ', '_', $s['service_' . $l]) . '">
                         <div class="buy-media">
                             <i class="buy"> </i>
@@ -20,25 +23,46 @@ foreach (prs::select__record() as $t => $s) {
                         </div>
                     </a>
                     </div>';
-
+    if ($i <= 3) {
+        $serv_bottom .= '
+      <div class="col-md-4 service-top1" dir="' . $trans['DIR'][$l] . '" style="float:' . $trans['ALIGN'][$l] . '">
+                    <div class=" ser-grid">
+                        <a href="#" class="hi-icon hi-icon-archive glyphicon glyphicon-user"> </a>
+                    </div>
+                    <div class="ser-top">
+                        <h4>' . $s['service_' . $l] . '</h4>
+                        <p>' . mb_substr($s['about_service_' . $l], 0, 150, 'UTF8') . ' ..
+                        <a href="">' . $trans['READ_MORE'][$l] . '</a>
+                        </p>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+    ';
+    }
+    $i++;
 }
 prs::unSetData();
-prs::$table = WORK_TABLE;
+prs::$table = EQUI_TABLE;
 prs::$limit = 3;
 $projects = '';
 foreach (prs::select__record() as $t => $s) {
     $projects .= '
-      <div class="col-md-4 box_2">
+      <div class="col-md-4 box_2" style="float:' . $trans['ALIGN'][$l] . '">
                 <a href="single.html" class="mask">
-                    <img class="img-responsive zoom-img" src="images/pc4.jpg" alt="">
+                    <img class="img-responsive zoom-img" src="images/equipments/' . $s['photo'] . '" alt="">
                     <!--<span class="four">40,000$</span> -->
                 </a>
                 <div class="most-1">
-                    <h5><a href="single.html">' . $s['title_en'] . '</a></h5>
-                    <p>' . $s['city_en'] . '</p>
+                    <h5><a href="single.html">' . $s['name_' . $l] . '</a></h5>
                 </div>
             </div>';
-
+}
+prs::unSetData();
+prs::$table = COMPANY_TABLE;
+prs::$select_cond = array('data_type' => 'background');
+$company_background = '';
+foreach (prs::select__record() as $t => $back) {
+    $company_background = $back['data_' . $l];
 }
 prs::unSetData();
 prs::$table = SLIDES_TABLE;
@@ -63,8 +87,8 @@ if (!empty(prs::select__record())) {
         $div .= '
              <li>
                         <div class="banner' . $i . ' banners_">
-                            <div class="caption">
-                                <h3><span>' . $s['text_slide_info'] . '</span></h3>
+                            <div class="caption" style="' . $trans['ALIGN'][$l] . ':13%;">
+                                <h3><span>' . $s['slide_text_' . $l] . '</span></h3>
                              
                             </div>
                         </div>
@@ -130,70 +154,26 @@ echo $style;
         <div class="container">
             <div class="service-top">
                 <h3><?= $trans['services'][$l] ?></h3>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                <p>نطمح للريادة في التوسع وتغطية مشاريع البنية التحتية المدنية ، مشاريع خدمات النفط والغاز ، والخدمات
+                    العامة في اليمن والإقليم
+                </p>
             </div>
             <div class="services-grid">
-                <div class="col-md-6 service-top1">
-                    <div class=" ser-grid">
-                        <a href="#" class="hi-icon hi-icon-archive glyphicon glyphicon-user"> </a>
-                    </div>
-                    <div class="ser-top">
-                        <h4>Ut wisi enim ad</h4>
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text.
-                            It has roots in a piece of classical.Contrary to popular belief, Lorem Ipsum </p>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="col-md-6 service-top1">
-                    <div class=" ser-grid">
-                        <a href="#" class="hi-icon hi-icon-archive glyphicon glyphicon-leaf"> </a>
-                    </div>
-                    <div class="ser-top">
-                        <h4>Ut wisi enim ad</h4>
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text.
-                            It has roots in a piece of classical.Contrary to popular belief, Lorem Ipsum </p>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
+                <?= $serv_bottom ?>
                 <div class="clearfix"></div>
             </div>
-            <div class="services-grid">
-                <div class="col-md-6 service-top1">
-                    <div class=" ser-grid">
-                        <a href="#" class="hi-icon hi-icon-archive glyphicon glyphicon-cog"> </a>
-                    </div>
-                    <div class="ser-top">
-                        <h4>Ut wisi enim ad</h4>
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text.
-                            It has roots in a piece of classical.Contrary to popular belief, Lorem Ipsum </p>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="col-md-6 service-top1">
-                    <div class=" ser-grid">
-                        <a href="#" class="hi-icon hi-icon-archive glyphicon glyphicon-file"> </a>
-                    </div>
-                    <div class="ser-top">
-                        <h4>Ut wisi enim ad</h4>
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text.
-                            It has roots in a piece of classical .Contrary to popular belief, Lorem Ipsum</p>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
+
         </div>
     </div>
     <!--//services-->
     <!--features-->
     <div class="content-middle">
         <div class="container">
-            <div class="mid-content">
-                <h3>the best features</h3>
-                <p>Contrary to popular belief
-                    , Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from
-                    45 BC, making it over 2000 years old.</p>
-                <a class="hvr-sweep-to-right more-in" href="single.html">Read More</a>
+            <div class="mid-content" dir="<?= $trans['DIR'][$l] ?>" style="float: <?= $trans['ALIGN_NATIVE'][$l] ?>">
+                <h3><?= $trans['ABOUT_COMPANY'][$l] ?></h3>
+                <p><?= mb_substr($company_background, 0, 150, 'UTF8') . '...' ?>
+                </p>
+                <a class="hvr-sweep-to-right more-in" href="single.html"><?= $trans['READ_MORE'][$l] ?></a>
             </div>
         </div>
     </div>
