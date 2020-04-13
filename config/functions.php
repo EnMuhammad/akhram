@@ -31,4 +31,52 @@ class functions
         $this->return = prs::select__record();
         return $this->return;
     }
+
+    function GetProjects($limit = 0)
+    {
+        prs::unSetData();
+        prs::$table = PROJECTS_TABLE;
+        if ($limit > 0) {
+            prs::$limit = $limit;
+        }
+        foreach (prs::select__record() as $p => $val) {
+            $this->return[] = $val;
+        }
+        return $this->return;
+    }
+
+    function GetProjectsMedia($pid, $cover = false)
+    {
+        prs::unSetData();
+        prs::$table = PROJECTS_MEDIA_TABLE;
+        prs::$select_cond['pid'] = $pid;
+        if ($cover) {
+            prs::$select_cond['cover'] = 1;
+        }
+        $image = '';
+        foreach (prs::select__record() as $item => $key) {
+            if ($cover) {
+                $image = $key['media_name'];
+            } else {
+                $this->return[] = $key['media_name'];
+            }
+
+        }
+        if ($cover) {
+            return $image;
+        } else {
+            return $this->return;
+        }
+    }
+
+    function GetCityName($id)
+    {
+        prs::unSetData();
+        prs::$table = CITY_BRANCH_TABLE;
+        prs::$select_cond = array('id' => $id);
+        foreach (prs::select__record() as $t => $name) {
+            $this->return['name'] = $name['name'];
+        }
+        return $this->return['name'];
+    }
 }

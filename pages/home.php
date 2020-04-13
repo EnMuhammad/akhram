@@ -1,8 +1,10 @@
 <?php
 
+use Fun\functions as fun;
 use Languages\Lang_database as lang;
 use PROCESS\prs as prs;
 
+$fun = new fun();
 $lang = new lang();
 $trans = $lang->Translations();
 $l = $lang->GetLanguage();
@@ -44,9 +46,9 @@ foreach (prs::select__record() as $t => $s) {
 prs::unSetData();
 prs::$table = EQUI_TABLE;
 prs::$limit = 3;
-$projects = '';
+$equipments = '';
 foreach (prs::select__record() as $t => $s) {
-    $projects .= '
+    $equipments .= '
       <div class="col-md-4 box_2" style="float:' . $trans['ALIGN'][$l] . '">
                 <a href="single.html" class="mask">
                     <img class="img-responsive zoom-img" src="images/equipments/' . $s['photo'] . '" alt="">
@@ -63,6 +65,31 @@ prs::$select_cond = array('data_type' => 'background');
 $company_background = '';
 foreach (prs::select__record() as $t => $back) {
     $company_background = $back['data_' . $l];
+}
+$projects = '';
+foreach ($fun->GetProjects(4) as $to) {
+    $projects = '
+         <div class="col-md-3 project-grid" style="float:' . $trans['ALIGN'][$l] . ';direction:' . $trans['DIR'][$l] . '">
+                    <div class="project-grid-top">
+                        <a href="single.html" class="mask">
+                        <img src="images/project_media/' . $to['id'] . '/' . $fun->GetProjectsMedia($to['id'], true) . '" class="img-responsive zoom-img"
+                                                                alt=""/></a>
+                        <div class="col-md1">
+                            <div class="col-md2">
+                               
+                                <div class="col-md4">
+                                    <strong>' . $to['title_ar'] . '</strong>
+                                    <small>50 Views</small>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <p>' . $fun->GetCityName($to['city_id']) . '</p>
+                            
+                            <a href="single.html" class="hvr-sweep-to-right more">See Details</a>
+                        </div>
+                    </div>
+                </div>
+    ';
 }
 prs::unSetData();
 prs::$table = SLIDES_TABLE;
@@ -145,7 +172,7 @@ echo $style;
     <div class="content-grid">
         <div class="container">
             <h3><?= $trans['latest_equ'][$l] ?></h3>
-            <?= $projects ?>
+            <?= $equipments ?>
             <div class="clearfix"></div>
         </div>
     </div>
@@ -184,90 +211,8 @@ echo $style;
         <div class="container">
             <h3><?= $trans['LATEST_PROJECTS'][$l] ?></h3>
             <div class="project-top">
-                <div class="col-md-3 project-grid">
-                    <div class="project-grid-top">
-                        <a href="single.html" class="mask"><img src="images/ga.jpg" class="img-responsive zoom-img"
-                                                                alt=""/></a>
-                        <div class="col-md1">
-                            <div class="col-md2">
-                                <div class="col-md3">
-                                    <span class="star"> 4.5</span>
-                                </div>
-                                <div class="col-md4">
-                                    <strong>Venice</strong>
-                                    <small>50 Reviews</small>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <p>2, 3, 4 BHK Flats</p>
-                            <p class="cost">$65,000</p>
-                            <a href="single.html" class="hvr-sweep-to-right more">See Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 project-grid">
-                    <div class="project-grid-top">
-                        <a href="single.html" class="mask"><img src="images/ga1.jpg" class="img-responsive zoom-img"
-                                                                alt=""/></a>
-                        <div class="col-md1">
-                            <div class="col-md2">
-                                <div class="col-md3">
-                                    <span class="star"> 4.5</span>
-                                </div>
-                                <div class="col-md4">
-                                    <strong>Venice</strong>
-                                    <small>50 Reviews</small>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <p>2, 3, 4 BHK Flats</p>
-                            <p class="cost">$65,000</p>
-                            <a href="single.html" class="hvr-sweep-to-right more">See Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 project-grid">
-                    <div class="project-grid-top">
-                        <a href="single.html" class="mask"><img src="images/ga2.jpg" class="img-responsive zoom-img"
-                                                                alt=""/></a>
-                        <div class="col-md1">
-                            <div class="col-md2">
-                                <div class="col-md3">
-                                    <span class="star"> 4.5</span>
-                                </div>
-                                <div class="col-md4">
-                                    <strong>Venice</strong>
-                                    <small>50 Reviews</small>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <p>2, 3, 4 BHK Flats</p>
-                            <p class="cost">$65,000</p>
-                            <a href="single.html" class="hvr-sweep-to-right more">See Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 project-grid">
-                    <div class="project-grid-top">
-                        <a href="single.html" class="mask"><img src="images/ga3.jpg" class="img-responsive zoom-img"
-                                                                alt=""/></a>
-                        <div class="col-md1">
-                            <div class="col-md2">
-                                <div class="col-md3">
-                                    <span class="star"> 4.5</span>
-                                </div>
-                                <div class="col-md4">
-                                    <strong>Venice</strong>
-                                    <small>50 Reviews</small>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <p>2, 3, 4 BHK Flats</p>
-                            <p class="cost">$65,000</p>
-                            <a href="single.html" class="hvr-sweep-to-right more">See Details</a>
-                        </div>
-                    </div>
-                </div>
+                <?= $projects ?>
+
                 <div class="clearfix"></div>
             </div>
         </div>
