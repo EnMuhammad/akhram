@@ -8,7 +8,8 @@
 session_start();
 //error_reporting(0);
 define('DS', DIRECTORY_SEPARATOR);
-define('FOLDER_DIR', 'akhram2');
+//define('FOLDER_DIR', 'akhram2'); // LocalHost
+define('FOLDER_DIR', ''); // Online
 define('HOME_DIR', dirname(__FILE__));
 define('DIR', dirname(__FILE__));
 define('ROOT', 'http://' . $_SERVER['SERVER_NAME'] . '/' . FOLDER_DIR);
