@@ -47,6 +47,9 @@ class Lang_database
             'latest_equ' => array('ar' => 'أحدث المعدات', 'en' => 'Latest Equipments'),
             'photo_galleries' => array('ar' => 'البوم الصور', 'en' => 'Galleries'),
             'Partners' => array('ar' => 'شركاء النجاح', 'en' => 'Our Partners'),
+            ///// - Services - ///
+            'ABOUT_SERVICE' => array('ar' => 'نبذة', 'en' => 'About'),
+            'STR_SERVICES' => array('ar' => 'القدرات', 'en' => 'Strength'),
 
         );
         $this->GetLanguage();

@@ -30,6 +30,11 @@ if (empty($_GET) || isset($_GET['home']) || isset($_GET['dashboard'])) {
     $p->page_get = 'News_Page';
     $p->page_title = NEWS_PAGE . ' أسم الخبر';
     $p->Action();
+} else if (isset($_GET['Project'])) {
+    $p = new page();
+    $p->page_get = 'Project_Page';
+    $p->page_title = 'Project';
+    $p->Action();
 } else {
     new Page_Errors\ErrorsPages();
 }

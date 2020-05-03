@@ -21,6 +21,7 @@ DEFINE('EQU_INFO_TABLE', 'equ_info');
 DEFINE('WORK_TABLE', 'prev_work');
 
 DEFINE('SERVICES_TABLE', 'services_points');
+DEFINE('SERVICES_STR_TABLE', 'services_str');
 DEFINE('SERV_POINT_TABLE', 'serv_point');
 DEFINE('SLIDES_TABLE', 'slides');
 DEFINE('CONTACT_TABLE', 'contact_us');

@@ -36,6 +36,9 @@ class Pages
             case 'News_Page':
                 $this->page_select = 'news_page.php';
                 break;
+            case 'Project_Page':
+                $this->page_select = 'project_page.php';
+                break;
 
         }
         if ($this->page_closed) {

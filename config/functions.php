@@ -22,16 +22,14 @@ class functions
         $this->return = prs::select__record();
         return $this->return;
     }
-
     function GetProjectListByServiceID()
     {
         prs::unSetData();
         prs::$table = PROJECTS_TABLE;
-        prs::$select_cond = array('id' => $this->service_id);
+        prs::$select_cond = array('service_id' => $this->service_id);
         $this->return = prs::select__record();
         return $this->return;
     }
-
     function GetProjects($limit = 0)
     {
         prs::unSetData();
@@ -69,6 +67,16 @@ class functions
         }
     }
 
+    function GetServicesStr($sid)
+    {
+        prs::unSetData();
+        prs::$table = SERVICES_STR_TABLE;
+        prs::$select_cond = array('sid' => $sid);
+        foreach (prs::select__record() as $r => $t) {
+            $this->return[] = $t;
+        }
+        return $this->return;
+    }
     function GetCityName($id)
     {
         prs::unSetData();

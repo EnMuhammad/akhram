@@ -32,6 +32,24 @@ h1, h2, h3, h4, h5, h6, label, p {
     margin: 0;
 }
 
+h4.onLine {
+
+    font-size: 21px;
+    font-family: 'Amiri', 'Montserrat-Regular';
+    margin: 5px 0;
+    padding: 5px;
+    text-decoration: underline;
+}
+
+ul.Point {
+    list-style: decimal;
+}
+
+ul.Point li {
+    padding: 5px 0;
+    font-size: 14px;
+    font-family: 'Cairo', 'Montserrat-Regular';
+}
 /*----*/
 .logo {
     float: left;
@@ -929,6 +947,9 @@ a.more:hover {
     font-family: 'Amiri', 'Montserrat-Regular';
 }
 
+.fonter {
+    font-family: 'Amiri', 'Montserrat-Regular';
+}
 .project h3:after, .project h3:before {
     width: 200px;
     height: 1px;
