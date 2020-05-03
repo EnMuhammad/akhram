@@ -23,6 +23,7 @@ DEFINE('WORK_TABLE', 'prev_work');
 DEFINE('SERVICES_TABLE', 'services_points');
 DEFINE('SERVICES_STR_TABLE', 'services_str');
 DEFINE('SERV_POINT_TABLE', 'serv_point');
+DEFINE('CLIENTS_TABLE', 'our_clients');
 DEFINE('SLIDES_TABLE', 'slides');
 DEFINE('CONTACT_TABLE', 'contact_us');
 DEFINE('TAGS_TABLE', 'tags');
@@ -34,5 +35,6 @@ DEFINE('COMPANY_TABLE', 'company');
 DEFINE('EQUI_TABLE', 'equipments');
 DEFINE('PROJECTS_TABLE', 'project_table');
 DEFINE('PROJECTS_MEDIA_TABLE', 'project_album');
+DEFINE('PROJECTS_TASK_TABLE', 'project_tasks');
 DEFINE('CITY_BRANCH_TABLE', 'city_branchs');
 

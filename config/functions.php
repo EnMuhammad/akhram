@@ -13,6 +13,7 @@ use PROCESS\prs as prs;
 class functions
 {
     var $service_id = 0;
+    var $project_id = 0;
     var $return = array();
 
     function GetServices()
@@ -67,6 +68,32 @@ class functions
         }
     }
 
+    function GetProjectInfo($lang)
+    {
+        prs::unSetData();
+        prs::$table = PROJECTS_TABLE;
+        prs::$select_cond = array('id' => $this->project_id);
+        $this->return['Task'] = array();
+        foreach (prs::select__record() as $t => $p) {
+            $this->return['title'] = $p['title_' . $lang];
+            $this->return['city'] = $this->GetCityName($p['city_id']);
+            $this->return['service'] = $this->GetServiceName($p['service_id'], $lang);
+            $this->return['date_start'] = $p['date_start'];
+            $this->return['date_end'] = $p['date_end'];
+            $this->return['Client'] = $this->GetClientName($p['client_id'], $lang);
+            $this->return['contract'] = $p['contract_type'];
+            $this->return['ads'] = $p['advisor'];
+
+            /// Get Tasks ///
+            prs::unSetData();
+            prs::$table = PROJECTS_TASK_TABLE;
+            prs::$select_cond = array('pid' => $p['id']);
+            foreach (prs::select__record() as $y => $task) {
+                $this->return['Task'][] = $task['task_' . $lang];
+            }
+        }
+        return $this->return;
+    }
     function GetServicesStr($sid)
     {
         prs::unSetData();
@@ -84,6 +111,28 @@ class functions
         prs::$select_cond = array('id' => $id);
         foreach (prs::select__record() as $t => $name) {
             $this->return['name'] = $name['name'];
+        }
+        return $this->return['name'];
+    }
+
+    function GetServiceName($id, $lang)
+    {
+        prs::unSetData();
+        prs::$table = SERVICES_TABLE;
+        prs::$select_cond = array('id' => $id);
+        foreach (prs::select__record() as $t => $name) {
+            $this->return['name'] = $name['service_' . $lang];
+        }
+        return $this->return['name'];
+    }
+
+    function GetClientName($id, $lang)
+    {
+        prs::unSetData();
+        prs::$table = CLIENTS_TABLE;
+        prs::$select_cond = array('id' => $id);
+        foreach (prs::select__record() as $t => $name) {
+            $this->return['name'] = $name['name_' . $lang];
         }
         return $this->return['name'];
     }
