@@ -68,6 +68,7 @@ foreach (prs::select__record() as $t => $back) {
 }
 $projects = '';
 foreach ($fun->GetProjects(4) as $to) {
+    $url = str_replace(' ', '_', $to['title_' . $l]);
     $projects = '
          <div class="col-md-3 project-grid" style="float:' . $trans['ALIGN'][$l] . ';direction:' . $trans['DIR'][$l] . '">
                     <div class="project-grid-top">
@@ -85,7 +86,7 @@ foreach ($fun->GetProjects(4) as $to) {
                             </div>
                             <p>' . $fun->GetCityName($to['city_id']) . '</p>
                             
-                            <a href="single.html" class="hvr-sweep-to-right more">See Details</a>
+                            <a href="Project/' . $to['id'] . '/' . $url . '" class="hvr-sweep-to-right more">See Details</a>
                         </div>
                     </div>
                 </div>
