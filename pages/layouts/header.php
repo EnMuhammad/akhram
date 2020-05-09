@@ -67,7 +67,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   </script>
 </head>
 <body>
+<div class="loading_backgrounds">
+<div class="divLoader">جــاري التحميل .. يرجى الانتظار
+<br>
+<i class="fa fa-spin fa-spinner"></i>
+</div>
 
+</div>
 ' . ((isset($_SESSION['AdminLogin']) && isset($_SESSION['AdminId'])) ? '
 <div class="bottom_tools">
 <ul>

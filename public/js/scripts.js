@@ -1,6 +1,6 @@
 // navigation slide-in
 $(window).load(function () {
-
+    $('.loading_backgrounds').hide();
 });
 $(window).on("scroll", function () {
     if ($(window).scrollTop() > 50) {
