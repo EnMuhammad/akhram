@@ -68,13 +68,17 @@ class Page_Banner
         <!--//logo-->
         <div class="top-nav">
             <ul class="right-icons">
-                <li><span ><i class="glyphicon glyphicon-phone"> </i>+967 77 77 7777</span></li>
+                <li><span ><i class="glyphicon glyphicon-phone"> </i>+967 <div class="updateReplace">77 77 7777</div>
+               
+                </span>
+              
+                </li>
                 <li><a  href="javascript:;" class="change_lang"><i class="glyphicon glyphicon-globe"> </i>' . $trans['CHANGE_LANG'][$l] . '</a></li>
                 <li><a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i class="glyphicon glyphicon-search"> </i> </a></li>
 
             </ul>
             <div class="nav-icon">
-                <div class="hero fa-navicon fa-2x nav_slide_button" id="hero">
+                <div class="hero fa-navicon  nav_slide_button" id="hero">
                     <a href="#"><i class="glyphicon glyphicon-menu-hamburger"></i> </a>
                 </div>
                 <!---

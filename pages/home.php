@@ -12,6 +12,7 @@ $l = $lang->GetLanguage();
 prs::unSetData();
 prs::$table = SERVICES_TABLE;
 $serv = '';
+prs::$limit = 7;
 $serv_bottom = '';
 $i = 0;
 foreach (prs::select__record() as $t => $s) {
@@ -25,7 +26,7 @@ foreach (prs::select__record() as $t => $s) {
                         </div>
                     </a>
                     </div>';
-    if ($i <= 3) {
+    if ($i <= 2) {
         $serv_bottom .= '
       <div class="col-md-4 service-top1" dir="' . $trans['DIR'][$l] . '" style="float:' . $trans['ALIGN'][$l] . '">
                     <div class=" ser-grid">
@@ -46,6 +47,7 @@ foreach (prs::select__record() as $t => $s) {
 prs::unSetData();
 prs::$table = EQUI_TABLE;
 prs::$limit = 3;
+prs::$order = 'id DESC';
 $equipments = '';
 foreach (prs::select__record() as $t => $s) {
     $equipments .= '
@@ -55,7 +57,7 @@ foreach (prs::select__record() as $t => $s) {
                     <!--<span class="four">40,000$</span> -->
                 </a>
                 <div class="most-1">
-                    <h5><a href="single.html">' . $s['name_' . $l] . '</a></h5>
+                    <h5><a href="#">' . $s['name_' . $l] . '</a></h5>
                 </div>
             </div>';
 }
@@ -67,9 +69,10 @@ foreach (prs::select__record() as $t => $back) {
     $company_background = $back['data_' . $l];
 }
 $projects = '';
+
 foreach ($fun->GetProjects(4) as $to) {
     $url = str_replace(' ', '_', $to['title_' . $l]);
-    $projects = '
+    $projects .= '
          <div class="col-md-3 project-grid" style="float:' . $trans['ALIGN'][$l] . ';direction:' . $trans['DIR'][$l] . '">
                     <div class="project-grid-top">
                         <a href="single.html" class="mask">
@@ -137,7 +140,18 @@ echo $style;
                 <ul class="rslides" id="slider">
                     <?= $div ?>
                 </ul>
+                <?php
+                if (isset($_SESSION['AdminLogin']) && isset($_SESSION['AdminId'])){
+                ?>
+                <!--                <div class="updateSlides">-->
+                <!--                    <button class="btn btn-danger btn-lg show-slides-dialog">Update Slides-->
+                <!--                        <i class="fa fa-photo-video"></i>-->
+                <!--                    </button>-->
+                <!--                </div>-->
             </div>
+            <?php
+            }
+            ?>
         </div>
     </div>
 </div>

@@ -18,6 +18,7 @@ class Pages
     var $page_get;
     var $page_closed = false;
     var $loader = false;
+    var $login = false;
     var $page_title = PAGE_DEF_TITLE;
     protected $page_select;
 
@@ -39,6 +40,14 @@ class Pages
             case 'Project_Page':
                 $this->page_select = 'project_page.php';
                 break;
+            case 'LoginAdmin':
+                $this->login = true;
+                $this->page_select = 'index.php';
+                break;
+            case 'AllList':
+                $this->login = false;
+                $this->page_select = 'list_all.php';
+                break;
 
         }
         if ($this->page_closed) {
@@ -56,14 +65,28 @@ class Pages
 
     protected function CreatePage()
     {
-        if (!$this->loader) {
-            new Page_Header($this->page_title);
-            new Page_Banner();
-            include 'pages/' . $this->page_select;
-            new Page_Footer();
+        if ($this->login) {
+            include 'pages/login/index.php';
         } else {
-            include 'pages/' . $this->page_select;
+            if (!$this->loader) {
+                new Page_Header($this->page_title);
+                new Page_Banner();
+
+                if (isset($_SESSION['AdminLogin']) && isset($_SESSION['AdminId'])) {
+                    include 'pages/admin_dialogs.php';
+                }
+
+                include 'pages/' . $this->page_select;
+
+                new Page_Footer();
+            } else {
+                if (isset($_SESSION['AdminLogin']) && isset($_SESSION['AdminId'])) {
+                    include 'pages/admin_dialogs.php';
+                }
+                include 'pages/' . $this->page_select;
+            }
         }
+
     }
 
 

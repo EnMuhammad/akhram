@@ -32,7 +32,9 @@ DEFINE('SETTING_TABLE', 'web_setting');
 
 
 DEFINE('COMPANY_TABLE', 'company');
+DEFINE('CONTACT_INFO_TABLE', 'contact_info');
 DEFINE('EQUI_TABLE', 'equipments');
+DEFINE('MEDIA_TABLE', 'media');
 DEFINE('PROJECTS_TABLE', 'project_table');
 DEFINE('PROJECTS_MEDIA_TABLE', 'project_album');
 DEFINE('PROJECTS_TASK_TABLE', 'project_tasks');

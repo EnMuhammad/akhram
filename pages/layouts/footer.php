@@ -91,10 +91,16 @@ class Page_Footer
 	 	</div>
 	</div>
 </div>
+<script src="js/scripts.js"></script>
+    ' . ((isset($_SESSION['AdminLogin']) && isset($_SESSION['AdminId'])) ? '
+<script src="js/admin.js"></script>' : '') . '
+<script src="js/bootstrap.min.js" type="text/javascript"></script>
 <script src="js/easyResponsiveTabs.js" type="text/javascript"></script>
   <link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
             <script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
-            <script src="js/scripts.js"></script>
+            
+        
+            
 	  </body>
 	  </html>
     ';

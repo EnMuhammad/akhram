@@ -1,11 +1,12 @@
 RewriteEngine On
 Options -Indexes
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^css/(.*)$  css/$1 [NC,L]
-RewriteRule ^js/(.*)$ js/$1 [NC,L]
-RewriteRule ^images/(.*)$ images/$1 [NC,L]
-RewriteRule ^fonts/(.*)$  fonts/$1 [NC,L]
-RewriteRule ^home_data/(.*)  home_data/$1 [NC,L]
+RewriteRule ^css/(.*)$  public/css/$1 [NC,L]
+RewriteRule ^js/(.*)$ public/js/$1 [NC,L]
+RewriteRule ^images/(.*)$ public/images/$1 [NC,L]
+RewriteRule ^fonts/(.*)$  public/fonts/$1 [NC,L]
+RewriteRule ^jquery-ui/(.*)$  public/jquery-ui/$1 [NC,L]
+RewriteRule ^webfonts/(.*)  public/webfonts/$1 [NC,L]
 RewriteRule ^files/(.*)  files/$1 [NC,L]
 
 
@@ -13,6 +14,8 @@ RewriteRule ^home index.php [L,QSA]
 RewriteRule ^dashboard index.php [L,QSA]
 RewriteRule ^Services/([0-9]+)/(.*) index.php?Serv&id=$1 [L,QSA]
 RewriteRule ^Project/([0-9]+)/(.*) index.php?Project&pid=$1 [L,QSA]
+RewriteRule ^Projects/All/ index.php?Lists&type=projects [L,QSA]
+RewriteRule ^Items/All/ index.php?Lists&type=items [L,QSA]
 RewriteRule ^News/(.*)/id=([0-9]+) index.php?News&search=$1&id=$2 [L,QSA]
 RewriteRule ^News index.php?News [L,QSA]
 RewriteRule ^Sectors_Branches index.php?Sections [L,QSA]

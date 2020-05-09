@@ -47,17 +47,17 @@ class functions
     function GetProjectsMedia($pid, $cover = false)
     {
         prs::unSetData();
-        prs::$table = PROJECTS_MEDIA_TABLE;
-        prs::$select_cond['pid'] = $pid;
-        if ($cover) {
-            prs::$select_cond['cover'] = 1;
-        }
+        prs::$table = MEDIA_TABLE;
+        prs::$select_cond['media_id'] = $pid;
+        prs::$select_cond['type'] = 'projects';
+        prs::$limit = 1;
+        prs::$order = 'id DESC';
         $image = '';
         foreach (prs::select__record() as $item => $key) {
             if ($cover) {
-                $image = $key['media_name'];
+                $image = $key['url'];
             } else {
-                $this->return[] = $key['media_name'];
+                $this->return[] = $key['url'];
             }
 
         }
@@ -104,6 +104,81 @@ class functions
         }
         return $this->return;
     }
+
+    function CityListAsOptions($all = false)
+    {
+        prs::unSetData();
+        prs::$table = CITY_BRANCH_TABLE;
+        if ($all) {
+            $options = '<option value="0">All - الكل</option>';
+        } else {
+            $options = '';
+        }
+        foreach (prs::select__record() as $t => $op) {
+            $options .= '<option value="' . $op['id'] . '">' . $op['name'] . ' - ' . $op['name_en'] . '</option>';
+        }
+        return $options;
+    }
+
+    function ServicesListAsOptions($all = false)
+    {
+        prs::unSetData();
+        prs::$table = SERVICES_TABLE;
+        if ($all) {
+            $options = '<option value="0">All - الكل</option>';
+        } else {
+            $options = '';
+        }
+        foreach (prs::select__record() as $t => $op) {
+            $options .= '<option value="' . $op['id'] . '">' . $op['service_ar'] . ' - ' . $op['service_en'] . '</option>';
+        }
+        return $options;
+    }
+
+    function ClientsListAsOptions($all = false)
+    {
+        prs::unSetData();
+        prs::$table = CLIENTS_TABLE;
+        if ($all) {
+            $options = '<option value="0">All - الكل</option>';
+        } else {
+            $options = '';
+        }
+        foreach (prs::select__record() as $t => $op) {
+            $options .= '<option value="' . $op['id'] . '">' . $op['name_ar'] . ' - ' . $op['name_en'] . '</option>';
+        }
+        return $options;
+    }
+
+    function ProjectsListAsOptions($all = false)
+    {
+        prs::unSetData();
+        prs::$table = PROJECTS_TABLE;
+        if ($all) {
+            $options = '<option value="0">All - الكل</option>';
+        } else {
+            $options = '';
+        }
+        foreach (prs::select__record() as $t => $op) {
+            $options .= '<option value="' . $op['id'] . '">' . $op['title_ar'] . ' - ' . $op['title_en'] . '</option>';
+        }
+        return $options;
+    }
+
+    function ItemsListAsOptions($all = false)
+    {
+        prs::unSetData();
+        prs::$table = EQUI_TABLE;
+        if ($all) {
+            $options = '<option value="0">All - الكل</option>';
+        } else {
+            $options = '';
+        }
+        foreach (prs::select__record() as $t => $op) {
+            $options .= '<option value="' . $op['id'] . '">' . $op['name_ar'] . ' - ' . $op['name_en'] . '</option>';
+        }
+        return $options;
+    }
     function GetCityName($id)
     {
         prs::unSetData();
@@ -135,5 +210,46 @@ class functions
             $this->return['name'] = $name['name_' . $lang];
         }
         return $this->return['name'];
+    }
+}
+
+class AdminFunctions
+{
+
+    var $username;
+    var $password;
+    var $uid = 0;
+
+    function CheckLogin()
+    {
+        $this->password = sha1(md5($this->password));
+        prs::unSetData();
+        prs::$table = ADMIN_TABLE;
+        prs::$select_cond = array('username' => $this->username, 'password' => $this->password);
+        if (!empty(prs::select__record())) {
+            foreach (prs::select__record() as $t => $i) {
+                $this->uid = $i['id'];
+            }
+            $this->SaveLogin();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function SaveLogin()
+    {
+//    if(!isset($_SESSION['AdminLogin'])){
+        $_SESSION['AdminLogin'] = $this->username;
+        $_SESSION['AdminId'] = $this->uid;
+//    }
+    }
+
+    function Logout()
+    {
+        $_SESSION['AdminLogin'] = '';
+        $_SESSION['AdminId'] = 0;
+        unset($_SESSION['AdminId']);
+        unset($_SESSION['AdminLogin']);
     }
 }

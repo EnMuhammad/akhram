@@ -35,6 +35,23 @@ if (empty($_GET) || isset($_GET['home']) || isset($_GET['dashboard'])) {
     $p->page_get = 'Project_Page';
     $p->page_title = 'Project';
     $p->Action();
+} else if (isset($_GET['Lists'])) {
+    $p = new page();
+    $p->page_get = 'AllList';
+    $p->page_title = 'All';
+    $p->Action();
+} else if (isset($_GET['Control'])) {
+    if (!isset($_SESSION['AdminLogin']) && !isset($_SESSION['AdminId'])) {
+        $p = new page();
+        $p->page_get = 'LoginAdmin';
+        $p->page_title = 'Login';
+        $p->Action();
+    } else {
+        $p = new page();
+        $p->page_get = 'home';
+        $p->page_title = PAGE_DEF_TITLE;
+        $p->Action();
+    }
 } else {
     new Page_Errors\ErrorsPages();
 }

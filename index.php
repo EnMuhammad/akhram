@@ -8,8 +8,8 @@
 session_start();
 //error_reporting(0);
 define('DS', DIRECTORY_SEPARATOR);
-//define('FOLDER_DIR', 'akhram2'); // LocalHost
-define('FOLDER_DIR', ''); // Online
+define('FOLDER_DIR', 'akhram2/'); // LocalHost
+//define('FOLDER_DIR', ''); // Online
 define('HOME_DIR', dirname(__FILE__));
 define('DIR', dirname(__FILE__));
 define('ROOT', 'http://' . $_SERVER['SERVER_NAME'] . '/' . FOLDER_DIR);
@@ -25,6 +25,12 @@ require_once DIR . '/config/functions.php';
 require_once 'pages/vars/languages_database.php';
 if (isset($_GET['action'])) {
     require_once 'actions.php';
+}
+if (isset($_SESSION['AdminLogin']) && isset($_SESSION['AdminId'])) {
+    require_once DIR . '/config/admin_functions.php';
+    if (isset($_GET['adminAction'])) {
+        require_once 'admin_actions.php';
+    }
 }
 require_once 'pages/layouts/header.php';
 require_once 'pages/layouts/navbar.php';
