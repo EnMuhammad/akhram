@@ -31,6 +31,8 @@ class Page_Header
 <head>
 <base href="' . ROOT . '" />
 <title>' . $this->title . '</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, 
+minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap\'s JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>

@@ -42,6 +42,7 @@ class Lang_database
             'SUBSCRIBE' => array('ar' => 'أشترك', 'en' => 'Subscribe'),
             'READ_MORE' => array('ar' => 'أقراء المزيد', 'en' => 'Read More'),
             //// - Add Here - ///
+            'PROJECTS' => array('ar' => 'المشاريع', 'en' => 'Projects'),
             'LATEST_PROJECTS' => array('ar' => 'أخر المشاريع', 'en' => 'Latest Projects'),
             'services' => array('ar' => 'الخدمات', 'en' => 'Services'),
             'latest_equ' => array('ar' => 'أحدث المعدات', 'en' => 'Latest Equipments'),
