@@ -60,7 +60,7 @@ class Pages
 
     protected function Closed()
     {
-        include 'pages/closed/index.html';
+        include 'pages/closed/index.php';
     }
 
     protected function CreatePage()

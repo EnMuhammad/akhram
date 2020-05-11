@@ -39,4 +39,5 @@ DEFINE('PROJECTS_TABLE', 'project_table');
 DEFINE('PROJECTS_MEDIA_TABLE', 'project_album');
 DEFINE('PROJECTS_TASK_TABLE', 'project_tasks');
 DEFINE('CITY_BRANCH_TABLE', 'city_branchs');
+DEFINE('WEB_SETTINGS', 'web_settings');
 
