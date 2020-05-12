@@ -79,7 +79,7 @@ class Page_Banner
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">' . $trans['HOME'][$l] . '</a></li>
                 <li><a href="#">' . $trans['services'][$l] . '</a></li>
-                <li><a href="#">' . $trans['PROJECTS'][$l] . '</a></li>
+                <li><a href="Projects/All/">' . $trans['PROJECTS'][$l] . '</a></li>
                   <li><a href="#">' . $trans['ABOUT'][$l] . '</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">

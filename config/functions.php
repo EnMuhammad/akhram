@@ -68,6 +68,26 @@ class functions
         }
     }
 
+    function GetCoverMedia($pid, $type = "projects")
+    {
+        prs::unSetData();
+        prs::$table = MEDIA_TABLE;
+        prs::$select_cond['media_id'] = $pid;
+        prs::$select_cond['type'] = 'projects';
+        prs::$limit = 1;
+        prs::$order = 'id DESC';
+        $image = '';
+        foreach (prs::select__record() as $item => $key) {
+            if ($type == 'projects') {
+                $image = $pid . '/' . $key['url'];
+            } else {
+                $image = $key['url'];
+            }
+
+        }
+        return $image;
+    }
+
     function GetProjectInfo($lang)
     {
         prs::unSetData();
