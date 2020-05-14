@@ -80,6 +80,34 @@ $fun = new fun();
     </form>
 </div>
 
+<!--sectors-->
+<div id="SectorDialog" title="Sectors">
+    <form class="UpdateContactInformation" name="actionForm">
+        <input type="hidden" name="type" value="sectors">
+        <div class="form-group">
+            <label>Title English</label>
+            <input type="text" name="title_en" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>العنوان بالعربية</label>
+            <input type="text" name="title_ar" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>About Sector</label>
+            <textarea class="form-control" name="about_en"></textarea>
+
+        </div>
+        <div class="form-group">
+            <label>عن القطاع</label>
+            <textarea class="form-control" name="about_ar"></textarea>
+        </div>
+        <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+            <div class="ui-dialog-buttonset">
+                <button type="submit" class="ui-button ui-corner-all ui-widget">Save</button>
+            </div>
+        </div>
+    </form>
+</div>
 <!--Update Slides -->
 <div id="Slides" title="Slides">
     <div id="tabs">
@@ -114,6 +142,11 @@ $fun = new fun();
             <label>City</label>
             <select class="form-control" name="city">
                 <?= $fun->CityListAsOptions(true) ?>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Select Sector</label>
+            <select class="form-control" name="sector_id">
             </select>
         </div>
         <div class="form-group">
@@ -160,8 +193,14 @@ $fun = new fun();
                 </select>
             </div>
             <div class="form-group">
+                <label>Sectors</label>
+                <select class="form-control" name="sector_id">
+
+                </select>
+            </div>
+            <div class="form-group">
                 <label>Service</label>
-                <select class="form-control" name="service_list">
+                <select class="form-control" name="service_id" disabled="disabled">
 
                 </select>
             </div>
@@ -206,8 +245,13 @@ $fun = new fun();
                 <input type="text" name="title_en" class="form-control" required>
             </div>
             <div class="form-group">
+                <label>Sector</label>
+                <select class="form-control" name="sector_id">
+                </select>
+            </div>
+            <div class="form-group">
                 <label>Service</label>
-                <select class="form-control" name="service_list">
+                <select class="form-control" name="service_id">
                 </select>
             </div>
             <div class="form-group">
@@ -234,6 +278,8 @@ $fun = new fun();
             <label>Type</label>
             <select name="MediaType" class="form-control">
                 <option value="0">Select Media Type</option>
+                <option value="sectors">Sector</option>
+                <option value="services">Service</option>
                 <option value="projects">Projects</option>
                 <option value="slides">Slides</option>
                 <option value="items">Items - Equipments</option>

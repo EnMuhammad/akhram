@@ -12,10 +12,18 @@ use PROCESS\prs as prs;
 
 class functions
 {
+    var $sector_id = 0;
     var $service_id = 0;
     var $project_id = 0;
     var $return = array();
 
+    function GetSectors()
+    {
+        prs::unSetData();
+        prs::$table = SERVICES_TABLE;
+        $this->return = prs::select__record();
+        return $this->return;
+    }
     function GetServices()
     {
         prs::unSetData();
@@ -73,7 +81,7 @@ class functions
         prs::unSetData();
         prs::$table = MEDIA_TABLE;
         prs::$select_cond['media_id'] = $pid;
-        prs::$select_cond['type'] = 'projects';
+        prs::$select_cond['type'] = $type;
         prs::$limit = 1;
         prs::$order = 'id DESC';
         $image = '';
@@ -114,6 +122,32 @@ class functions
         }
         return $this->return;
     }
+
+    function GetSectorFullData($l)
+    {
+        prs::unSetData();
+        prs::$table = SECTORS_TABLE;
+        prs::$select_cond = array('id' => $this->sector_id);
+        foreach (prs::select__record() as $t => $s) {
+            $this->return = array(
+                'id' => $s['id'],
+                'title' => $s['title_' . $l],
+                'about' => $s['about_' . $l],
+            );
+        }
+        prs::unSetData();
+        prs::$table = SERVICES_TABLE;
+        prs::$select_cond = array('sid' => $this->sector_id);
+        foreach (prs::select__record() as $x => $d) {
+            $this->return['services'][] = array(
+                'id' => $d['id'],
+                'title' => $d['service_' . $l],
+                'city' => $d['city_id'],
+                'about' => $d['about_service_' . $l],
+            );
+        }
+        return $this->return;
+    }
     function GetServicesStr($sid)
     {
         prs::unSetData();
@@ -140,7 +174,7 @@ class functions
         return $options;
     }
 
-    function ServicesListAsOptions($all = false)
+    function ServicesListAsOptions($all = false, $sid = false)
     {
         prs::unSetData();
         prs::$table = SERVICES_TABLE;
@@ -148,6 +182,9 @@ class functions
             $options = '<option value="0">All - الكل</option>';
         } else {
             $options = '';
+        }
+        if ($sid != false) {
+            prs::$select_cond = array('sid' => $sid);
         }
         foreach (prs::select__record() as $t => $op) {
             $options .= '<option value="' . $op['id'] . '">' . $op['service_ar'] . ' - ' . $op['service_en'] . '</option>';
@@ -185,6 +222,20 @@ class functions
         return $options;
     }
 
+    function SectorsListAsOptions($all = false)
+    {
+        prs::unSetData();
+        prs::$table = SECTORS_TABLE;
+        if ($all) {
+            $options = '<option value="0">All - الكل</option>';
+        } else {
+            $options = '';
+        }
+        foreach (prs::select__record() as $t => $op) {
+            $options .= '<option value="' . $op['id'] . '">' . $op['title_ar'] . ' - ' . $op['title_en'] . '</option>';
+        }
+        return $options;
+    }
     function ItemsListAsOptions($all = false)
     {
         prs::unSetData();

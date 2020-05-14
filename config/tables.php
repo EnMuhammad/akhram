@@ -20,6 +20,7 @@ DEFINE('EQ_SEC_TABLE', 'eq_sections');
 DEFINE('EQU_INFO_TABLE', 'equ_info');
 DEFINE('WORK_TABLE', 'prev_work');
 
+DEFINE('SECTORS_TABLE', 'sectors');
 DEFINE('SERVICES_TABLE', 'services_points');
 DEFINE('SERVICES_STR_TABLE', 'services_str');
 DEFINE('SERV_POINT_TABLE', 'serv_point');

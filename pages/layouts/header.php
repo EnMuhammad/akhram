@@ -33,7 +33,7 @@ class Page_Header
 <title>' . $this->title . '</title>
  <meta name="viewport" content="width=device-width, initial-scale=1.0, 
 minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 <!-- jQuery (necessary for Bootstrap\'s JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
 <script src="jquery-ui/jquery-ui.min.js"></script>
@@ -74,19 +74,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <br>
 <i class="fa fa-spin fa-spinner"></i>
 </div>
-
 </div>
-' . ((isset($_SESSION['AdminLogin']) && isset($_SESSION['AdminId'])) ? '
+' . ((isset($_SESSION['AdminLogin']) && isset($_SESSION['AdminId'])) && empty ($_GET) ? '
 <div class="bottom_tools">
 <ul>
 <li><a href="javascript:;" class="OpenDi"><i class="fa fa-pen"></i> Update Contact Information</a></li>
 <li><a href="javascript:;" class="MetaUpdate"><i class="fa fa-pen"></i> Update Meta Data</a></li>
+<li><a href="javascript:;" class="SectorShowAdd"><i class="fa fa-plus"></i> Add Sector</a></li>
 <li><a href="javascript:;" class="show-service-da"><i class="fa fa-plus"></i> Add Service</a></li>
 <li><a href="javascript:;" class="showAddProjects"><i class="fa fa-plus"></i> Add Project - Item</a></li>
 <li><a href="javascript:;" class="ShowAddMedia"><i class="fa fa-photo-video"></i> Add Media</a></li>
 <li><a href="javascript:;" class="ClientShowAdd"><i class="fa fa-users"></i> Add Clients</a></li>
 <li><a href="javascript:;" onclick="Logout();"><i class="fa fa-arrow-left"></i> Logout</a></li>
-
 </ul>
 </div>
 ' : "") . '

@@ -110,6 +110,7 @@ if (isset($_GET['formAction'])) {
                 isset($_POST['service_en']) && $_POST['service_en'] != ''
                 && isset($_POST['service_ar']) && $_POST['service_ar'] != ''
                 && isset($_POST['city'])
+                && isset($_POST['sector_id']) && $_POST['sector_id'] != 0
                 && isset($_POST['about_ar']) && $_POST['about_ar'] != ''
                 && isset($_POST['about_en']) && $_POST['about_en'] != ''
             ) {
@@ -119,17 +120,19 @@ if (isset($_GET['formAction'])) {
                     'about_service_ar' => $_POST['about_ar'],
                     'about_service_en' => $_POST['about_en'],
                     'city_id' => $_POST['city'],
+                    'sector_id' => $_POST['sector_id'],
                 );
                 $ser->AddServices();
             }
             break;
         case 'Projects':
-            print_r($_REQUEST);
+
             if (
                 isset($_POST['title_ar'])
                 && isset($_POST['title_en'])
                 && isset($_POST['city'])
-                && isset($_POST['service_list'])
+                && isset($_POST['sector_id'])
+                && isset($_POST['service_id'])
                 && isset($_POST['start_date'])
                 && isset($_POST['end_date'])
                 && isset($_POST['client_id'])
@@ -140,7 +143,8 @@ if (isset($_GET['formAction'])) {
                     'title_ar' => $_POST['title_ar'],
                     'title_en' => $_POST['title_en'],
                     'city_id' => $_POST['city'],
-                    'service_id' => $_POST['service_list'],
+                    'sid' => $_POST['sector_id'],
+                    'service_id' => $_POST['service_id'],
                     'date_start' => $_POST['start_date'],
                     'date_end' => $_POST['end_date'],
                     'client_id' => $_POST['client_id'],
@@ -156,13 +160,15 @@ if (isset($_GET['formAction'])) {
             if (
                 isset($_POST['title_ar'])
                 && isset($_POST['title_en'])
-                && isset($_POST['service_list'])
+                && isset($_POST['sector_id'])
+                && isset($_POST['service_id'])
                 && isset($_FILES['image'])
             ) {
                 $item->inputData = array(
                     'name_ar' => $_POST['title_ar'],
                     'name_en' => $_POST['title_en'],
-                    'service_id' => $_POST['service_list'],
+                    'sid' => $_POST['sector_id'],
+                    'service_id' => $_POST['service_if'],
                     'photo' => $_FILES['image'],
                 );
                 $item->AddProjectsItems('items');
@@ -200,6 +206,20 @@ if (isset($_GET['formAction'])) {
                 $admin->AddClients();
             }
             break;
+        case 'sectors':
+            if (isset($_POST['title_en']) && isset($_POST['title_ar']) &&
+                isset($_POST['about_en'])
+                && isset($_POST['about_ar'])
+            ) {
+                $admin->inputData = array(
+                    'title_en' => $_POST['title_en'],
+                    'title_ar' => $_POST['title_ar'],
+                    'about_en' => $_POST['about_en'],
+                    'about_ar' => $_POST['about_ar'],
+                );
+                $admin->AddSector();
+            }
+            break;
     }
 
     exit();
@@ -207,8 +227,13 @@ if (isset($_GET['formAction'])) {
     $type = $_GET['Load'];
     switch ($type) {
         case 'services':
+            if (isset($_GET['sid'])) {
+                $sid = $_GET['side'];
+            } else {
+                $sid = false;
+            }
             $fun = new fun();
-            echo $fun->ServicesListAsOptions(false);
+            echo $fun->ServicesListAsOptions(false, $sid);
             break;
         case 'clients':
             $fun = new fun();
@@ -221,6 +246,15 @@ if (isset($_GET['formAction'])) {
         case 'items':
             $fun = new fun();
             echo $fun->ItemsListAsOptions(false);
+            break;
+        case 'sectors':
+            if (isset($_GET['unLoadAll'])) {
+                $t = false;
+            } else {
+                $t = true;
+            }
+            $fun = new fun();
+            echo $fun->SectorsListAsOptions($t);
             break;
     }
 }

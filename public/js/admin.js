@@ -6,7 +6,7 @@
  */
 
 $(function () {
-    $("#dialog,#MetaData,#Slides,#ServicesDialog,#ProjectsItems,#MediaDialog,#ClientsDialog").dialog({
+    $("#dialog,#MetaData,#Slides,#ServicesDialog,#ProjectsItems,#MediaDialog,#ClientsDialog,#SectorDialog").dialog({
         autoOpen: false,
         width: "auto",
         modal: true,
@@ -30,6 +30,9 @@ $(function () {
     });
     $('.show-service-da').on("click", function (e) {
         e.preventDefault();
+        $.get('index.php?adminAction&Load=sectors', function (data) {
+            $('select[name=sector_id]').html(data);
+        });
         let $activeDialogs = $(".ui-dialog:visible").find('.ui-dialog-content');
         $activeDialogs.dialog('close');
         $("#ServicesDialog").parent().css({position: "fixed"}).end().dialog('open');
@@ -42,8 +45,20 @@ $(function () {
     });
     $('.showAddProjects').on("click", function (e) {
         e.preventDefault();
-        $.get('index.php?adminAction&Load=services', function (data) {
-            $('select[name=service_list]').html(data);
+        $.get('index.php?adminAction&Load=sectors', function (data) {
+            $('select[name=service_id]').html('').attr('disabled', 'disabled');
+            $('select[name=sector_id]').html(data);
+            $('select[name=sector_id]').on('change', function () {
+                let sid = $(this).val();
+                if (sid != 0) {
+                    $.get('index.php?adminAction&Load=services&sid=' + sid, function (cl) {
+                        $('select[name=service_id]').removeAttr('disabled').html(cl);
+                    });
+                } else {
+                    $('select[name=service_id]').html('').attr('disabled', 'disabled');
+                }
+
+            });
             $.get('index.php?adminAction&Load=clients', function (cl) {
                 $('select[name=client_id]').html(cl);
             });
@@ -57,6 +72,12 @@ $(function () {
         let $activeDialogs = $(".ui-dialog:visible").find('.ui-dialog-content');
         $activeDialogs.dialog('close');
         $("#ClientsDialog").parent().css({position: "fixed"}).end().dialog('open');
+    });
+    $('.SectorShowAdd').on("click", function (e) {
+        e.preventDefault();
+        let $activeDialogs = $(".ui-dialog:visible").find('.ui-dialog-content');
+        $activeDialogs.dialog('close');
+        $("#SectorDialog").parent().css({position: "fixed"}).end().dialog('open');
     });
     $("#tabs").tabs({
         beforeLoad: function (event, ui) {
@@ -79,7 +100,19 @@ $(function () {
     });
     $('select[name=MediaType]').on('change', function () {
         let vl = $(this).val();
-        if (vl === 'projects') {
+        if (vl === 'sectors') {
+            $('.media-button').show();
+            $('select[name=media_id]').show();
+            $.get('index.php?adminAction&Load=sectors&unLoadAll', function (data) {
+                $('select[name=media_id]').html(data);
+            });
+        } else if (vl === 'services') {
+            $('.media-button').show();
+            $('select[name=media_id]').show();
+            $.get('index.php?adminAction&Load=services', function (data) {
+                $('select[name=media_id]').html(data);
+            });
+        } else if (vl === 'projects') {
             $('.media-button').show();
             $('select[name=media_id]').show();
             $.get('index.php?adminAction&Load=projects', function (data) {

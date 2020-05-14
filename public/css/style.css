@@ -616,21 +616,81 @@ ul.callbacks_tabs.callbacks1_tabs {
     display: inline-block;
     vertical-align: middle;
     content: "";
-    background: #fff;
+    background: #ff2e1f;
     margin: 0 1%;
 }
 
 .content-grid {
-    background: url(../images/HomePage/back1.jpg);
-    width: 100%;
-    min-height: 500px;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
     padding: 4em 0 5em;
+    background: #fff8f8;
+
 }
 
+.content-grid .row {
+    margin: 10px 0;
+}
+
+.content-grid .boxData {
+    /*background:#fb0002;*/
+    -webkit-border-top-right-radius: 100px;
+    -webkit-border-bottom-left-radius: 100px;
+    -moz-border-radius-topright: 100px;
+    -moz-border-radius-bottomleft: 100px;
+    border-top-right-radius: 100px;
+    border-bottom-left-radius: 100px;
+    border: 1px solid #e7e5e1;
+    background: white;
+    overflow: hidden;
+}
+
+.hideme {
+    opacity: 0;
+}
+
+.content-grid .boxData .info {
+    padding: 7px 23px;
+    font-size: 13px;
+    overflow: hidden;
+}
+
+.content-grid .boxData .info h4 {
+    margin: 3px;
+    font-size: 15px;
+
+}
+
+.content-grid .boxData .img {
+    position: relative;
+    width: 100%;
+    height: 200px;
+
+
+    object-fit: cover;
+    object-position: center;
+}
+
+.News_box {
+    -webkit-border-top-left-radius: 50px;
+    -webkit-border-top-right-radius: 50px;
+    -moz-border-radius-topleft: 50px;
+    -moz-border-radius-topright: 50px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+
+    overflow: hidden;
+    padding: 0px;
+    min-height: 500px;
+    max-height: 500px;
+    background: #fff8f8;
+}
+
+.News_box .img {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+}
 .most-1 {
     background-color: #fff;
     color: #000;
@@ -2677,6 +2737,7 @@ label.hvr-sweep-to-right {
     text-align: center;
     background: #27DA93;
     padding: 4em 2em;
+    min-height: 350px;
 }
 
 .about-mid1 p {
@@ -4409,6 +4470,9 @@ ul.nav.nav-pills {
         background: white;
     }
 
+    .nav li a {
+        color: blue;
+    }
     .navbar-nav > li > a {
         color: blue;
     }
@@ -4634,6 +4698,10 @@ ul.nav.nav-pills {
     }
 
     .navbar-nav > li > a {
+        color: blue;
+    }
+
+    .nav li a {
         color: blue;
     }
     .logo h1 {
@@ -5176,6 +5244,10 @@ ul.nav.nav-pills {
     }
 
     .navbar-nav > li > a {
+        color: blue;
+    }
+
+    .nav li a {
         color: blue;
     }
     .container {

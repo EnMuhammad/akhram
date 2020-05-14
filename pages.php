@@ -48,6 +48,10 @@ class Pages
                 $this->login = false;
                 $this->page_select = 'list_all.php';
                 break;
+            case 'SectorPage':
+                $this->login = false;
+                $this->page_select = 'sector_page.php';
+                break;
 
         }
         if ($this->page_closed) {
@@ -72,7 +76,7 @@ class Pages
                 new Page_Header($this->page_title);
                 new Page_Banner();
 
-                if (isset($_SESSION['AdminLogin']) && isset($_SESSION['AdminId'])) {
+                if (isset($_SESSION['AdminLogin']) && isset($_SESSION['AdminId']) && empty($_GET)) {
                     include 'pages/admin_dialogs.php';
                 }
 

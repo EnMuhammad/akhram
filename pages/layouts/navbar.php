@@ -26,9 +26,13 @@ class Page_Banner
         $trans = $lang->Translations();
         $l = $lang->GetLanguage();
         prs::unSetData();
-        prs::$table = SERVICES_TABLE;
+        prs::$table = SECTORS_TABLE;
         foreach (prs::select__record() as $t => $s) {
-            $this->sectors = '<li><a href="#gal1" class="drop-text view-window">' . $s['service_' . $l] . '</a></li>';
+            $url_name = str_replace(' ', '_', trim($s['title_' . $l]));
+            $this->sectors .= '
+             <li><a href="Sectors/' . $s['id'] . '/' . $url_name . '">' . $s['title_' . $l] . '</a></li>
+        <li class="divider"></li>
+            ';
         }
 //        prs::unSetData();
 //        prs::$table = BRAN_TABLE;
@@ -46,26 +50,12 @@ class Page_Banner
         $this->banner = '
 
 <!-- banner -->
-       	<div class="navigation">
-			<div class="container-fluid">
-				<nav class="pull">
-					<ul>
-						<li><a  href="#">' . $trans['HOME'][$l] . '</a></li>
-						<li><a  href="#">' . $trans['ABOUT'][$l] . '</a></li>
-					
-						<li><a  href="terms.html">' . $trans['TERMS'][$l] . '</a></li>
-						<li><a  href="privacy.html">' . $trans['PRIVACY'][$l] . '</a></li>
-						<li><a  href="contact.html">' . $trans['CONTACT'][$l] . '</a></li>
-					</ul>
-				</nav>			
-			</div>
-		</div>
       <div class="header">
     <div class="container">
         <!--logo-->
       
         <!--//logo-->
-<nav class="navbar ">   
+<nav class="navbar " >   
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -76,11 +66,28 @@ class Page_Banner
             <a class="navbar-brand logo" href="#"></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">' . $trans['HOME'][$l] . '</a></li>
-                <li><a href="#">' . $trans['services'][$l] . '</a></li>
-                <li><a href="Projects/All/">' . $trans['PROJECTS'][$l] . '</a></li>
-                  <li><a href="#">' . $trans['ABOUT'][$l] . '</a></li>
+            <ul class="nav navbar-nav" >
+                <li class="active" ><a href="#">' . $trans['HOME'][$l] . '</a></li>
+              <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">' . $trans['ABOUT'][$l] . ' <b class="caret"></b></a>
+      <ul class="dropdown-menu" role="menu">
+       <li ><a href="#">' . $trans['BREF_INFO'][$l] . '</a></li>
+        <li><a href="#">' . $trans['CHAIRMAN_WORD'][$l] . '</a></li>
+        <li><a href="#">' . $trans['CEO_WORD'][$l] . '</a></li>
+        <li><a href="#">' . $trans['GOAL_VISION_MISSION'][$l] . '</a></li>
+        <li class="divider"></li>
+        <li><a href="#">' . $trans['TERMS'][$l] . '</a></li>
+        <li><a href="#">' . $trans['PRIVACY'][$l] . '</a></li>
+      </ul>
+    </li>
+                   <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">' . $trans['SECTORS'][$l] . ' <b class="caret"></b></a>
+      <ul class="dropdown-menu" role="menu">
+    ' . $this->sectors . '
+      </ul>
+    </li>
+      <li><a href="#">' . $trans['SUPP_BUSI'][$l] . '</a></li>
+                  <li><a href="#">' . $trans['CONTACT'][$l] . '</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="javascript:;" class="change_lang"><span class="fa fa-language fa-lg"></span> ' . $trans['CHANGE_LANG'][$l] . '</a></li>

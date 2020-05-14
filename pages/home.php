@@ -183,31 +183,89 @@ echo $style;
 
 <!--//header-->
 <!--content-->
-<div class="content">
+<div class="content ">
     <div class="content-grid">
         <div class="container">
-            <h3><?= $trans['latest_equ'][$l] ?></h3>
-            <?= $equipments ?>
+            <h3 style="color: black"><?= $trans['latest_equ'][$l] ?></h3>
+            <div class="row hideme">
+                <div class="col-md-4 col-sm-12 col-xs-12 boxData">
+                    <div class="col-md-5" style="padding: 0;margin: -15px">
+                        <img src="images/ci.jpg" class="img">
+                    </div>
+                    <div class="col-md-7 info">
+                        <h4>Sector name</h4>
+                        <p>
+                            Sector info ..
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12 col-xs-12 boxData">
+                    <div class="col-md-5" style="padding: 0;margin: -15px">
+                        <img src="images/ci.jpg" class="img">
+                    </div>
+                    <div class="col-md-7 info">
+                        <h4>Sector name</h4>
+                        <p>
+                            Sector info ..
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12 col-xs-12 boxData">
+                    <div class="col-md-5" style="padding: 0;margin: -15px">
+                        <img src="images/ci.jpg" class="img">
+                    </div>
+                    <div class="col-md-7 info">
+                        <h4>Sector name</h4>
+                        <p>
+                            Sector info ..
+                        </p>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="clearfix"></div>
+            <div class="row hideme">
+                <div class="col-md-4 col-sm-12 col-xs-12 boxData">
+                    <div class="col-md-5" style="padding: 0;margin: -15px">
+                        <img src="images/ci.jpg" class="img">
+                    </div>
+                    <div class="col-md-7 info">
+                        <h4>Sector name</h4>
+                        <p>
+                            Sector info ..
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12 col-xs-12 boxData">
+                    <div class="col-md-5" style="padding: 0;margin: -15px">
+                        <img src="images/ci.jpg" class="img">
+                    </div>
+                    <div class="col-md-7 info">
+                        <h4>Sector name</h4>
+                        <p>
+                            Sector info ..
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12 col-xs-12 boxData">
+                    <div class="col-md-5" style="padding: 0;margin: -15px">
+                        <img src="images/ci.jpg" class="img">
+                    </div>
+                    <div class="col-md-7 info">
+                        <h4>Sector name</h4>
+                        <p>
+                            Sector info ..
+                        </p>
+                    </div>
+                </div>
+
+
+            </div>
             <div class="clearfix"></div>
         </div>
     </div>
-    <!--service-->
-    <div class="services">
-        <div class="container">
-            <div class="service-top">
-                <h3><?= $trans['services'][$l] ?></h3>
-                <p>نطمح للريادة في التوسع وتغطية مشاريع البنية التحتية المدنية ، مشاريع خدمات النفط والغاز ، والخدمات
-                    العامة في اليمن والإقليم
-                </p>
-            </div>
-            <div class="services-grid">
-                <?= $serv_bottom ?>
-                <div class="clearfix"></div>
-            </div>
 
-        </div>
-    </div>
-    <!--//services-->
     <!--features-->
     <div class="content-middle">
         <div class="container">
@@ -220,19 +278,24 @@ echo $style;
         </div>
     </div>
     <!--//features-->
-
-    <!--project--->
+    <!--News & Social-->
     <div class="project">
         <div class="container">
             <h3><?= $trans['LATEST_PROJECTS'][$l] ?></h3>
             <div class="project-top">
-                <?= $projects ?>
+                <div class="row">
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="News_box">
+                            <div class="col-md-12" style="padding: 0"><img src="images/bo3.jpg" class="img"></div>
+                            <div class="col-md-12">Info</div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="clearfix"></div>
             </div>
         </div>
     </div>
-    <!--//project-->
 
     <!--partners-->
     <div class="content-bottom1">

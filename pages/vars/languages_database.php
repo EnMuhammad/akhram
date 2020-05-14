@@ -32,8 +32,17 @@ class Lang_database
             'MENU' => array('ar' => 'القائمة', 'en' => 'Menu'),
             'TERMS' => array('ar' => 'شروط الاستخدام', 'en' => 'Terms and conditions'),
             'PRIVACY' => array('ar' => 'سياسة الخصوصية', 'en' => 'privacy policy'),
-            'ABOUT' => array('ar' => 'عنا', 'en' => 'About us'),
+            'ABOUT' => array('ar' => 'عن المجموعة', 'en' => 'About group'),
+//            About menu
+
+            'BREF_INFO' => array('ar' => 'نبذة عن الشركة', 'en' => 'About group'),
+            'CHAIRMAN_WORD' => array('ar' => 'كلمة رئيس مجلس الادارة', 'en' => 'Chairman word'),
+            'CEO_WORD' => array('ar' => 'كلمة الرئيس التنفيذي', 'en' => 'CEO word'),
+            'GOAL_VISION_MISSION' => array('ar' => 'أهدافنا,رؤيتنا و مهمتنا', 'en' => 'Goal,Vision and Mission'),
+
             'ABOUT_COMPANY' => array('ar' => 'عن الشركة', 'en' => 'About Company'),
+            'SECTORS' => array('ar' => 'قطاعات الاعمال', 'en' => 'Sectors'),
+            'SUPP_BUSI' => array('ar' => 'شركاء الاعمال', 'en' => 'Business suppliers'),
             'NEWS' => array('ar' => 'الأخبـار والانشطة', 'en' => 'News & Activities'),
             'CONTACT' => array('ar' => 'تواصل معنا', 'en' => 'Contact Us'),
             'ADDRESS' => array('ar' => 'العنوان', 'en' => 'Address'),

@@ -42,6 +42,8 @@ class AdminFunctions
     function AddMedia()
     {
         $folders = array(
+            'sectors' => 'sectors',
+            'services' => 'services',
             'projects' => 'project_media',
             'slides' => 'slides',
             'items' => 'equipments',
@@ -81,6 +83,14 @@ class AdminFunctions
     {
         prs::unSetData();
         prs::$table = CLIENTS_TABLE;
+        prs::$data_in = $this->inputData;
+        prs::add__record();
+    }
+
+    function AddSector()
+    {
+        prs::unSetData();
+        prs::$table = SECTORS_TABLE;
         prs::$data_in = $this->inputData;
         prs::add__record();
     }
