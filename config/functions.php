@@ -146,6 +146,18 @@ class functions
                 'about' => $d['about_service_' . $l],
             );
         }
+        prs::unSetData();
+        prs::$table = PROJECTS_TABLE;
+        prs::$select_cond = array('sid' => $this->sector_id);
+        foreach (prs::select__record() as $o => $x) {
+            $this->return['projects'][] = array(
+                'id' => $x['id'],
+                'title' => $x['title_' . $l],
+                'city' => $x['city_id'],
+                'start' => $x['date_start'],
+                'end' => $x['date_end'],
+            );
+        }
         return $this->return;
     }
     function GetServicesStr($sid)

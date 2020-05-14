@@ -44,17 +44,19 @@ if (isset($_GET['sid'])) {
                 <?php
                 $x = 0;
                 foreach ($data['services'] as $key => $p) {
+                    $url_name = str_replace(' ', '_', trim($p['title']));
                     ?>
                     <div class="row">
                         <div class="col-md-8 about-mid" <?= (($x == 1) ? "style='float:right;'" : "style='float:left;'") ?>>
-                            <h4><?= $p['title'] ?></h4>
-                            <h6><a href="blog_single.html"></a></h6>
+                            <h4><a href="Services/<?= $p['id'] ?>/<?= $url_name ?>"><?= $p['title'] ?></a></h4>
+
                             <p><?= $p['about'] ?></p>
                         </div>
                         <div class="col-md-4 about-mid1"
                              style="background:url('public/images/services/<?= $fun->GetCoverMedia($p['id'], 'services') ?>') ;background-repeat: no-repeat;background-size: cover;<?= (($x == 1) ? "'float:left;'" : "'float:right;'") ?>">
 
-                            <a href="blog_single.html" class="hvr-sweep-to-right more-in">READ MORE</a>
+                            <a href="Services/<?= $p['id'] ?>/<?= $url_name ?>" class="hvr-sweep-to-right more-in">READ
+                                MORE</a>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -77,71 +79,27 @@ if (isset($_GET['sid'])) {
             <div class="content-events">
                 <h3> Related Projects</h3>
                 <div class="news">
-                    <div class="col-md-4 new-more">
-                        <div class="event">
-                            <h4>26/06/2015</h4>
-                            <h6><a href="blog_single.html">Sed ut perspiciatis unde omnis </a></h6>
+                    <?php
+                    foreach ($data['projects'] as $y => $f) {
+                        $url_name = str_replace(' ', '_', trim($f['title']));
+                        ?>
+                        <div class="col-md-4 new-more">
+                            <div class="event">
+                                <h4><?= $f['start'] ?> - <?= $f['end'] ?></h4>
+                                <h6><a href="Project/<?= $f['id'] ?>/<?= $url_name ?>"><?= $f['title'] ?> </a></h6>
+                            </div>
+
+                            <a class="hvr-sweep-to-right more" href="Project/<?= $f['id'] ?>/<?= $url_name ?>">Read
+                                More</a>
                         </div>
-                        <p>Kasertas lertyasea deeraeser miasera lertasa ritise doloert ferdas caplicabo nerafaes asety u
-                            lasec vaserat. nikertyade asetkertyptaiades goertayse.nikertyade asetkertyptaiades
-                            goertayse</p>
-                        <a class="hvr-sweep-to-right more" href="blog_single.html">Read More</a>
-                    </div>
-                    <div class="col-md-4 new-more">
-                        <div class="event">
-                            <h4>26/06/2015</h4>
-                            <h6><a href="blog_single.html">Sed ut perspiciatis unde omnis </a></h6>
-                        </div>
-                        <p>Kasertas lertyasea deeraeser miasera lertasa ritise doloert ferdas caplicabo nerafaes asety u
-                            lasec vaserat. nikertyade asetkertyptaiades goertayse.nikertyade asetkertyptaiades
-                            goertayse</p>
-                        <a class="hvr-sweep-to-right more" href="blog_single.html">Read More</a>
-                    </div>
-                    <div class="col-md-4 new-more">
-                        <div class="event">
-                            <h4>26/06/2015</h4>
-                            <h6><a href="blog_single.html">Sed ut perspiciatis unde omnis </a></h6>
-                        </div>
-                        <p>Kasertas lertyasea deeraeser miasera lertasa ritise doloert ferdas caplicabo nerafaes asety u
-                            lasec vaserat. nikertyade asetkertyptaiades goertayse.nikertyade asetkertyptaiades
-                            goertayse</p>
-                        <a class="hvr-sweep-to-right more" href="blog_single.html">Read More</a>
-                    </div>
+                        <?php
+                    }
+                    ?>
+
+
                     <div class="clearfix"></div>
                 </div>
-                <div class="news">
-                    <div class="col-md-4 new-more">
-                        <div class="event">
-                            <h4>26/06/2015</h4>
-                            <h6><a href="blog_single.html">Sed ut perspiciatis unde omnis </a></h6>
-                        </div>
-                        <p>Kasertas lertyasea deeraeser miasera lertasa ritise doloert ferdas caplicabo nerafaes asety u
-                            lasec vaserat. nikertyade asetkertyptaiades goertayse.nikertyade asetkertyptaiades
-                            goertayse</p>
-                        <a class="hvr-sweep-to-right more" href="blog_single.html">Read More</a>
-                    </div>
-                    <div class="col-md-4 new-more">
-                        <div class="event">
-                            <h4>26/06/2015</h4>
-                            <h6><a href="blog_single.html">Sed ut perspiciatis unde omnis </a></h6>
-                        </div>
-                        <p>Kasertas lertyasea deeraeser miasera lertasa ritise doloert ferdas caplicabo nerafaes asety u
-                            lasec vaserat. nikertyade asetkertyptaiades goertayse.nikertyade asetkertyptaiades
-                            goertayse</p>
-                        <a class="hvr-sweep-to-right more" href="blog_single.html">Read More</a>
-                    </div>
-                    <div class="col-md-4 new-more">
-                        <div class="event">
-                            <h4>26/06/2015</h4>
-                            <h6><a href="blog_single.html">Sed ut perspiciatis unde omnis </a></h6>
-                        </div>
-                        <p>Kasertas lertyasea deeraeser miasera lertasa ritise doloert ferdas caplicabo nerafaes asety u
-                            lasec vaserat. nikertyade asetkertyptaiades goertayse.nikertyade asetkertyptaiades
-                            goertayse</p>
-                        <a class="hvr-sweep-to-right more" href="blog_single.html">Read More</a>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
+
             </div>
         </div>
         <!---->
