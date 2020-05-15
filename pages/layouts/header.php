@@ -78,13 +78,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 ' . ((isset($_SESSION['AdminLogin']) && isset($_SESSION['AdminId'])) && empty ($_GET) ? '
 <div class="bottom_tools">
 <ul>
-<li><a href="javascript:;" class="OpenDi"><i class="fa fa-pen"></i> Update Contact Information</a></li>
-<li><a href="javascript:;" class="MetaUpdate"><i class="fa fa-pen"></i> Update Meta Data</a></li>
+<li><a href="javascript:;" class="OpenDi"><i class="fa fa-pen"></i> Contact Information</a></li>
+<li><a href="javascript:;" class="MetaUpdate"><i class="fa fa-pen"></i> Meta Data</a></li>
 <li><a href="javascript:;" class="SectorShowAdd"><i class="fa fa-plus"></i> Add Sector</a></li>
 <li><a href="javascript:;" class="show-service-da"><i class="fa fa-plus"></i> Add Service</a></li>
 <li><a href="javascript:;" class="showAddProjects"><i class="fa fa-plus"></i> Add Project - Item</a></li>
 <li><a href="javascript:;" class="ShowAddMedia"><i class="fa fa-photo-video"></i> Add Media</a></li>
 <li><a href="javascript:;" class="ClientShowAdd"><i class="fa fa-users"></i> Add Clients</a></li>
+<li><a href="javascript:;" class="PageDi"><i class="fa fa-pager"></i> Add Page</a></li>
 <li><a href="javascript:;" onclick="Logout();"><i class="fa fa-arrow-left"></i> Logout</a></li>
 </ul>
 </div>

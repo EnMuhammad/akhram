@@ -16,6 +16,7 @@ class AdminFunctions
     var $inputData = array();
     var $additionalData = array();
     var $inputCont = array();
+    var $file = array();
     var $inputID = 0;
 
     function AddContactInfo()
@@ -48,6 +49,7 @@ class AdminFunctions
             'slides' => 'slides',
             'items' => 'equipments',
             'clients' => 'clients',
+            'pages' => 'pages',
         );
         $file = $this->inputData['photo'];
         $name = $file['name'];
@@ -79,6 +81,43 @@ class AdminFunctions
         }
     }
 
+    function AddPage()
+    {
+        prs::unSetData();
+        prs::$table = PAGES_TABLE;
+        prs::$data_in = $this->inputData;
+        prs::add__record();
+        $pid = prs::$last_id;
+        if (!empty($this->file)) {
+            print_r($this->file);
+            for ($i = 0; $i < count($this->file); $i++) {
+                $file = $this->file;
+                $name = $file['name'][$i];
+                $tmp = $file['tmp_name'][$i];
+                $type = $file['type'][$i];
+                $ext = pathinfo($name, PATHINFO_EXTENSION);
+                $new_name = time() . uniqid() . '-ALAKHRAM.' . $ext;
+                $dir = DIR . DS . 'public' . DS . 'images' . DS . 'pages';
+                if (!is_dir($dir)) {
+                    mkdir($dir, 777);
+                }
+                if (in_array($type, prs::$accepted_files)) {
+                    if (move_uploaded_file($tmp, $dir . DS . $new_name)) {
+                        prs::unSetData();
+                        prs::$table = MEDIA_TABLE;
+                        prs::$data_in = array(
+                            'type' => 'pages',
+                            'name_ar' => $this->inputData['title_ar'],
+                            'name_en' => $this->inputData['title_en'],
+                            'url' => $new_name,
+                            'media_id' => $pid,
+                        );
+                        prs::add__record();
+                    }
+                }
+            }
+        }
+    }
     function AddClients()
     {
         prs::unSetData();

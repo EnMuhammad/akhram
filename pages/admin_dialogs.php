@@ -342,3 +342,48 @@ $fun = new fun();
 
 
 </div>
+
+<!--Add pages-->
+<div id="PagesDialog" title="Add New Page">
+    <form class="UpdateContactInformation" name="actionForm" enctype="multipart/form-data">
+        <input type="hidden" name="type" value="page">
+
+        <div class="form-group">
+            <label>عنوان الصفحة</label>
+            <input type="text" name="title_ar" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label>Page title</label>
+            <input type="text" name="title_en" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label>Add to </label>
+            <select class="form-control" name="related">
+                <optgroup label="Menu"></optgroup>
+                <option value="about">About Group</option>
+                <option value="contact">Contact Us</option>
+                <optgroup label="Pages"></optgroup>
+                <option value="news">News & Activities</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Page Content</label>
+            <textarea class="form-control" name="content_ar" required></textarea>
+        </div>
+        <div class="form-group">
+            <label>محتوى الصفحة</label>
+            <textarea class="form-control" name="content_en" required></textarea>
+        </div>
+        <div class="form-group">
+            <label>Upload Media</label>
+            <input type="file" name="page_media[]" class="form-control" multiple="multiple">
+        </div>
+        <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+            <div class="ui-dialog-buttonset">
+                <button type="submit" class="ui-button ui-corner-all ui-widget">Add</button>
+            </div>
+        </div>
+    </form>
+
+
+</div>

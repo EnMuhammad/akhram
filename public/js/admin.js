@@ -13,6 +13,18 @@ $(function () {
         height: ($(window).height() - 200),
         resizable: "auto"
     });
+    $("#PagesDialog").dialog({
+        autoOpen: false,
+        width: ($(window).width() - 200),
+        modal: true,
+        height: ($(window).height() - 200),
+        resizable: "auto"
+    });
+    $('.PageDi').on("click", function () {
+        let $activeDialogs = $(".ui-dialog:visible").find('.ui-dialog-content');
+        $activeDialogs.dialog('close');
+        $("#PagesDialog").parent().css({position: "fixed"}).end().dialog('open');
+    });
     $('.OpenDi').on("click", function () {
         let $activeDialogs = $(".ui-dialog:visible").find('.ui-dialog-content');
         $activeDialogs.dialog('close');
@@ -157,7 +169,7 @@ let UpdateEditForm = function (form, type, options) {
     options = {
         showSuccess: false,
     };
-    if (type === 'items' || type === 'media') {
+    if (type === 'items' || type === 'media' || type === 'page') {
         jQuery.ajax({
             url: 'index.php?adminAction&formAction=' + type,
             type: "POST",

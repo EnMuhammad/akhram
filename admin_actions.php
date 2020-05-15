@@ -220,6 +220,28 @@ if (isset($_GET['formAction'])) {
                 $admin->AddSector();
             }
             break;
+        case 'page':
+            if (
+                isset($_POST['title_ar'])
+                && isset($_POST['title_en'])
+                && isset($_POST['related'])
+                && isset($_POST['content_ar'])
+                && isset($_POST['content_en'])
+            ) {
+                $admin->inputData = array(
+                    'title_ar' => $_POST['title_ar'],
+                    'title_en' => $_POST['title_en'],
+                    'related_to' => $_POST['related'],
+                    'content_ar' => $_POST['content_ar'],
+                    'content_en' => $_POST['content_en'],
+                );
+                if (isset($_FILES['page_media'])) {
+                    print_r($_FILES);
+                    $admin->file = $_FILES['page_media'];
+                }
+                $admin->AddPage();
+            }
+            break;
     }
 
     exit();
