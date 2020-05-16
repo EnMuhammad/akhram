@@ -279,23 +279,23 @@ echo $style;
     </div>
     <!--//features-->
     <!--News & Social-->
-    <div class="project">
-        <div class="container">
-            <h3><?= $trans['LATEST_PROJECTS'][$l] ?></h3>
-            <div class="project-top">
-                <div class="row">
-                    <div class="col-md-4 col-sm-12 col-xs-12">
-                        <div class="News_box">
-                            <div class="col-md-12" style="padding: 0"><img src="images/bo3.jpg" class="img"></div>
-                            <div class="col-md-12">Info</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="clearfix"></div>
-            </div>
-        </div>
-    </div>
+    <!--    <div class="project">-->
+    <!--        <div class="container">-->
+    <!--            <h3>--><? //= //$trans['LATEST_PROJECTS'][$l] ?><!--</h3>-->
+    <!--            <div class="project-top">-->
+    <!--                <div class="row">-->
+    <!--                    <div class="col-md-4 col-sm-12 col-xs-12">-->
+    <!--                        <div class="News_box">-->
+    <!--                            <div class="col-md-12" style="padding: 0"><img src="images/bo3.jpg" class="img"></div>-->
+    <!--                            <div class="col-md-12">Info</div>-->
+    <!--                        </div>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!---->
+    <!--                <div class="clearfix"></div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
 
     <!--partners-->
     <div class="content-bottom1">

@@ -236,7 +236,7 @@ if (isset($_GET['formAction'])) {
                     'content_en' => $_POST['content_en'],
                 );
                 if (isset($_FILES['page_media'])) {
-                    print_r($_FILES);
+
                     $admin->file = $_FILES['page_media'];
                 }
                 $admin->AddPage();
@@ -278,5 +278,12 @@ if (isset($_GET['formAction'])) {
             $fun = new fun();
             echo $fun->SectorsListAsOptions($t);
             break;
+    }
+} else if (isset($_GET['Delete'])) {
+    $admin = new AdminFun();
+    $type = $_GET['Delete'];
+    if (isset($_GET['id'])) {
+        $id = intval($_GET['id']);
+        $admin->DeleteData($id, $type);
     }
 }

@@ -368,11 +368,11 @@ $fun = new fun();
         </div>
         <div class="form-group">
             <label>Page Content</label>
-            <textarea class="form-control" name="content_ar" required></textarea>
+            <textarea class="form-control" name="content_en" required></textarea>
         </div>
         <div class="form-group">
             <label>محتوى الصفحة</label>
-            <textarea class="form-control" name="content_en" required></textarea>
+            <textarea class="form-control" name="content_ar" required></textarea>
         </div>
         <div class="form-group">
             <label>Upload Media</label>

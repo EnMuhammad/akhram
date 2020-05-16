@@ -15,6 +15,7 @@ class functions
     var $sector_id = 0;
     var $service_id = 0;
     var $project_id = 0;
+    var $page_id = 0;
     var $return = array();
 
     function GetSectors()
@@ -157,6 +158,32 @@ class functions
                 'start' => $x['date_start'],
                 'end' => $x['date_end'],
             );
+        }
+        return $this->return;
+    }
+
+    function GetFullPageData($l)
+    {
+        prs::unSetData();
+        prs::$table = PAGES_TABLE;
+        prs::$select_cond = array('id' => $this->page_id);
+        foreach (prs::select__record() as $i => $p) {
+            $this->return = array(
+                'title' => $p['title_' . $l],
+                'content' => $p['content_' . $l],
+                'views' => $p['views']
+            );
+        }
+        prs::unSetData();
+        prs::$table = MEDIA_TABLE;
+        prs::$select_cond = array('type' => 'pages', 'media_id' => $this->page_id);
+        if (!empty(prs::select__record())) {
+            foreach (prs::select__record() as $r => $m) {
+                $this->return['media'][] = array(
+                    'url' => $m['url'],
+                    'title' => $m['name_' . $l]
+                );
+            }
         }
         return $this->return;
     }
@@ -335,4 +362,5 @@ class AdminFunctions
         unset($_SESSION['AdminId']);
         unset($_SESSION['AdminLogin']);
     }
+
 }

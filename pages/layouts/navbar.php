@@ -21,7 +21,10 @@ class Page_Banner
 
     public function __construct()
     {
-
+        $delete = false;
+        if (isset($_SESSION['AdminLogin']) && isset($_SESSION['AdminId'])) {
+            $delete = true;
+        }
         $lang = new lang();
         $trans = $lang->Translations();
         $l = $lang->GetLanguage();
@@ -30,7 +33,11 @@ class Page_Banner
         foreach (prs::select__record() as $t => $s) {
             $url_name = str_replace(' ', '_', trim($s['title_' . $l]));
             $this->sectors .= '
-             <li><a href="Sectors/' . $s['id'] . '/' . $url_name . '">' . $s['title_' . $l] . '</a></li>
+             <li><a href="Sectors/' . $s['id'] . '/' . $url_name . '">' . $s['title_' . $l] . '</a>
+               ' . (($delete) ? '
+              <a href="javascript:;" onclick="DeleteData(\'sectors\',' . $s['id'] . ')" style="float:right;"><i class="fa fa-trash"></i></a>
+              ' : '') . '
+             </li>
         <li class="divider"></li>
             ';
         }
@@ -44,9 +51,48 @@ class Page_Banner
 
     function navbar()
     {
+        $delete = false;
+        if (isset($_SESSION['AdminLogin']) && isset($_SESSION['AdminId'])) {
+            $delete = true;
+        }
         $lang = new lang();
         $trans = $lang->Translations();
         $l = $lang->GetLanguage();
+        prs::unSetData();
+        prs::$table = PAGES_TABLE;
+        prs::$select_cond = array('related_to' => 'about');
+        $ul_about = $ul_contact = '';
+        if (!empty(prs::select__record())) {
+            foreach (prs::select__record() as $t => $about) {
+                $url_name = str_replace(' ', '_', trim($about['title_' . $l]));
+                $ul_about .= '
+              <li><a href="Page/' . $about['id'] . '/' . $url_name . '">' . $about['title_' . $l] . '</a>
+              ' . (($delete) ? '
+              <a href="javascript:;" onclick="DeleteData(\'pages\',' . $about['id'] . ')" style="float:right;"><i class="fa fa-trash"></i></a>
+              ' : '') . '
+              </li>
+            ';
+
+            }
+            $ul_about .= ' <li class="divider"></li>';
+        }
+        $drop_down = false;
+        prs::$select_cond = array('related_to' => 'contact');
+        if (!empty(prs::select__record())) {
+            $drop_down = true;
+            foreach (prs::select__record() as $t => $contact) {
+                $url_name = str_replace(' ', '_', trim($contact['title_' . $l]));
+                $ul_contact .= '
+             <li><a href="Page/' . $about['id'] . '/' . $url_name . '">' . $contact['title_' . $l] . '</a>
+              ' . (($delete) ? '
+              <a href="javascript:;" onclick="DeleteData(\'pages\',' . $contact['id'] . ')" style="float:right;"><i class="fa fa-trash"></i></a>
+              ' : '') . '
+              </li>
+            ';
+            }
+            $ul_contact .= ' <li class="divider"></li>';
+        }
+
         $this->banner = '
 
 <!-- banner -->
@@ -71,11 +117,8 @@ class Page_Banner
               <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">' . $trans['ABOUT'][$l] . ' <b class="caret"></b></a>
       <ul class="dropdown-menu" role="menu">
-       <li ><a href="#">' . $trans['BREF_INFO'][$l] . '</a></li>
-        <li><a href="#">' . $trans['CHAIRMAN_WORD'][$l] . '</a></li>
-        <li><a href="#">' . $trans['CEO_WORD'][$l] . '</a></li>
-        <li><a href="#">' . $trans['GOAL_VISION_MISSION'][$l] . '</a></li>
-        <li class="divider"></li>
+     
+      ' . $ul_about . '
         <li><a href="#">' . $trans['TERMS'][$l] . '</a></li>
         <li><a href="#">' . $trans['PRIVACY'][$l] . '</a></li>
       </ul>
@@ -86,8 +129,19 @@ class Page_Banner
     ' . $this->sectors . '
       </ul>
     </li>
-      <li><a href="#">' . $trans['SUPP_BUSI'][$l] . '</a></li>
-                  <li><a href="#">' . $trans['CONTACT'][$l] . '</a></li>
+     <li><a href="#">' . $trans['SUPP_BUSI'][$l] . '</a></li>
+    ' . (($drop_down) ? '
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">' . $trans['CONTACT'][$l] . ' <b class="caret"></b></a>
+      <ul class="dropdown-menu" role="menu">
+    ' . $ul_contact . '
+      </ul>
+    </li>
+    ' : '
+    <li><a href="#">' . $trans['CONTACT'][$l] . '</a></li>
+    ') . '
+     
+                  
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="javascript:;" class="change_lang"><span class="fa fa-language fa-lg"></span> ' . $trans['CHANGE_LANG'][$l] . '</a></li>

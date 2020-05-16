@@ -53,10 +53,10 @@ if ($colsed == 1 && !isset($_SESSION['AdminLogin']) && !isset($_SESSION['AdminId
         $p->page_get = 'SectorsBranches';
         $p->page_title = SECBRAN_TITLE;
         $p->Action();
-    } else if (isset($_GET['NewsPage'])) {
+    } else if (isset($_GET['Page'])) {
         $p = new page();
-        $p->page_get = 'News_Page';
-        $p->page_title = NEWS_PAGE . ' أسم الخبر';
+        $p->page_get = 'Pages';
+        $p->page_title = 'Pages';
         $p->Action();
     } else if (isset($_GET['Project'])) {
         $p = new page();

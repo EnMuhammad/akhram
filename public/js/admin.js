@@ -201,3 +201,11 @@ let CloneText = function (x) {
     old.removeClass('clone-this');
     $(newData).insertAfter(old);
 };
+let DeleteData = function (type, id) {
+    let con = confirm('Are you sure?');
+    if (con) {
+        $.post('index.php?adminAction&Delete=' + type + '&id=' + id, function () {
+            window.location.href = '';
+        });
+    }
+};

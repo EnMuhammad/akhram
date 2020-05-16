@@ -89,7 +89,7 @@ class AdminFunctions
         prs::add__record();
         $pid = prs::$last_id;
         if (!empty($this->file)) {
-            print_r($this->file);
+
             for ($i = 0; $i < count($this->file); $i++) {
                 $file = $this->file;
                 $name = $file['name'][$i];
@@ -132,6 +132,35 @@ class AdminFunctions
         prs::$table = SECTORS_TABLE;
         prs::$data_in = $this->inputData;
         prs::add__record();
+    }
+
+    function DeleteData($id, $type)
+    {
+        switch ($type) {
+            case 'pages':
+                prs::unSetData();
+                prs::$table = MEDIA_TABLE;
+                prs::$cond = array('type' => 'pages', 'media_id' => $id);
+                prs::delete__record();
+                prs::unSetData();
+                prs::$table = PAGES_TABLE;
+                prs::$cond = array('id' => $id);
+                prs::delete__record();
+                break;
+            case 'sectors':
+                prs::unSetData();
+                prs::$table = PROJECTS_TABLE;
+                prs::$cond = array('sid' => $id);
+                prs::delete__record();
+                prs::unSetData();
+                prs::$table = SERVICES_TABLE;
+                prs::$cond = array('sid' => $id);
+                prs::delete__record();
+                prs::$table = SECTORS_TABLE;
+                prs::$cond = array('id' => $id);
+                prs::delete__record();
+                break;
+        }
     }
 }
 

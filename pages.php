@@ -34,8 +34,8 @@ class Pages
             case 'SectorsBranches':
                 $this->page_select = 'sectors_brans.php';
                 break;
-            case 'News_Page':
-                $this->page_select = 'news_page.php';
+            case 'Pages':
+                $this->page_select = 'page.php';
                 break;
             case 'Project_Page':
                 $this->page_select = 'project_page.php';
