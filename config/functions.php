@@ -18,6 +18,10 @@ class functions
     var $page_id = 0;
     var $return = array();
 
+    function CreateUrlName($string)
+    {
+        return str_replace(' ', '_', trim($string));
+    }
     function GetSectors()
     {
         prs::unSetData();

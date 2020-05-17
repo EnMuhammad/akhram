@@ -42,6 +42,7 @@ minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <!--menu-->
 
 <link href="css/all.css" rel="stylesheet">
+<link href="css/fontawesome.min.css" rel="stylesheet">
 <link href="jquery-ui/jquery-ui.min.css" rel="stylesheet">
 <link href="css/styles.css" rel="stylesheet">
 <!--//menu-->

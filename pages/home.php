@@ -10,56 +10,25 @@ $trans = $lang->Translations();
 $l = $lang->GetLanguage();
 //$trans[''][$l];
 prs::unSetData();
-prs::$table = SERVICES_TABLE;
-$serv = '';
-prs::$limit = 7;
-$serv_bottom = '';
-$i = 0;
-foreach (prs::select__record() as $t => $s) {
-
-    $serv .= '
-    <div class=" bottom-head" style="float:' . $trans['ALIGN'][$l] . '">
-        <a href="Services/' . $s['id'] . '/' . str_replace(' ', '_', $s['service_' . $l]) . '">
-                        <div class="buy-media">
-                            <i class="buy"> </i>
-                                <h6>' . $s['service_' . $l] . '</h6>
-                        </div>
-                    </a>
-                    </div>';
-    if ($i <= 2) {
-        $serv_bottom .= '
-      <div class="col-md-4 service-top1" dir="' . $trans['DIR'][$l] . '" style="float:' . $trans['ALIGN'][$l] . '">
-                    <div class=" ser-grid">
-                        <a href="#" class="hi-icon hi-icon-archive glyphicon glyphicon-user"> </a>
-                    </div>
-                    <div class="ser-top">
-                        <h4>' . $s['service_' . $l] . '</h4>
-                        <p>' . mb_substr($s['about_service_' . $l], 0, 150, 'UTF8') . ' ..
-                        <a href="">' . $trans['READ_MORE'][$l] . '</a>
-                        </p>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-    ';
-    }
-    $i++;
+prs::$table = SECTORS_TABLE;
+$sec = array();
+foreach (prs::select__record() as $t => $sectors) {
+    $sec[] = array(
+        'id' => $sectors['id'],
+        'title' => $sectors['title_' . $l],
+        'about' => mb_substr($sectors['about_' . $l], 0, 20, 'UTF8'),
+    );
 }
 prs::unSetData();
-prs::$table = EQUI_TABLE;
-prs::$limit = 3;
-prs::$order = 'id DESC';
-$equipments = '';
-foreach (prs::select__record() as $t => $s) {
-    $equipments .= '
-      <div class="col-md-4 box_2" style="float:' . $trans['ALIGN'][$l] . '">
-                <a href="single.html" class="mask">
-                    <img class="img-responsive zoom-img" src="images/equipments/' . $s['photo'] . '" alt="">
-                    <!--<span class="four">40,000$</span> -->
-                </a>
-                <div class="most-1">
-                    <h5><a href="#">' . $s['name_' . $l] . '</a></h5>
-                </div>
-            </div>';
+prs::$table = PAGES_TABLE;
+prs::$select_cond = array('related_to' => 'news');
+$pages = array();
+foreach (prs::select__record() as $t => $pa) {
+    $pages[] = array(
+        'id' => $pa['id'],
+        'title' => $pa['title_' . $l],
+        'content' => mb_substr($pa['content_' . $l], 0, 200, 'UTF8') . '..',
+    );
 }
 prs::unSetData();
 prs::$table = COMPANY_TABLE;
@@ -68,33 +37,8 @@ $company_background = '';
 foreach (prs::select__record() as $t => $back) {
     $company_background = $back['data_' . $l];
 }
-$projects = '';
 
-foreach ($fun->GetProjects(4) as $to) {
-    $url = str_replace(' ', '_', $to['title_' . $l]);
-    $projects .= '
-         <div class="col-md-3 project-grid" style="float:' . $trans['ALIGN'][$l] . ';direction:' . $trans['DIR'][$l] . '">
-                    <div class="project-grid-top">
-                        <a href="single.html" class="mask">
-                        <img src="images/project_media/' . $to['id'] . '/' . $fun->GetProjectsMedia($to['id'], true) . '" class="img-responsive zoom-img"
-                                                                alt=""/></a>
-                        <div class="col-md1">
-                            <div class="col-md2">
-                               
-                                <div class="col-md4">
-                                    <strong>' . $to['title_ar'] . '</strong>
-                                    <small>50 Views</small>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <p>' . $fun->GetCityName($to['city_id']) . '</p>
-                            
-                            <a href="Project/' . $to['id'] . '/' . $url . '" class="hvr-sweep-to-right more">See Details</a>
-                        </div>
-                    </div>
-                </div>
-    ';
-}
+
 prs::unSetData();
 prs::$table = SLIDES_TABLE;
 $i = 1;
@@ -157,25 +101,7 @@ echo $style;
 </div>
 
 <!--Company Services-->
-<div class="banner-bottom-top">
-    <div class="container">
-        <div class="bottom-header">
-            <div class="header-bottom">
-                <?= $serv ?>
-                <!--                <div class=" bottom-head">-->
-                <!--                    <a href="buy.html">-->
-                <!--                        <div class="buy-media">-->
-                <!--                            <i class="buy"> </i>-->
-                <!--                            <h6>Buy</h6>-->
-                <!--                        </div>-->
-                <!--                    </a>-->
-                <!--                </div>-->
 
-                <div class="clearfix"></div>
-            </div>
-        </div>
-    </div>
-</div>
 <!--//-->
 
 <!--//header-bottom-->
@@ -186,83 +112,51 @@ echo $style;
 <div class="content ">
     <div class="content-grid">
         <div class="container">
-            <h3 style="color: black"><?= $trans['latest_equ'][$l] ?></h3>
+            <h3 style="color: black"><?= $trans['SECTORS'][$l] ?></h3>
             <div class="row hideme">
-                <div class="col-md-4 col-sm-12 col-xs-12 boxData">
-                    <div class="col-md-5" style="padding: 0;margin: -15px">
-                        <img src="images/ci.jpg" class="img">
+                <?php
+                $i = 0;
+                foreach ($sec as $da) {
+                    ?>
+                    <div class="col-md-4 col-sm-12 col-xs-12 boxData" style="float:<?= $trans['ALIGN'][$l] ?>">
+                        <?php
+                        if (isset($_SESSION['AdminLogin']) && isset($_SESSION['AdminId'])) {
+                            ?>
+                            <div class="trash_btn">
+                                <a class="btn btn-danger" href="javascript:;"
+                                   onclick="DeleteData('sectors',<?= $da['id'] ?>)">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </div>
+                            <?php
+                        }
+                        ?>
+                        <div class="col-md-5" style="padding: 0;margin: -15px">
+                            <img src="images/sectors/<?= $fun->GetCoverMedia($da['id'], 'sectors') ?>" class="img">
+                        </div>
+                        <div class="col-md-7 info">
+                            <h4>
+                                <a href="Sectors/<?= $da['id'] ?>/<?= $fun->CreateUrlName($da['title']) ?>"><?= $da['title'] ?></a>
+                            </h4>
+                            <p>
+                                <?= $da['about'] ?>
+                            </p>
+                        </div>
                     </div>
-                    <div class="col-md-7 info">
-                        <h4>Sector name</h4>
-                        <p>
-                            Sector info ..
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-12 col-xs-12 boxData">
-                    <div class="col-md-5" style="padding: 0;margin: -15px">
-                        <img src="images/ci.jpg" class="img">
-                    </div>
-                    <div class="col-md-7 info">
-                        <h4>Sector name</h4>
-                        <p>
-                            Sector info ..
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-12 col-xs-12 boxData">
-                    <div class="col-md-5" style="padding: 0;margin: -15px">
-                        <img src="images/ci.jpg" class="img">
-                    </div>
-                    <div class="col-md-7 info">
-                        <h4>Sector name</h4>
-                        <p>
-                            Sector info ..
-                        </p>
-                    </div>
-                </div>
-
-
+                    <?php
+                    $i++;
+                    if ($i > 3) {
+                        $i = 0;
+                        echo '</div>
+                      <div class="clearfix"></div>
+            <div class="row hideme">
+                      ';
+                    }
+                }
+                ?>
             </div>
             <div class="clearfix"></div>
-            <div class="row hideme">
-                <div class="col-md-4 col-sm-12 col-xs-12 boxData">
-                    <div class="col-md-5" style="padding: 0;margin: -15px">
-                        <img src="images/ci.jpg" class="img">
-                    </div>
-                    <div class="col-md-7 info">
-                        <h4>Sector name</h4>
-                        <p>
-                            Sector info ..
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-12 col-xs-12 boxData">
-                    <div class="col-md-5" style="padding: 0;margin: -15px">
-                        <img src="images/ci.jpg" class="img">
-                    </div>
-                    <div class="col-md-7 info">
-                        <h4>Sector name</h4>
-                        <p>
-                            Sector info ..
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-12 col-xs-12 boxData">
-                    <div class="col-md-5" style="padding: 0;margin: -15px">
-                        <img src="images/ci.jpg" class="img">
-                    </div>
-                    <div class="col-md-7 info">
-                        <h4>Sector name</h4>
-                        <p>
-                            Sector info ..
-                        </p>
-                    </div>
-                </div>
 
-
-            </div>
-            <div class="clearfix"></div>
         </div>
     </div>
 
@@ -273,29 +167,61 @@ echo $style;
                 <h3><?= $trans['ABOUT_COMPANY'][$l] ?></h3>
                 <p><?= mb_substr($company_background, 0, 150, 'UTF8') . '...' ?>
                 </p>
-                <a class="hvr-sweep-to-right more-in" href="single.html"><?= $trans['READ_MORE'][$l] ?></a>
+                <a class="hvr-sweep-to-right more-in" href="#"><?= $trans['READ_MORE'][$l] ?></a>
             </div>
         </div>
     </div>
-    <!--//features-->
-    <!--News & Social-->
-    <!--    <div class="project">-->
-    <!--        <div class="container">-->
-    <!--            <h3>--><? //= //$trans['LATEST_PROJECTS'][$l] ?><!--</h3>-->
-    <!--            <div class="project-top">-->
-    <!--                <div class="row">-->
-    <!--                    <div class="col-md-4 col-sm-12 col-xs-12">-->
-    <!--                        <div class="News_box">-->
-    <!--                            <div class="col-md-12" style="padding: 0"><img src="images/bo3.jpg" class="img"></div>-->
-    <!--                            <div class="col-md-12">Info</div>-->
-    <!--                        </div>-->
-    <!--                    </div>-->
-    <!--                </div>-->
-    <!---->
-    <!--                <div class="clearfix"></div>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--    </div>-->
+    <!--    //features-->
+    <!--    News & Social-->
+    <div class="project">
+        <div class="container">
+            <h3><?= $trans['NEWS'][$l] ?></h3>
+            <div class="project-top">
+                <div class="row">
+                    <?php
+                    foreach ($pages as $news) {
+
+                        ?>
+                        <div class="col-md-3 col-sm-12 col-xs-12" style="float:<?= $trans['ALIGN'][$l] ?>">
+                            <div class="News_box" dir="<?= $trans['DIR'][$l] ?>">
+
+                                <div class="col-md-12" style="padding: 0"><img
+                                            src="images/pages/<?= $fun->GetCoverMedia($news['id'], 'pages') ?>"
+                                            class="img"></div>
+                                <div class="col-md-12">
+                                    <div class="share_buttons">
+                                        <ul>
+                                            <li>Share on:</li>
+                                            <li class="social-share facebook">
+                                                <a href="javascript:;"
+                                                   onclick="setShareLinks('Page/<?= $news['id'] ?>/<?= $fun->CreateUrlName($news['title']) ?>')"><img
+                                                            src="images/share_icons/facebook.png"
+                                                            alt="Share Page on Facebook"/></a></li>
+                                            <li class="social-share twitter">
+                                                <a href="javascript:;"
+                                                   onclick="setShareLinks('Page/<?= $news['id'] ?>/<?= $fun->CreateUrlName($news['title']) ?>')"><img
+                                                            src="images/share_icons/twitter.png"
+                                                            alt="Share Page on Twitter"/></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="title_head"><?= $news['title'] ?></div>
+                                    <p class="news_contact"><?= nl2br($news['content']) ?></p>
+                                </div>
+                                <div class="footer">
+
+                                    <a href="Page/<?= $news['id'] ?>/<?= $fun->CreateUrlName($news['title']) ?>"><?= $trans['READ_MORE'][$l] ?></a>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                    ?>
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
 
     <!--partners-->
     <div class="content-bottom1">

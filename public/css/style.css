@@ -634,6 +634,7 @@ ul.callbacks_tabs.callbacks1_tabs {
 }
 
 .content-grid .boxData {
+    position: relative;
     /*background:#fb0002;*/
     -webkit-border-top-right-radius: 100px;
     -webkit-border-bottom-left-radius: 100px;
@@ -646,6 +647,14 @@ ul.callbacks_tabs.callbacks1_tabs {
     overflow: hidden;
 }
 
+.content-grid .boxData .trash_btn {
+    position: absolute;
+    bottom: 6px;
+    right: 5px;
+    color: red;
+    z-index: 500;
+
+}
 .hideme {
     opacity: 0;
 }
@@ -685,8 +694,56 @@ ul.callbacks_tabs.callbacks1_tabs {
     min-height: 500px;
     max-height: 500px;
     background: #fff8f8;
+    position: relative;
 }
 
+.News_box .share_buttons {
+
+    top: 15px;
+    left: 5px;
+    font-size: 12px;
+    width: 100%;
+    text-align: left;
+
+
+}
+
+.News_box .share_buttons ul li {
+    display: inline-block;
+    margin: 5px 3px;
+    vertical-align: bottom;
+    font-size: 14px;
+}
+
+.News_box .title_head {
+    background: #8b73ff;
+    color: white;
+    text-align: center;
+    padding: 5px;
+    margin: 15px auto;
+}
+
+.News_box p.news_contact {
+    padding: 10px;
+    font-size: 15px;
+    font-family: 'Amiri', 'Montserrat-Regular';
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.News_box .footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: #8b73ff;
+    text-align: center;
+}
+
+.News_box .footer a {
+    color: white;
+    font-size: 14px;
+    padding: 5px;
+}
 .News_box .img {
     position: relative;
     width: 100%;
