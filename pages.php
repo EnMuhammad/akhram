@@ -52,6 +52,10 @@ class Pages
                 $this->login = false;
                 $this->page_select = 'sector_page.php';
                 break;
+            case 'CompanyProfile':
+                $this->login = false;
+                $this->page_select = 'company_profile.php';
+                break;
 
         }
         if ($this->page_closed) {

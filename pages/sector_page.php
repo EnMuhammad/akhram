@@ -28,9 +28,10 @@ if (isset($_GET['sid'])) {
     <div class="about">
         <div class="about-head">
             <div class="container">
-                <h3>Overview</h3>
+                <h3><?= $trans['SECTOR_OVERVIEW'][$l] ?></h3>
                 <div class="about-in">
-                    <a href="blog_single.html"><img src="images/at.jpg" alt="image" class="img-responsive "> </a>
+                    <img src="images/sectors/<?= $fun->GetCoverMedia($fun->sector_id, 'sector') ?>" alt="image"
+                         class="img-responsive ">
 
                     <p>
                         <?= $data['about'] ?>
@@ -46,7 +47,7 @@ if (isset($_GET['sid'])) {
                 foreach ($data['services'] as $key => $p) {
                     $url_name = str_replace(' ', '_', trim($p['title']));
                     ?>
-                    <div class="row">
+                    <div class="row" dir="<?= $trans['DIR'][$l] ?>">
                         <div class="col-md-8 about-mid" <?= (($x == 1) ? "style='float:right;'" : "style='float:left;'") ?>>
                             <h4><a href="Services/<?= $p['id'] ?>/<?= $url_name ?>"><?= $p['title'] ?></a></h4>
 
@@ -55,8 +56,7 @@ if (isset($_GET['sid'])) {
                         <div class="col-md-4 about-mid1"
                              style="background:url('public/images/services/<?= $fun->GetCoverMedia($p['id'], 'services') ?>') ;background-repeat: no-repeat;background-size: cover;<?= (($x == 1) ? "'float:left;'" : "'float:right;'") ?>">
 
-                            <a href="Services/<?= $p['id'] ?>/<?= $url_name ?>" class="hvr-sweep-to-right more-in">READ
-                                MORE</a>
+
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -77,7 +77,7 @@ if (isset($_GET['sid'])) {
         <!---->
         <div class="container">
             <div class="content-events">
-                <h3> Related Projects</h3>
+                <h3><?= $trans['RELATED_PROJECT'][$l] ?></h3>
                 <div class="news">
                     <?php
                     foreach ($data['projects'] as $y => $f) {
@@ -89,8 +89,8 @@ if (isset($_GET['sid'])) {
                                 <h6><a href="Project/<?= $f['id'] ?>/<?= $url_name ?>"><?= $f['title'] ?> </a></h6>
                             </div>
 
-                            <a class="hvr-sweep-to-right more" href="Project/<?= $f['id'] ?>/<?= $url_name ?>">Read
-                                More</a>
+                            <a class="hvr-sweep-to-right more" href="Project/<?= $f['id'] ?>/<?= $url_name ?>">
+                                <?= $trans['READ_MORE'][$l] ?>  </a>
                         </div>
                         <?php
                     }

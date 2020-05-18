@@ -73,6 +73,11 @@ if ($colsed == 1 && !isset($_SESSION['AdminLogin']) && !isset($_SESSION['AdminId
         $p->page_get = 'SectorPage';
         $p->page_title = 'Sector';
         $p->Action();
+    } else if (isset($_GET['Profile'])) {
+        $p = new page();
+        $p->page_get = 'CompanyProfile';
+        $p->page_title = 'Company Profile';
+        $p->Action();
     } else {
         new Page_Errors\ErrorsPages();
     }

@@ -169,6 +169,81 @@ class functions
         return $this->return;
     }
 
+    function GetSectorsFullData($l)
+    {
+        prs::unSetData();
+        prs::$table = SECTORS_TABLE;
+        $i = 0;
+        $f = 0;
+        foreach (prs::select__record() as $t => $s) {
+            $this->return[$i] = array(
+                'id' => $s['id'],
+                'title' => $s['title_' . $l],
+                'about' => $s['about_' . $l],
+
+            );
+            $this->sector_id = $s['id'];
+            prs::unSetData();
+            prs::$table = SERVICES_TABLE;
+            prs::$select_cond = array('sid' => $this->sector_id);
+
+            foreach (prs::select__record() as $x => $d) {
+                $this->return[$i]['services'][] = array(
+                    'id' => $d['id'],
+                    'title' => $d['service_' . $l],
+                    'city' => $d['city_id'],
+                    'about' => $d['about_service_' . $l],
+                );
+                prs::unSetData();
+                prs::$table = PROJECTS_TABLE;
+                $this->service_id = $d['id'];
+                prs::$select_cond = array('service_id' => $this->service_id);
+                foreach (prs::select__record() as $o => $x) {
+                    $this->return[$i]['services'][$f]['projects'][] = array(
+                        'id' => $x['id'],
+                        'title' => $x['title_' . $l],
+                        'city' => $x['city_id'],
+                        'service_id' => $x['service_id'],
+                        'start' => $x['date_start'],
+                        'end' => $x['date_end'],
+                    );
+                }
+                $f++;
+            }
+
+
+            $i++;
+        }
+        return $this->return;
+    }
+
+    function CompanyInfo($type, $l)
+    {
+        prs::unSetData();
+        prs::$table = COMPANY_TABLE;
+        prs::$select_cond = array('data_type' => $type);
+        $company_background = '';
+        foreach (prs::select__record() as $t => $back) {
+            $company_background = $back['data_' . $l];
+        }
+        return $company_background;
+    }
+
+    function ServiceCompanyCities()
+    {
+        prs::unSetData();
+        prs::$table = SERVICES_TABLE;
+        prs::$data_select = array('city_id');
+        prs::$select_cond = array('city_id' => 'NOT:0');
+        $city_a = array();
+        foreach (prs::select__record() as $i => $city) {
+            $city_a[] = array(
+                'name' => $this->GetCityName($city['city_id']),
+                'id' => $city['city_id']
+            );
+        }
+        return $city_a;
+    }
     function GetFullPageData($l)
     {
         prs::unSetData();
@@ -302,11 +377,10 @@ class functions
         prs::$table = CITY_BRANCH_TABLE;
         prs::$select_cond = array('id' => $id);
         foreach (prs::select__record() as $t => $name) {
-            $this->return['name'] = $name['name'];
+            $this->return['name'] = $name['name'] . '-' . $name['name_en'];
         }
         return $this->return['name'];
     }
-
     function GetServiceName($id, $lang)
     {
         prs::unSetData();

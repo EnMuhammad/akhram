@@ -145,7 +145,7 @@ echo $style;
                 <h3><?= $trans['ABOUT_COMPANY'][$l] ?></h3>
                 <p><?= mb_substr($company_background, 0, 150, 'UTF8') . '...' ?>
                 </p>
-                <a class="hvr-sweep-to-right more-in" href="#"><?= $trans['READ_MORE'][$l] ?></a>
+                <a class="hvr-sweep-to-right more-in" href="Company/Profile/"><?= $trans['READ_MORE'][$l] ?></a>
             </div>
         </div>
     </div>

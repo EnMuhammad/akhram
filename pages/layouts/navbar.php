@@ -119,6 +119,7 @@ class Page_Banner
       <ul class="dropdown-menu" role="menu">
      
       ' . $ul_about . '
+        <li><a href="Company/Profile/">Company Profile</a></li>
         <li><a href="#">' . $trans['TERMS'][$l] . '</a></li>
         <li><a href="#">' . $trans['PRIVACY'][$l] . '</a></li>
       </ul>

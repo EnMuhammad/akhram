@@ -60,7 +60,9 @@ class Lang_database
             ///// - Services - ///
             'ABOUT_SERVICE' => array('ar' => 'نبذة', 'en' => 'About'),
             'STR_SERVICES' => array('ar' => 'القدرات', 'en' => 'Strength'),
-
+            //// Sectors ///
+            'SECTOR_OVERVIEW' => array('ar' => 'نبذة عن القطاع', 'en' => 'About Sector'),
+            'RELATED_PROJECT' => array('ar' => 'مشاريع متعلقة', 'en' => 'Related Projects'),
         );
         $this->GetLanguage();
         return $this->data_set;
