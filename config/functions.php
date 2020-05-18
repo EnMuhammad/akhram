@@ -232,7 +232,7 @@ class functions
     function ServiceCompanyCities()
     {
         prs::unSetData();
-        prs::$table = SERVICES_TABLE;
+        prs::$table = PROJECTS_TABLE;
         prs::$data_select = array('city_id');
         prs::$select_cond = array('city_id' => 'NOT:0');
         $city_a = array();
