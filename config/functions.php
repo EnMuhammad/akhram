@@ -90,13 +90,16 @@ class functions
         prs::$limit = 1;
         prs::$order = 'id DESC';
         $image = '';
-        foreach (prs::select__record() as $item => $key) {
-            if ($type == 'projects') {
-                $image = $pid . '/' . $key['url'];
-            } else {
-                $image = $key['url'];
+        if (!empty(prs::select__record())) {
+            foreach (prs::select__record() as $item => $key) {
+                if ($type == 'projects') {
+                    $image = $pid . '/' . $key['url'];
+                } else {
+                    $image = $key['url'];
+                }
             }
-
+        } else {
+            $image = 'def-logo.png';
         }
         return $image;
     }

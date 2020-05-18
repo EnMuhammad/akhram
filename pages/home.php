@@ -37,8 +37,6 @@ $company_background = '';
 foreach (prs::select__record() as $t => $back) {
     $company_background = $back['data_' . $l];
 }
-
-
 prs::unSetData();
 prs::$table = SLIDES_TABLE;
 $i = 1;
@@ -84,30 +82,10 @@ echo $style;
                 <ul class="rslides" id="slider">
                     <?= $div ?>
                 </ul>
-                <?php
-                if (isset($_SESSION['AdminLogin']) && isset($_SESSION['AdminId'])){
-                ?>
-                <!--                <div class="updateSlides">-->
-                <!--                    <button class="btn btn-danger btn-lg show-slides-dialog">Update Slides-->
-                <!--                        <i class="fa fa-photo-video"></i>-->
-                <!--                    </button>-->
-                <!--                </div>-->
             </div>
-            <?php
-            }
-            ?>
         </div>
     </div>
 </div>
-
-<!--Company Services-->
-
-<!--//-->
-
-<!--//header-bottom-->
-
-
-<!--//header-->
 <!--content-->
 <div class="content ">
     <div class="content-grid">
