@@ -62,7 +62,7 @@ $sectors = $fun->GetSectorsFullData($l);
                         </div>
                         <div class="form-group">
                             <label>Search By Name</label>
-                            <input type="text" class="form-control" placeholder="Type sector name">
+                            <input type="text" class="form-control" placeholder="Type project name">
                         </div>
                     </form>
                 </div>
