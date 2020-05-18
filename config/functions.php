@@ -233,7 +233,7 @@ class functions
     {
         prs::unSetData();
         prs::$table = PROJECTS_TABLE;
-        prs::$data_select = array('city_id');
+        prs::$data_select = array('distinct city_id');
         prs::$select_cond = array('city_id' => 'NOT:0');
         $city_a = array();
         foreach (prs::select__record() as $i => $city) {
