@@ -411,22 +411,40 @@ $fun = new fun();
         <div id="tabs-1">
             <form class="UpdateContactInformation form-inline" name="actionForm" enctype="multipart/form-data">
                 <input type="hidden" name="type" value="suppliers">
-                <div class="clone-this container">
-                    <div class="form-group">
+                <div class=" container">
+                    <div class="form-group col-md-3">
                         <label>Supplier name</label>
+
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>أسم العميل</label>
+
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Website link</label>
+
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Logo</label>
+
+                    </div>
+                </div>
+                <div class="clone-this container">
+                    <div class="form-group col-md-3">
+
                         <input type="text" name="sub_en[]" class="form-control" required>
                     </div>
-                    <div class="form-group">
-                        <label>أسم العميل</label>
+                    <div class="form-group col-md-3">
+
                         <input type="text" name="sub_ar[]" class="form-control" required>
                     </div>
-                    <div class="form-group">
-                        <label>Website link</label>
+                    <div class="form-group col-md-3">
+
                         <input type="text" name="link[]" class="form-control" required>
                     </div>
-                    <div class="form-group">
-                        <label>Logo</label>
-                        <input type="file" name="sub_logo[]" class="form-control">
+                    <div class="form-group col-md-3">
+
+                        <input type="file" name="sub_logo[]">
                     </div>
                 </div>
                 <button type="button" class="btn btn-primary btn-sm" onclick="CloneText(this)"><i
