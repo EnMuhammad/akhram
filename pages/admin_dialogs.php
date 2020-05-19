@@ -6,6 +6,7 @@
  *
  */
 
+use Admins\AdminFunctions as admin;
 use Fun\functions as fun;
 
 $fun = new fun();
@@ -56,21 +57,33 @@ $fun = new fun();
 <div id="MetaData" title="Meta">
     <form class="UpdateContactInformation" name="actionForm">
         <input type="hidden" name="type" value="metaData">
+        <?php
+        $admin = new admin();
+        $titles = $admin->GetCompanyInfo('web_title');
+        $background = $admin->GetCompanyInfo('background');
+        ?>
+        <div class="form-group">
+            <label>Close Website</label>
+            <input type="radio" name="close_web" <?= (($fun->WebClosed()['closed'] == 1) ? "checked='checked'" : "") ?>
+                   value="1"> Yes
+            <input type="radio" name="close_web" <?= (($fun->WebClosed()['closed'] == 0) ? "checked='checked'" : "") ?>
+                   class="" value="0"> No
+        </div>
         <div class="form-group">
             <label>Title English</label>
-            <input type="text" name="title_en" class="form-control">
+            <input type="text" name="title_en" value="<?= $titles['title_en'] ?>" class="form-control">
         </div>
         <div class="form-group">
             <label>العنوان بالعربية</label>
-            <input type="text" name="title_ar" class="form-control">
+            <input type="text" name="title_ar" value="<?= $titles['title_ar'] ?>" class="form-control">
         </div>
         <div class="form-group">
             <label>About Company</label>
-            <input type="text" name="about_en" class="form-control">
+            <textarea name="about_en" rows="8" cols="100" class="form-control"><?= $background['title_en'] ?></textarea>
         </div>
         <div class="form-group">
             <label>عن الشركة</label>
-            <input type="text" name="about_ar" class="form-control">
+            <textarea name="about_ar" rows="8" cols="100" class="form-control"><?= $background['title_ar'] ?></textarea>
         </div>
         <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
             <div class="ui-dialog-buttonset">
@@ -386,4 +399,54 @@ $fun = new fun();
     </form>
 
 
+</div>
+
+
+<div id="Suppliers" title="Business Suppliers">
+    <div class="tabs">
+        <ul>
+            <li><a href="#tabs-1">Add Business Supplier</a></li>
+            <li><a href="#tab-2">All Suppliers</a></li>
+        </ul>
+        <div id="tabs-1">
+            <form class="UpdateContactInformation form-inline" name="actionForm" enctype="multipart/form-data">
+                <input type="hidden" name="type" value="suppliers">
+                <div class="clone-this container">
+                    <div class="form-group">
+                        <label>Supplier name</label>
+                        <input type="text" name="sub_en[]" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>أسم العميل</label>
+                        <input type="text" name="sub_ar[]" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Website link</label>
+                        <input type="text" name="link[]" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Logo</label>
+                        <input type="file" name="sub_logo[]" class="form-control">
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary btn-sm" onclick="CloneText(this)"><i
+                            class="fa fa-plus"></i>Add More
+                </button>
+                <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+                    <div class="ui-dialog-buttonset">
+                        <button type="submit" class="ui-button ui-corner-all ui-widget">Add</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div id="tab-2">
+            <table class="table table-responsive table-hover" style="width: 100%">
+                <tr>
+                    <th>Name</th>
+                    <th>Website</th>
+                    <th>logo</th>
+                </tr>
+            </table>
+        </div>
+    </div>
 </div>

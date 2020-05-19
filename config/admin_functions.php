@@ -27,6 +27,21 @@ class AdminFunctions
         prs::add__record();
     }
 
+    function GetCompanyInfo($type)
+    {
+        $data = array(
+            'title_ar' => '',
+            'title_en' => '',
+        );
+        prs::unSetData();
+        prs::$select_cond = array('data_type' => $type);
+        prs::$table = COMPANY_TABLE;
+        foreach (prs::select__record() as $t => $info) {
+            $data['title_ar'] = $info['data_ar'];
+            $data['title_en'] = $info['data_en'];
+        }
+        return $data;
+    }
     function AddCompanyInfo()
     {
         prs::unSetData();
@@ -40,6 +55,13 @@ class AdminFunctions
         prs::add__record();
     }
 
+    function CloseWeb()
+    {
+        prs::unSetData();
+        prs::$table = WEB_SETTINGS;
+        prs::$update_value = $this->inputData;
+        prs::update__record();
+    }
     function AddMedia()
     {
         $folders = array(
@@ -235,4 +257,42 @@ class ProjectsItems extends AdminFunctions
 
     }
 
+}
+
+class AddOthers extends AdminFunctions
+{
+    var $multi_input = array();
+    var $logo = '';
+    var $logo_file = array();
+    var $file_name = '';
+    var $file_tmp = '';
+    var $file_type = '';
+
+    function UploadLogo()
+    {
+        $name = $this->file_name;
+        $tmp = $this->file_tmp;
+        $type = $this->file_type;
+        $ext = pathinfo($name, PATHINFO_EXTENSION);
+        $new_name = time() . uniqid() . '-ALAKHRAM.' . $ext;
+        $dir = DIR . DS . 'public' . DS . 'images' . DS . 'suppliers' . DS . $new_name;
+        if (in_array($type, prs::$accepted_files)) {
+            if (move_uploaded_file($tmp, $dir)) {
+                $this->logo = $new_name;
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    function addSuppliers()
+    {
+        prs::unSetData();
+        prs::$table = SUPP_TABLE;
+        prs::$data_in = $this->inputData;
+        prs::add__record();
+    }
 }

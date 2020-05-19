@@ -6,6 +6,7 @@
  *
  */
 
+use Admins\AddOthers as other;
 use Admins\AdminFunctions as AdminFun;
 use Admins\ProjectsItems as items;
 use Admins\Services as ser;
@@ -103,6 +104,13 @@ if (isset($_GET['formAction'])) {
                     );
                     $admin->AddCompanyInfo();
                 }
+            }
+            if (isset($_POST['close_web'])) {
+                $c = intval($_POST['close_web']);
+                $admin->inputData = array(
+                    'closed' => $c,
+                );
+                $admin->CloseWeb();
             }
             break;
         case 'services':
@@ -240,6 +248,26 @@ if (isset($_GET['formAction'])) {
                     $admin->file = $_FILES['page_media'];
                 }
                 $admin->AddPage();
+            }
+            break;
+        case 'suppliers':
+            $other = new other();
+            if (isset($_POST['sub_en']) && isset($_POST['sub_ar']) && isset($_POST['link']) && isset($_FILES['sub_logo'])) {
+                for ($i = 0; $i < count($_POST['sub_en']); $i++) {
+                    $other->file_name = $_FILES['sub_logo']['name'][$i];
+                    $other->file_tmp = $_FILES['sub_logo']['tmp_name'][$i];
+                    $other->file_type = $_FILES['sub_logo']['type'][$i];
+                    if ($other->UploadLogo()) {
+                        $other->inputData = array(
+                            'name_ar' => $_POST['sub_ar'][$i],
+                            'name_en' => $_POST['sub_en'][$i],
+                            'webLink' => $_POST['link'][$i],
+                            'logo' => $other->logo,
+                        );
+                        $other->addSuppliers();
+                    }
+                }
+                echo 'Added';
             }
             break;
     }

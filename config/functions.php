@@ -217,6 +217,34 @@ class functions
         return $this->return;
     }
 
+    function GetCompanyInfo($type)
+    {
+        $data = array(
+            'title_ar' => '',
+            'title_en' => '',
+        );
+        prs::unSetData();
+        prs::$select_cond = array('data_type' => $type);
+        prs::$table = COMPANY_TABLE;
+        foreach (prs::select__record() as $t => $info) {
+            $data['title_ar'] = $info['data_ar'];
+            $data['title_en'] = $info['data_en'];
+        }
+        return $data;
+    }
+
+    function WebClosed()
+    {
+        $data = array(
+            'closed' => 0,
+        );
+        prs::unSetData();
+        prs::$table = WEB_SETTINGS;
+        foreach (prs::select__record() as $t => $info) {
+            $data['closed'] = $info['closed'];
+        }
+        return $data;
+    }
     function CompanyInfo($type, $l)
     {
         prs::unSetData();

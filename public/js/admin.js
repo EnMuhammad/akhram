@@ -6,7 +6,8 @@
  */
 
 $(function () {
-    $("#dialog,#MetaData,#Slides,#ServicesDialog,#ProjectsItems,#MediaDialog,#ClientsDialog,#SectorDialog").dialog({
+    $("#dialog,#MetaData,#Slides,#ServicesDialog,#ProjectsItems,#MediaDialog,#ClientsDialog,#SectorDialog" +
+        ",#Suppliers").dialog({
         autoOpen: false,
         width: "auto",
         modal: true,
@@ -91,15 +92,21 @@ $(function () {
         $activeDialogs.dialog('close');
         $("#SectorDialog").parent().css({position: "fixed"}).end().dialog('open');
     });
-    $("#tabs").tabs({
-        beforeLoad: function (event, ui) {
-            ui.jqXHR.fail(function () {
-                ui.panel.html(
-                    "Couldn't load this tab. We'll try to fix this as soon as possible. " +
-                    "If this wouldn't be a demo.");
-            });
-        }
+    $('.SuppliersShowAdd').on("click", function () {
+        let $activeDialogs = $(".ui-dialog:visible").find('.ui-dialog-content');
+        $activeDialogs.dialog('close');
+        $("#Suppliers").parent().css({position: "fixed"}).end().dialog('open');
+        $(".tabs").tabs({
+            beforeLoad: function (event, ui) {
+                ui.jqXHR.fail(function () {
+                    ui.panel.html(
+                        "Couldn't load this tab. We'll try to fix this as soon as possible. " +
+                        "If this wouldn't be a demo.");
+                });
+            }
+        });
     });
+
     $('form[name=actionForm]').on('submit', function (e) {
         e.preventDefault();
         let type = $(this).find('input[name=type]').val(), form = $(this);
@@ -169,7 +176,7 @@ let UpdateEditForm = function (form, type, options) {
     options = {
         showSuccess: false,
     };
-    if (type === 'items' || type === 'media' || type === 'page') {
+    if (type === 'items' || type === 'media' || type === 'page' || type === 'suppliers') {
         jQuery.ajax({
             url: 'index.php?adminAction&formAction=' + type,
             type: "POST",

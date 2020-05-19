@@ -7,7 +7,6 @@
  */
 
 namespace FOOTER;
-
 class Page_Footer
 {
 
@@ -21,6 +20,8 @@ class Page_Footer
 
     function footer()
     {
+
+
         $this->footer = '
     <div class="footer">
 	<div class="container">
