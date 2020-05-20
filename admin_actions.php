@@ -306,6 +306,21 @@ if (isset($_GET['formAction'])) {
             $fun = new fun();
             echo $fun->SectorsListAsOptions($t);
             break;
+        case 'suppliers':
+            $fun = new fun();
+            if (isset($GET['AsOptions'])) {
+
+                $option = true;
+                if (isset($_GET['AllOption'])) {
+                    $all = true;
+                }
+            } else {
+                $option = false;
+                $all = false;
+            }
+            echo $fun->SuppliersList($option, $all);
+            exit();
+            break;
     }
 } else if (isset($_GET['Delete'])) {
     $admin = new AdminFun();

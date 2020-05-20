@@ -399,6 +399,35 @@ class functions
         }
         return $options;
     }
+
+    function SuppliersList($option = false, $show_all = false)
+    {
+        prs::unSetData();
+        prs::$table = SUPP_TABLE;
+        $options = '';
+        if ($option) {
+            if ($show_all) {
+                $options = '<option value="0">All - الكل</option>';
+            } else {
+                $options = '';
+            }
+        }
+        foreach (prs::select__record() as $t => $op) {
+            if ($option) {
+                $options .= '<option value="' . $op['id'] . '">' . $op['name_ar'] . ' - ' . $op['name_en'] . '</option>';
+            } else {
+                $options .= '
+                <tr>
+                <td>' . $op['name_ar'] . ' - ' . $op['name_en'] . '</td>
+                <td>' . $op['webLink'] . '</td>
+                <td><img src="images/suppliers/' . $op['logo'] . '" style="width:50px;height:50px;"></td>
+                <td><i class="fa fa-trash"></i></td>
+                </tr>
+                ';
+            }
+        }
+        return $options;
+    }
     function GetCityName($id)
     {
         prs::unSetData();

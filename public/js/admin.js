@@ -96,6 +96,7 @@ $(function () {
         let $activeDialogs = $(".ui-dialog:visible").find('.ui-dialog-content');
         $activeDialogs.dialog('close');
         $("#Suppliers").parent().css({position: "fixed"}).end().dialog('open');
+        LoadSuppliers();
         $(".tabs").tabs({
             beforeLoad: function (event, ui) {
                 ui.jqXHR.fail(function () {
@@ -188,8 +189,12 @@ let UpdateEditForm = function (form, type, options) {
                 // play the audio file
                 alert(result);
                 form[0].reset();
-                let $activeDialogs = $(".ui-dialog:visible").find('.ui-dialog-content');
-                $activeDialogs.dialog('close');
+                if (type === 'suppliers') {
+                    LoadSuppliers();
+                } else {
+                    let $activeDialogs = $(".ui-dialog:visible").find('.ui-dialog-content');
+                    $activeDialogs.dialog('close');
+                }
             }
         });
     } else {
@@ -215,4 +220,9 @@ let DeleteData = function (type, id) {
             window.location.href = '';
         });
     }
+};
+let LoadSuppliers = function () {
+    $.get('index.php?adminAction&Load=suppliers', function (data) {
+        $('.loadSuppliersTable').html(data);
+    });
 };

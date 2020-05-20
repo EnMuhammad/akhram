@@ -443,7 +443,6 @@ $fun = new fun();
                         <input type="text" name="link[]" class="form-control" required>
                     </div>
                     <div class="form-group col-md-3">
-
                         <input type="file" name="sub_logo[]">
                     </div>
                 </div>
@@ -463,7 +462,11 @@ $fun = new fun();
                     <th>Name</th>
                     <th>Website</th>
                     <th>logo</th>
+                    <th>option</th>
                 </tr>
+                <tbody class="loadSuppliersTable">
+
+                </tbody>
             </table>
         </div>
     </div>
