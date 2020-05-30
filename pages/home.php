@@ -97,62 +97,89 @@ echo $style;
         </div>
     </div>
 </div>
-<!--    //features-->
-<!--content-->
-<div class="content ">
-    <div class="content-grid grad_color">
+<div class="content">
+    <div class="content-grid background-sector">
         <div class="container">
-            <h3 style="padding: 0;color:white;"><?= $trans['SECTORS'][$l] ?></h3>
-            <div class="row hideme">
-                <?php
-                $i = 0;
-                foreach ($sec as $da) {
-                    ?>
-                    <div class="col-md-3 col-sm-12 col-xs-12 " style="float:<?= $trans['ALIGN'][$l] ?>">
-                        <div class="boxData">
-                        <?php
-                        if (isset($_SESSION['AdminLogin']) && isset($_SESSION['AdminId'])) {
-                            ?>
-                            <div class="trash_btn">
-                                <a class="btn btn-danger" href="javascript:;"
-                                   onclick="DeleteData('sectors',<?= $da['id'] ?>)">
-                                    <i class="fa fa-trash"></i>
-                                </a>
-                            </div>
-                            <?php
-                        }
-                        ?>
-
-                            <div class="col-md-12">
-                            <img src="images/sectors/<?= $fun->GetCoverMedia($da['id'], 'sectors') ?>" class="img">
-                        </div>
-                            <div class="col-md-12 info">
-                            <h4>
-                                <a href="Sectors/<?= $da['id'] ?>/<?= $fun->CreateUrlName($da['title']) ?>"><?= $da['title'] ?></a>
-                            </h4>
-                            <p>
-                                <?= $da['about'] ?>
-                            </p>
-                        </div>
-                        </div>
-                    </div>
-                    <?php
-                    $i++;
-                    if ($i > 3) {
-                        $i = 0;
-                        echo '</div>
-                      <div class="clearfix"></div>
-            <div class="row hideme">
-                      ';
-                    }
-                }
+            <h3><?= $trans['SECTORS'][$l] ?></h3>
+            <?php
+            $i = 0;
+            foreach ($sec as $da) {
                 ?>
-            </div>
+                <div class="col-md-4 box_2">
+                    <?php
+                    if (isset($_SESSION['AdminLogin']) && isset($_SESSION['AdminId'])) {
+                        ?>
+                        <div class="trash_btn">
+                            <a class="btn btn-danger" href="javascript:;"
+                               onclick="DeleteData('sectors',<?= $da['id'] ?>)">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        </div>
+                        <?php
+                    }
+                    ?>
+                    <a href="Sectors/<?= $da['id'] ?>/<?= $fun->CreateUrlName($da['title']) ?>" class="mask">
+                        <img class="img-responsive zoom-img"
+                             src="images/sectors/<?= $fun->GetCoverMedia($da['id'], 'sectors') ?>" alt="">
+                        <span class="four">View</span>
+                    </a>
+                    <div class="most-1">
+                        <h5>
+                            <a href="Sectors/<?= $da['id'] ?>/<?= $fun->CreateUrlName($da['title']) ?>"><?= $da['title'] ?></a>
+                        </h5>
+                        <p><?= $da['about'] ?></p>
+                    </div>
+                </div>
+                <?php
+            }
+            ?>
             <div class="clearfix"></div>
-
         </div>
     </div>
 
+
+    <!--//project-->
+    <!--test-->
+
+</div>
+<!--    //features-->
+<!--content-->
+<div class="content ">
+    <div class="content-grid ">
+
+        <div class="container ">
+            <h3 style="padding: 0;color: black">Projects</h3>
+            <div class="row counter-projects hideme">
+                <div class="col-md-4 counter-box">
+                    <h1><span class="counter">2,523</span></h1>
+                    <p>Total Projects</p>
+
+                </div>
+                <div class="col-md-4 counter-box">
+                    <h1><span class="counter">200</span></h1>
+                    <p>Total Cities</p>
+
+                </div>
+                <div class="col-md-4 counter-box">
+                    <h1><span class="counter">1000</span></h1>
+                    <p>Total Customers</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.counterup/1.0/jquery.counterup.min.js"></script>
+<script>
+    $('.counter').counterUp({
+        delay: 10,
+        time: 2000
+    });
+    $('.counter').addClass('animated fadeInDownBig');
+    $('h3').addClass('animated fadeIn');
+
+</script>
 
     <!--    News & Social-->
     <div class="project">

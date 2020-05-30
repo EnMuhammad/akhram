@@ -94,8 +94,9 @@ class Page_Footer
 </div>
 
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
 <script src="js/scripts.js"></script>
-    
+   
 <script src="js/easyResponsiveTabs.js" type="text/javascript"></script>
   <link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
             <script src="js/jquery.magnific-popup.js" type="text/javascript"></script>

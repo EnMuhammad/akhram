@@ -625,10 +625,15 @@ ul.callbacks_tabs.callbacks1_tabs {
 
 .content-grid {
     padding: 4em 0 5em;
-    background: #fff8f8;
+
 
 }
 
+.background-sector {
+    background: url("../images/back1.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+}
 .content-grid .row {
     margin: 10px 0;
 }
@@ -643,10 +648,10 @@ ul.callbacks_tabs.callbacks1_tabs {
     background: white;
 }
 
-.content-grid .boxData .trash_btn {
+.box_2 .trash_btn {
     position: absolute;
     bottom: 6px;
-    right: 5px;
+    right: 20px;
     color: white;
     z-index: 500;
 
@@ -941,9 +946,12 @@ img.zoom-img:hover {
     -moz-transition-timing-function: ease-out;
     -moz-transition-duration: 750ms;
     overflow: hidden;
+
 }
 
 img.zoom-img {
+    height: 200px;
+    width: 100%;
     -webkit-transform: scale(1, 1);
     -webkit-transition-timing-function: ease-out;
     -webkit-transition-duration: 250ms;
@@ -1290,7 +1298,7 @@ a.more:hover {
 /*--//project--*/
 /*--middle--*/
 .content-middle {
-    background: url(../images/background-comapny.png);
+    background: url(../images/Dn6mSu.jpg);
     width: 100%;
     min-height: 390px;
     display: block;
@@ -1298,6 +1306,50 @@ a.more:hover {
 
 }
 
+.counter-projects {
+    background: url("../images/projects_background.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+}
+
+.counter-box {
+    text-align: center;
+    padding: 50px;
+    border-right: 1px dashed black;
+    color: white;
+    font-size: 28px;
+    font-weight: bolder;
+    background: rgba(0, 0, 0, 0.7);
+
+}
+
+.counter-box:last-child {
+    border-right: 0px solid black;
+}
+
+.counter {
+    animation-duration: 1s;
+    animation-delay: 0s;
+}
+
+.counter-box i {
+    font-size: 20px !Important;
+}
+
+@media (max-width: 991px) {
+    .counter-box {
+        border-right: 0px dashed black;
+        border-bottom: 1px dashed black;
+        width: 50%;
+        margin: auto auto;
+    }
+
+    .counter-box:last-child {
+        border-bottom: 0px dashed black;
+    }
+}
 .mid-content {
     background: #fe0001;
     padding: 2em;
@@ -4210,6 +4262,8 @@ ul.nav.nav-pills {
         width: 33.3%;
         float: left;
         padding: 0 7px;
+        position: relative;
+        background: red;
     }
 
     .most-1 h5 {
