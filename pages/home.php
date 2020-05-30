@@ -102,7 +102,7 @@ echo $style;
 <div class="content ">
     <div class="content-grid grad_color">
         <div class="container">
-            <h3 style="padding: 0;color:red;"><?= $trans['SECTORS'][$l] ?></h3>
+            <h3 style="padding: 0;color:white;"><?= $trans['SECTORS'][$l] ?></h3>
             <div class="row hideme">
                 <?php
                 $i = 0;

@@ -640,7 +640,7 @@ ul.callbacks_tabs.callbacks1_tabs {
     margin: 15px 0px;
     padding: 15px;
 
-    background: red;
+    background: white;
 }
 
 .content-grid .boxData .trash_btn {
@@ -667,7 +667,7 @@ ul.callbacks_tabs.callbacks1_tabs {
     /*border-right:1px solid #b7b7b7;*/
     /*border-left:1px solid #b7b7b7;*/
     /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#f85032+0,f16f5c+50,f6290c+51,f02f17+71,e73827+100;Red+Gloss+%231 */
-    background: white;
+
 
 }
 
@@ -681,7 +681,7 @@ ul.callbacks_tabs.callbacks1_tabs {
 }
 
 .grad_color {
-
+    background: red;
 }
 .content-grid .boxData .img {
     position: relative;
