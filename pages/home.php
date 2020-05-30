@@ -86,17 +86,30 @@ echo $style;
         </div>
     </div>
 </div>
+<!--features-->
+<div class="content-middle">
+    <div class="container">
+        <div class="mid-content" dir="<?= $trans['DIR'][$l] ?>" style="float: <?= $trans['ALIGN_NATIVE'][$l] ?>">
+            <h3><?= $trans['ABOUT_COMPANY'][$l] ?></h3>
+            <p><?= mb_substr($company_background, 0, 300, 'UTF8') . '...' ?>
+            </p>
+            <a class="hvr-sweep-to-right more-in" href="Company/Profile/"><?= $trans['READ_MORE'][$l] ?></a>
+        </div>
+    </div>
+</div>
+<!--    //features-->
 <!--content-->
 <div class="content ">
-    <div class="content-grid">
+    <div class="content-grid grad_color">
         <div class="container">
-            <h3 style="color: black"><?= $trans['SECTORS'][$l] ?></h3>
+            <h3 style="padding: 0;color:red;"><?= $trans['SECTORS'][$l] ?></h3>
             <div class="row hideme">
                 <?php
                 $i = 0;
                 foreach ($sec as $da) {
                     ?>
-                    <div class="col-md-4 col-sm-12 col-xs-12 boxData" style="float:<?= $trans['ALIGN'][$l] ?>">
+                    <div class="col-md-3 col-sm-12 col-xs-12 " style="float:<?= $trans['ALIGN'][$l] ?>">
+                        <div class="boxData">
                         <?php
                         if (isset($_SESSION['AdminLogin']) && isset($_SESSION['AdminId'])) {
                             ?>
@@ -109,16 +122,18 @@ echo $style;
                             <?php
                         }
                         ?>
-                        <div class="col-md-5" style="padding: 0;margin: -15px">
+
+                            <div class="col-md-12">
                             <img src="images/sectors/<?= $fun->GetCoverMedia($da['id'], 'sectors') ?>" class="img">
                         </div>
-                        <div class="col-md-7 info">
+                            <div class="col-md-12 info">
                             <h4>
                                 <a href="Sectors/<?= $da['id'] ?>/<?= $fun->CreateUrlName($da['title']) ?>"><?= $da['title'] ?></a>
                             </h4>
                             <p>
                                 <?= $da['about'] ?>
                             </p>
+                        </div>
                         </div>
                     </div>
                     <?php
@@ -138,22 +153,11 @@ echo $style;
         </div>
     </div>
 
-    <!--features-->
-    <div class="content-middle">
-        <div class="container">
-            <div class="mid-content" dir="<?= $trans['DIR'][$l] ?>" style="float: <?= $trans['ALIGN_NATIVE'][$l] ?>">
-                <h3><?= $trans['ABOUT_COMPANY'][$l] ?></h3>
-                <p><?= mb_substr($company_background, 0, 150, 'UTF8') . '...' ?>
-                </p>
-                <a class="hvr-sweep-to-right more-in" href="Company/Profile/"><?= $trans['READ_MORE'][$l] ?></a>
-            </div>
-        </div>
-    </div>
-    <!--    //features-->
+
     <!--    News & Social-->
     <div class="project">
         <div class="container">
-            <h3><?= $trans['NEWS'][$l] ?></h3>
+            <h3 style="color:red"><?= $trans['NEWS'][$l] ?></h3>
             <div class="project-top">
                 <div class="row">
                     <?php
@@ -198,6 +202,14 @@ echo $style;
                 </div>
                 <div class="clearfix"></div>
             </div>
+        </div>
+        <div class="our_links">
+            <h4>Follow us on:</h4>
+            <a href="#">
+                <img src="images/share_icons/facebook256.png" alt="facebook">
+                <img src="images/share_icons/twitter256.png" alt="facebook">
+                <img src="images/share_icons/instagram256.png" alt="facebook">
+            </a>
         </div>
     </div>
 
