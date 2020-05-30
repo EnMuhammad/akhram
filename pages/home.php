@@ -215,22 +215,13 @@ echo $style;
 
     <!--partners-->
     <div class="content-bottom1">
-        <h3><?= $trans['Partners'][$l] ?></h3>
+        <!--        <h3>--><? //= $trans['Partners'][$l] ?><!--</h3>-->
         <div class="container">
             <ul>
-                <li><a href="#"><img class="img-responsive" src="images/lg.png" alt=""></a></li>
-                <li><a href="#"><img class="img-responsive" src="images/lg1.png" alt=""></a></li>
-                <li><a href="#"><img class="img-responsive" src="images/lg2.png" alt=""></a></li>
-                <li><a href="#"><img class="img-responsive" src="images/lg3.png" alt=""></a></li>
-                <li><a href="#"><img class="img-responsive" src="images/lg4.png" alt=""></a></li>
-                <div class="clearfix"></div>
+
             </ul>
             <ul>
-                <li><a href="#"><img class="img-responsive" src="images/lg5.png" alt=""></a></li>
-                <li><a href="#"><img class="img-responsive" src="images/lg6.png" alt=""></a></li>
-                <li><a href="#"><img class="img-responsive" src="images/lg7.png" alt=""></a></li>
-                <li><a href="#"><img class="img-responsive" src="images/lg8.png" alt=""></a></li>
-                <li><a href="#"><img class="img-responsive" src="images/lg9.png" alt=""></a></li>
+
                 <div class="clearfix"></div>
             </ul>
         </div>
