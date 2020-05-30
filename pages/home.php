@@ -107,7 +107,7 @@ echo $style;
                 $i++;
                 if ($i <= 4) {
                     ?>
-                    <div class="col-md-4 box_2">
+                    <div class="col-md-3 box_2">
                         <?php
                         if (isset($_SESSION['AdminLogin']) && isset($_SESSION['AdminId'])) {
                             ?>
