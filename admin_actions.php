@@ -270,6 +270,38 @@ if (isset($_GET['formAction'])) {
                 echo 'Added';
             }
             break;
+        case 'branches':
+            $other = new other();
+            if (isset($_GET['update_mc'])) {
+                if (isset($_GET['id'])) {
+                    $other->UpdateBrMC(intval($_GET['id']));
+                }
+            } else {
+                if (
+                    isset($_POST['address_en'])
+                    && isset($_POST['address_ar'])
+                    && isset($_POST['city_id'])
+                    && isset($_POST['email_address'])
+                    && isset($_POST['phone'])
+                    && isset($_POST['fax'])
+                    && isset($_POST['whatsapp'])
+                ) {
+
+                    $other->inputData = array(
+                        'city_id' => $_POST['city_id'],
+                        'address_ar' => $_POST['address_ar'],
+                        'address_en' => $_POST['address_en'],
+                        'phone' => $_POST['phone'],
+                        'email' => $_POST['email_address'],
+                        'fax' => $_POST['fax'],
+                        'whatsapp' => $_POST['whatsapp'],
+                    );
+                    $other->addBranch();
+                }
+            }
+
+
+            break;
     }
 
     exit();
@@ -320,6 +352,10 @@ if (isset($_GET['formAction'])) {
             }
             echo $fun->SuppliersList($option, $all);
             exit();
+            break;
+        case 'branches':
+            $other = new other();
+            echo $other->BranchesList();
             break;
     }
 } else if (isset($_GET['Delete'])) {

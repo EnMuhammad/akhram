@@ -56,6 +56,10 @@ class Pages
                 $this->login = false;
                 $this->page_select = 'company_profile.php';
                 break;
+            case 'Contact':
+                $this->login = false;
+                $this->page_select = 'contactUs.php';
+                break;
 
         }
         if ($this->page_closed) {

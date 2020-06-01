@@ -139,7 +139,7 @@ class Page_Banner
       </ul>
     </li>
     ' : '
-    <li><a href="#">' . $trans['CONTACT'][$l] . '</a></li>
+    <li><a href="Company/Contact/">' . $trans['CONTACT'][$l] . '</a></li>
     ') . '
      
                   

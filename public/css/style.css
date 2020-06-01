@@ -1685,7 +1685,19 @@ ul.social li i:hover {
     -o-background-size: cover;
 }
 
-.banner-buying h3 {
+.contact_us {
+    background: url(../images/contact-us.jpg) no-repeat;
+    width: 100%;
+    min-height: 250px;
+    background-position: 0px -300px;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+.banner-buying h3,
+.contact_us h3 {
     color: #fff;
     font-size: 2em;
     text-transform: uppercase;
@@ -1696,7 +1708,8 @@ ul.social li i:hover {
     margin-top: 3.8em;
 }
 
-.banner-buying h3 span {
+.banner-buying h3 span,
+.contact_us h3 span {
     border-bottom: 7px solid #27DA93;
 }
 

@@ -7,7 +7,7 @@
 
 $(function () {
     $("#dialog,#MetaData,#Slides,#ServicesDialog,#ProjectsItems,#MediaDialog,#ClientsDialog,#SectorDialog" +
-        ",#Suppliers").dialog({
+        ",#Suppliers,#branches").dialog({
         autoOpen: false,
         width: "auto",
         modal: true,
@@ -97,6 +97,21 @@ $(function () {
         $activeDialogs.dialog('close');
         $("#Suppliers").parent().css({position: "fixed"}).end().dialog('open');
         LoadSuppliers();
+        $(".tabs").tabs({
+            beforeLoad: function (event, ui) {
+                ui.jqXHR.fail(function () {
+                    ui.panel.html(
+                        "Couldn't load this tab. We'll try to fix this as soon as possible. " +
+                        "If this wouldn't be a demo.");
+                });
+            }
+        });
+    });
+    $('.BranShowAdd').on("click", function () {
+        let $activeDialogs = $(".ui-dialog:visible").find('.ui-dialog-content');
+        $activeDialogs.dialog('close');
+        $("#branches").parent().css({position: "fixed"}).end().dialog('open');
+        LoadBranches();
         $(".tabs").tabs({
             beforeLoad: function (event, ui) {
                 ui.jqXHR.fail(function () {
@@ -224,5 +239,15 @@ let DeleteData = function (type, id) {
 let LoadSuppliers = function () {
     $.get('index.php?adminAction&Load=suppliers', function (data) {
         $('.loadSuppliersTable').html(data);
+    });
+};
+let LoadBranches = function () {
+    $.get('index.php?adminAction&Load=branches', function (data) {
+        $('.LoadBranches').html(data);
+    });
+};
+let UpdateMC = function (id) {
+    $.get('index.php?adminAction&formAction=branches&update_mc&id=' + id, function (data) {
+        LoadBranches();
     });
 };

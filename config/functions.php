@@ -318,7 +318,7 @@ class functions
             $options = '';
         }
         foreach (prs::select__record() as $t => $op) {
-            $options .= '<option value="' . $op['id'] . '">' . $op['name'] . ' - ' . $op['name_en'] . '</option>';
+            $options .= '<option value="' . $op['id'] . '" ' . (($op['id'] == 13) ? "selected" : "") . '>' . $op['name'] . ' - ' . $op['name_en'] . '</option>';
         }
         return $options;
     }
@@ -458,6 +458,50 @@ class functions
             $this->return['name'] = $name['name_' . $lang];
         }
         return $this->return['name'];
+    }
+
+    function Branches($l, $id = 0)
+    {
+        prs::unSetData();
+        prs::$table = BRAN_TABLE;
+        if ($id == 0) {
+            prs::$select_cond = array('mc' => 1);
+            $title = 'المركز الرئيسي - Main Center';
+        } else {
+            prs::$select_cond = array('city_id' => $id);
+            $title = '';
+        }
+        $options = '';
+        foreach (prs::select__record() as $t => $x) {
+            if ($x['mc'] == 1) {
+                $title = 'المركز الرئيسي - Main Center';
+            }
+            $options = '
+                    <div class="contact-address">
+                    <div class="col-md-6 contact-address1">
+                        <div class="clearfix"></div>
+                        <h5>Address</h5>
+                       <p><b>Al Alkhram - الاخرم - ' . $title . '</b></p>
+                        <p>' . $x['address_' . $l] . '</p>
+                    </div>
+                    <div class="col-md-6 contact-address1">
+                        <h5>Email Address </h5>
+                          <p>General :<a href="malito:' . $x['email'] . '">' . $x['email'] . '</a></p>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="contact-address">
+                    <div class="col-md-6 contact-address1">
+                        <h5 >Phone </h5>
+                        <p>Landline :  ' . $x['phone'] . '</p>
+                        <p>Fax :  ' . $x['fax'] . '</p>
+                        <p>Whatsapp :  ' . $x['whatsapp'] . '</p>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+         ';
+        }
+        return $options;
     }
 }
 

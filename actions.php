@@ -49,4 +49,11 @@ if (isset($_GET['logout'])) {
         }
         echo $option;
     }
+} else if (isset($_GET['loadBranch'])) {
+
+    if (isset($_GET['id'])) {
+        $id = intval($_GET['id']);
+        echo $fun->Branches($l, $id);
+        exit();
+    }
 }

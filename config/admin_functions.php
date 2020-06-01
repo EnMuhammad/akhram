@@ -295,4 +295,65 @@ class AddOthers extends AdminFunctions
         prs::$data_in = $this->inputData;
         prs::add__record();
     }
+
+    function addBranch()
+    {
+        prs::unSetData();
+        prs::$table = BRAN_TABLE;
+        prs::$data_in = $this->inputData;
+        prs::add__record();
+    }
+
+    function BranchesList($option = false, $show_all = false)
+    {
+        prs::unSetData();
+        prs::$table = BRAN_TABLE;
+        $options = '';
+        if ($option) {
+            if ($show_all) {
+                $options = '<option value="0">All - الكل</option>';
+            } else {
+                $options = '';
+            }
+        }
+        foreach (prs::select__record() as $t => $op) {
+            if ($option) {
+                $options .= '<option value="' . $op['id'] . '">' . $op['address_ar'] . ' - ' . $op['address_en'] . '</option>';
+            } else {
+                $options .= '
+                <tr>
+                <td>' . $op['address_ar'] . ' - ' . $op['address_en'] . '</td>
+                <td>' . $op['phone'] . '</td>
+                <td>' . $op['email'] . ' </td>
+                <td>' . $op['fax'] . ' </td>
+                <td>' . $op['whatsapp'] . ' </td>
+                <td align=center>
+              ' . (($op['mc'] == 0) ? '  <button type"button" onclick="UpdateMC(' . $op['id'] . ')" class="btn btn-primary btn-sm">
+                <i class="fa fa-check"></i>
+                </button>' : '
+                <i class="fa fa-home"></i>
+                ') . '
+                </td>
+                <td><i class="fa fa-trash"></i></td>
+                </tr>
+                ';
+            }
+        }
+        return $options;
+    }
+
+    function UpdateBrMC($id)
+    {
+        prs::unSetData();
+        prs::$table = BRAN_TABLE;
+        prs::$select_cond = array('mc' => 1);
+        if (!empty(prs::select__record())) {
+            prs::$update_cond = array('mc' => 1);
+            prs::$update_value = array('mc' => 0);
+            prs::update__record();
+        }
+        prs::$update_cond = array('id' => $id);
+        prs::$update_value = array('mc' => 1);
+        prs::update__record();
+    }
 }

@@ -471,3 +471,72 @@ $fun = new fun();
         </div>
     </div>
 </div>
+<div id="branches" title="Branches And Main Center">
+    <div class="tabs">
+        <ul>
+            <li><a href="#tabs-1">Add Branch</a></li>
+            <li><a href="#tab-2">All Branches & Main Center</a></li>
+        </ul>
+        <div id="tabs-1">
+            <form class="UpdateContactInformation form-horizontal" name="actionForm">
+                <input type="hidden" name="type" value="branches">
+                <div class=" container">
+                    <div class="form-group ">
+                        <label>Address</label>
+                        <input type="text" name="address_en" class="form-control" required>
+                    </div>
+                    <div class="form-group ">
+                        <label>العنوان</label>
+                        <input type="text" name="address_ar" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>City</label>
+                        <select name="city_id" class="form-control">
+                            <?= $fun->CityListAsOptions(false) ?>
+                        </select>
+                    </div>
+                    <div class="form-group ">
+                        <label>email address</label>
+                        <input type="text" name="email_address" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Land Phone</label>
+                        <input type="text" name="phone" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Fax</label>
+                        <input type="text" name="fax" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Whatsapp Number</label>
+                        <input type="text" name="whatsapp" class="form-control" required>
+                    </div>
+                </div>
+                <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+                    <div class="ui-dialog-buttonset">
+                        <button type="submit" class="ui-button ui-corner-all ui-widget">Add</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div id="tab-2">
+            <table class="table table-responsive table-hover" style="width: 100%">
+                <tr>
+                    <th>Address</th>
+                    <th>phone</th>
+                    <th>email</th>
+                    <th>fax</th>
+                    <th>whatsapp</th>
+                    <th>Set As MC</th>
+                    <th>Delete</th>
+                </tr>
+                <tbody class="LoadBranches">
+
+                </tbody>
+            </table>
+            <script>
+
+            </script>
+        </div>
+    </div>
+</div>

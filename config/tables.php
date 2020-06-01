@@ -8,7 +8,7 @@
 
 DEFINE('ADMIN_TABLE', 'admin');
 DEFINE('ART_TABLE', 'articals');
-DEFINE('BRAN_TABLE', 'bransh');
+DEFINE('BRAN_TABLE', 'branches');
 DEFINE('CERT_TABLE', 'certi');
 DEFINE('FEEDBACK_TABLE', 'feedback');
 DEFINE('NEWS_TABLE', 'news');
