@@ -71,7 +71,7 @@ foreach (prs::select__record() as $t => $back) {
                     <input type="text" placeholder="Subject" required="">
                     <textarea placeholder="Message" requried=""></textarea>
                     <label class="hvr-sweep-to-right">
-                        <input type="submit" value="Submit">
+                        <input type="button" value="Submit">
                     </label>
                 </form>
             </div>

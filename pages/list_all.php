@@ -16,6 +16,7 @@ $trans = $lang->Translations();
 $l = $lang->GetLanguage();
 prs::unSetData();
 $data = array();
+$title = '';
 if (isset($_GET['type'])) {
     $type = $_GET['type'];
     switch ($type) {

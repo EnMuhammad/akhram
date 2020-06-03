@@ -413,6 +413,7 @@ class functions
             }
         }
         foreach (prs::select__record() as $t => $op) {
+
             if ($option) {
                 $options .= '<option value="' . $op['id'] . '">' . $op['name_ar'] . ' - ' . $op['name_en'] . '</option>';
             } else {
@@ -427,6 +428,22 @@ class functions
             }
         }
         return $options;
+    }
+
+    function SuppliersListArray($l)
+    {
+        prs::unSetData();
+        prs::$table = SUPP_TABLE;
+
+        foreach (prs::select__record() as $t => $op) {
+            $this->return[] = array(
+                'name' => $op['name_' . $l],
+                'link' => $op['webLink'],
+                'logo' => $op['logo'],
+            );
+        }
+
+        return $this->return;
     }
     function GetCityName($id)
     {

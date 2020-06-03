@@ -83,6 +83,11 @@ if ($colsed == 1 && !isset($_SESSION['AdminLogin']) && !isset($_SESSION['AdminId
         $p->page_get = 'Contact';
         $p->page_title = 'Contact & Branches';
         $p->Action();
+    } else if (isset($_GET['Suppliers'])) {
+        $p = new page();
+        $p->page_get = 'suppliers';
+        $p->page_title = 'Business suppliers';
+        $p->Action();
     } else {
         new Page_Errors\ErrorsPages();
     }

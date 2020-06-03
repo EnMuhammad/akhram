@@ -102,12 +102,9 @@ echo $style;
         <div class="container">
             <h3><?= $trans['SECTORS'][$l] ?></h3>
             <?php
-            $i = 0;
             foreach ($sec as $da) {
-                $i++;
-                if ($i <= 4) {
                     ?>
-                    <div class="col-md-3 box_2">
+                <div class="box_2 col-md-4" style="margin: 10px 0">
                         <?php
                         if (isset($_SESSION['AdminLogin']) && isset($_SESSION['AdminId'])) {
                             ?>
@@ -129,11 +126,10 @@ echo $style;
                             <h5>
                                 <a href="Sectors/<?= $da['id'] ?>/<?= $fun->CreateUrlName($da['title']) ?>"><?= $da['title'] ?></a>
                             </h5>
-                            <p><?= $da['about'] ?></p>
                         </div>
                     </div>
                     <?php
-                }
+
             }
             ?>
             <div class="clearfix"></div>

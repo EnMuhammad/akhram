@@ -60,6 +60,10 @@ class Pages
                 $this->login = false;
                 $this->page_select = 'contactUs.php';
                 break;
+            case 'suppliers':
+                $this->login = false;
+                $this->page_select = 'suppliers.php';
+                break;
 
         }
         if ($this->page_closed) {

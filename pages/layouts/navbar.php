@@ -130,7 +130,7 @@ class Page_Banner
     ' . $this->sectors . '
       </ul>
     </li>
-     <li><a href="#">' . $trans['SUPP_BUSI'][$l] . '</a></li>
+     <li><a href="Company/BusinessSuppliers/">' . $trans['SUPP_BUSI'][$l] . '</a></li>
     ' . (($drop_down) ? '
     <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">' . $trans['CONTACT'][$l] . ' <b class="caret"></b></a>
