@@ -33,9 +33,12 @@ class Page_Banner
         foreach (prs::select__record() as $t => $s) {
             $url_name = str_replace(' ', '_', trim($s['title_' . $l]));
             $this->sectors .= '
-             <li><a href="Sectors/' . $s['id'] . '/' . $url_name . '">' . $s['title_' . $l] . '</a>
+             <li style="text-align:' . $trans['ALIGN'][$l] . ';">
+           
+             <a  style="display:inline-block;max-width:70%" href="Sectors/' . $s['id'] . '/' . $url_name . '">' . $s['title_' . $l] . '</a>
+           
                ' . (($delete) ? '
-              <a href="javascript:;" onclick="DeleteData(\'sectors\',' . $s['id'] . ')" style="float:right;"><i class="fa fa-trash"></i></a>
+              <a href="javascript:;" onclick="DeleteData(\'sectors\',' . $s['id'] . ')" style="float:' . $trans['ALIGN_NATIVE'][$l] . ';"><i class="fa fa-trash"></i></a>
               ' : '') . '
              </li>
         <li class="divider"></li>
@@ -113,39 +116,39 @@ class Page_Banner
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav" >
-                <li class="active" ><a href="#">' . $trans['HOME'][$l] . '</a></li>
-              <li class="dropdown">
+                <li class="active" style="float:' . $trans['ALIGN'][$l] . '"><a href="#">' . $trans['HOME'][$l] . '</a></li>
+              <li class="dropdown" style="float:' . $trans['ALIGN'][$l] . '">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">' . $trans['ABOUT'][$l] . ' <b class="caret"></b></a>
       <ul class="dropdown-menu" role="menu">
      
       ' . $ul_about . '
-        <li><a href="Company/Profile/">Company Profile</a></li>
-        <li><a href="#">' . $trans['TERMS'][$l] . '</a></li>
-        <li><a href="#">' . $trans['PRIVACY'][$l] . '</a></li>
+        <li style="float:' . $trans['ALIGN'][$l] . '"><a href="Company/Profile/">Company Profile</a></li>
+        <li style="float:' . $trans['ALIGN'][$l] . '"><a href="#">' . $trans['TERMS'][$l] . '</a></li>
+        <li style="float:' . $trans['ALIGN'][$l] . '"><a href="#">' . $trans['PRIVACY'][$l] . '</a></li>
       </ul>
     </li>
-                   <li class="dropdown">
+                   <li class="dropdown" style="float:' . $trans['ALIGN'][$l] . ';">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">' . $trans['SECTORS'][$l] . ' <b class="caret"></b></a>
-      <ul class="dropdown-menu" role="menu">
+      <ul class="dropdown-menu" role="menu" style="min-width:260px">
     ' . $this->sectors . '
       </ul>
     </li>
-     <li><a href="Company/BusinessSuppliers/">' . $trans['SUPP_BUSI'][$l] . '</a></li>
+     <li style="float:' . $trans['ALIGN'][$l] . '"><a href="Company/BusinessSuppliers/">' . $trans['SUPP_BUSI'][$l] . '</a></li>
     ' . (($drop_down) ? '
-    <li class="dropdown">
+    <li class="dropdown" style="float:' . $trans['ALIGN'][$l] . '">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">' . $trans['CONTACT'][$l] . ' <b class="caret"></b></a>
       <ul class="dropdown-menu" role="menu">
     ' . $ul_contact . '
       </ul>
     </li>
     ' : '
-    <li><a href="Company/Contact/">' . $trans['CONTACT'][$l] . '</a></li>
+    <li style="float:' . $trans['ALIGN'][$l] . '"><a href="Company/Contact/">' . $trans['CONTACT'][$l] . '</a></li>
     ') . '
      
                   
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="javascript:;" class="change_lang"><span class="fa fa-language fa-lg"></span> ' . $trans['CHANGE_LANG'][$l] . '</a></li>
+                <li style="float:' . $trans['ALIGN'][$l] . '"><a href="javascript:;" class="change_lang"><span class="fa fa-language fa-lg"></span> ' . $trans['CHANGE_LANG'][$l] . '</a></li>
               <!--  <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Search</a></li> -->
             </ul>
         </div>

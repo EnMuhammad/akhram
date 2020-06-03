@@ -4046,6 +4046,8 @@ h3.typo1:after, h3.typo1:before {
 
 .navbar-nav > li > a, .nav > li > a {
     color: white;
+    font-size: 17px;
+    font-weight: bold;
 }
 
 .header.active .navbar-nav > li > a, .header.active .nav > li > a {
