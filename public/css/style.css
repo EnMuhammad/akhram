@@ -633,6 +633,7 @@ ul.callbacks_tabs.callbacks1_tabs {
     background: url("../images/back1.jpg");
     background-position: center;
     background-repeat: no-repeat;
+    background-size: cover;
 }
 .content-grid .row {
     margin: 10px 0;
