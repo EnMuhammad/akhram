@@ -56,4 +56,26 @@ if (isset($_GET['logout'])) {
         echo $fun->Branches($l, $id);
         exit();
     }
+} else if (isset($_GET['LoadProjectCity'])) {
+    if (isset($_GET['city'])) {
+        $city = intval($_GET['city']);
+        $div = ' <ul id="flexiselDemo1">';
+        foreach ($fun->GetProjectsByCity($city, $l) as $pro) {
+            $div .= '
+        <li><div class="project-fur">
+         <a href="#" ><img class="img-responsive" src="images/project_media/' . $fun->GetCoverMedia($pro['id'], 'projects') . '" alt="" />	</a>
+                                        <div class="fur">
+                                            <div class="fur1">
+                                                <span class="fur-money">' . $pro['name'] . ' </span>
+                                                <h6 class="fur-name"><a href="#">' . $pro['sector'] . '</a></h6>
+                                                <span>' . $pro['city'] . '</span>
+                                            </div>
+                                        </div>
+                                    </div></li>
+        ';
+        }
+        $div .= '</ul>';
+        echo $div;
+    }
 }
+exit();

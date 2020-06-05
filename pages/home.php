@@ -165,6 +165,85 @@ echo $style;
 
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-12 project-section">
+                    <ul class="country_taps">
+                        <?php
+                        $i = 0;
+                        foreach ($fun->ServiceCompanyCitiesLang($l) as $city) {
+                            echo ' <li ' . (($i == 0) ? 'class="active"' : "") . '><a href="javascript:;" id=' . $city['id'] . '>' . $city['name'] . '</a></li>';
+                            $i++;
+                        }
+                        ?>
+                    </ul>
+                </div>
+                <div class="container">
+                    <div class="future">
+                        <div class="col-md-12 loading-data" style="display: none;">
+                            <div class="loader" style="text-align: center;font-size: 32px;color:red;">
+                                <i class="fa fa-spin fa-spinner"></i>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="content-bottom-in">
+                            <div class="loadProjects">
+                                <ul id="flexiselDemo1">
+                                    <?php
+                                    foreach ($fun->GetProjectsByCity(0, $l) as $p) {
+                                        ?>
+                                        <li>
+                                            <div class="project-fur">
+                                                <a href="#"><img class="img-responsive"
+                                                                 src="images/project_media/<?= $fun->GetCoverMedia($p['id'], 'projects') ?>"
+                                                                 alt=""/> </a>
+                                                <div class="fur">
+                                                    <div class="fur1">
+                                                        <span class="fur-money"><?= $p['name'] ?> </span>
+                                                        <h6 class="fur-name"><a href="#"><?= $p['sector'] ?></a></h6>
+                                                        <span><?= $p['city'] ?></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <?php
+                                    }
+                                    ?>
+
+
+                                </ul>
+                            </div>
+                            <script type="text/javascript">
+                                $(window).load(function () {
+                                    $("#flexiselDemo1").flexisel({
+                                        visibleItems: 4,
+                                        animationSpeed: 1000,
+                                        autoPlay: true,
+                                        autoPlaySpeed: 3000,
+                                        pauseOnHover: true,
+                                        enableResponsiveBreakpoints: true,
+                                        responsiveBreakpoints: {
+                                            portrait: {
+                                                changePoint: 480,
+                                                visibleItems: 1
+                                            },
+                                            landscape: {
+                                                changePoint: 640,
+                                                visibleItems: 2
+                                            },
+                                            tablet: {
+                                                changePoint: 768,
+                                                visibleItems: 3
+                                            }
+                                        }
+                                    });
+
+                                });
+                            </script>
+                            <script type="text/javascript" src="js/jquery.flexisel.js"></script>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

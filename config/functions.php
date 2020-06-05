@@ -272,6 +272,42 @@ class functions
         }
         return $city_a;
     }
+
+    function ServiceCompanyCitiesLang($l)
+    {
+        prs::unSetData();
+        prs::$table = PROJECTS_TABLE;
+        prs::$data_select = array('distinct city_id');
+        prs::$select_cond = array('city_id' => 'NOT:0');
+        $city_a = array();
+        foreach (prs::select__record() as $i => $city) {
+            $city_a[] = array(
+                'name' => $this->GetCityName($city['city_id'], $l),
+                'id' => $city['city_id']
+            );
+        }
+        return $city_a;
+    }
+
+    function GetProjectsByCity($city = 0, $l)
+    {
+        prs::unSetData();
+        prs::$table = PROJECTS_TABLE;
+        if ($city != 0) {
+            prs::$select_cond = array('city_id' => $city);
+        }
+
+        $projects = array();
+        foreach (prs::select__record() as $i => $project) {
+            $projects[] = array(
+                'id' => $project['id'],
+                'name' => $project['title_' . $l],
+                'sector' => $this->GetSectorName($project['sid'], $l),
+                'city' => $this->GetCityName($project['city_id'], $l),
+            );
+        }
+        return $projects;
+    }
     function GetFullPageData($l)
     {
         prs::unSetData();
@@ -445,13 +481,38 @@ class functions
 
         return $this->return;
     }
-    function GetCityName($id)
+
+    function GetCityName($id, $l = 'both')
     {
         prs::unSetData();
         prs::$table = CITY_BRANCH_TABLE;
         prs::$select_cond = array('id' => $id);
         foreach (prs::select__record() as $t => $name) {
-            $this->return['name'] = $name['name'] . '-' . $name['name_en'];
+            if ($l == 'both') {
+                $this->return['name'] = $name['name'] . '-' . $name['name_en'];
+            } else if ($l == 'ar') {
+                $this->return['name'] = $name['name'];
+            } else if ($l == 'en') {
+                $this->return['name'] = $name['name_en'];
+            }
+
+        }
+        return $this->return['name'];
+    }
+
+    function GetSectorName($id, $l = 'both')
+    {
+        prs::unSetData();
+        prs::$table = SECTORS_TABLE;
+
+        prs::$select_cond = array('id' => $id);
+
+        foreach (prs::select__record() as $t => $name) {
+            if ($l == 'both') {
+                $this->return['name'] = $name['title_ar'] . '-' . $name['title_en'];
+            } else {
+                $this->return['name'] = $name['title_' . $l];
+            }
         }
         return $this->return['name'];
     }

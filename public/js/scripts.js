@@ -90,6 +90,7 @@ $(function () {
             $(this).next().stop(true, true).slideUp('normal');
         }
     });
+
     $('.service-list').on('change', function (e) {
         let vl = $(this).val();
         if (vl !== 0) {
@@ -99,5 +100,38 @@ $(function () {
         } else {
             $('.project-list').attr('disabled', 'disabled');
         }
+    });
+    $('.country_taps li a').on('click', function (e) {
+        e.preventDefault();
+        $('.country_taps li').removeClass('active');
+        $(this).parent().addClass('active');
+        $('.loading-data').show();
+        let id = $(this).attr('id');
+        $.get('index.php?action&LoadProjectCity&city=' + id, function (data) {
+            $('.loadProjects').html(data);
+            $("#flexiselDemo1").flexisel({
+                visibleItems: 4,
+                animationSpeed: 1000,
+                autoPlay: true,
+                autoPlaySpeed: 3000,
+                pauseOnHover: true,
+                enableResponsiveBreakpoints: true,
+                responsiveBreakpoints: {
+                    portrait: {
+                        changePoint: 480,
+                        visibleItems: 1
+                    },
+                    landscape: {
+                        changePoint: 640,
+                        visibleItems: 2
+                    },
+                    tablet: {
+                        changePoint: 768,
+                        visibleItems: 3
+                    }
+                }
+            });
+            $('.loading-data').hide();
+        })
     });
 });

@@ -1315,6 +1315,37 @@ a.more:hover {
 
 }
 
+.project-section ul.country_taps {
+
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.project-section ul.country_taps li {
+    padding: 5px;
+    text-align: center;
+    font-family: 'Cairo', 'Montserrat-Regular';
+    border-bottom: 1px solid #b7b7b7;
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.project-section ul.country_taps li a {
+    color: black;
+    font-size: 21px;
+    text-decoration: none;
+}
+
+.project-section ul.country_taps li.active {
+    background: red;
+    padding: 5px 30px;
+    font-weight: bold;
+}
+
+.project-section ul.country_taps li.active a {
+    color: white;
+}
 .counter-box {
     text-align: center;
     padding: 50px;
