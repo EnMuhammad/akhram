@@ -289,14 +289,16 @@ class functions
         return $city_a;
     }
 
-    function GetProjectsByCity($city = 0, $l)
+    function GetProjectsByCity($city = 0, $l, $limit = 0)
     {
         prs::unSetData();
         prs::$table = PROJECTS_TABLE;
         if ($city != 0) {
             prs::$select_cond = array('city_id' => $city);
         }
-
+        if ($limit != 0) {
+            prs::$limit = $limit;
+        }
         $projects = array();
         foreach (prs::select__record() as $i => $project) {
             $projects[] = array(

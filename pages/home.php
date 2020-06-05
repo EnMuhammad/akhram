@@ -189,7 +189,7 @@ echo $style;
                             <div class="loadProjects">
                                 <ul id="flexiselDemo1">
                                     <?php
-                                    foreach ($fun->GetProjectsByCity(0, $l) as $p) {
+                                    foreach ($fun->GetProjectsByCity(0, $l, 10) as $p) {
                                         ?>
                                         <li>
                                             <div class="project-fur">
