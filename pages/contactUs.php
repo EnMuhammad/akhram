@@ -49,6 +49,10 @@ foreach (prs::select__record() as $t => $back) {
                         <?= $fun->CityListAsOptions(false) ?>
                     </select>
                 </div>
+                <div class="col-md-12 loadingBranches" style="font-size: 24px;text-align: center;display: none">
+                    <i class="fa fa-spin fa-spinner"></i>
+                </div>
+                <div class="clearfix"></div>
                 <div class="LoadDataBranches">
                     <?= $fun->Branches($l, 0) ?>
                 </div>
@@ -57,8 +61,10 @@ foreach (prs::select__record() as $t => $back) {
                 $(function () {
                     $('.loadBranches').on('change', function () {
                         let id = $(this).val();
+                        $('.loadingBranches').show();
                         $.get('home?action&loadBranch&id=' + id, function (d) {
                             $('.LoadDataBranches').html(d);
+                            $('.loadingBranches').hide();
                         })
                     })
                 })

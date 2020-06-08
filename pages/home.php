@@ -22,6 +22,19 @@ foreach (prs::select__record() as $t => $sectors) {
 prs::unSetData();
 prs::$table = PAGES_TABLE;
 prs::$select_cond = array('related_to' => 'news');
+$all_news = array();
+foreach (prs::select__record() as $t => $pa) {
+    $all_news[] = array(
+        'id' => $pa['id'],
+        'title' => $pa['title_' . $l],
+        'date' => $pa['created_on'],
+    );
+}
+prs::unSetData();
+prs::$table = PAGES_TABLE;
+prs::$select_cond = array('related_to' => 'news');
+prs::$limit = 1;
+prs::$order = 'id DESC';
 $pages = array();
 foreach (prs::select__record() as $t => $pa) {
     $pages[] = array(
@@ -30,6 +43,7 @@ foreach (prs::select__record() as $t => $pa) {
         'content' => mb_substr($pa['content_' . $l], 0, 200, 'UTF8') . '..',
     );
 }
+
 prs::unSetData();
 prs::$table = COMPANY_TABLE;
 prs::$select_cond = array('data_type' => 'background');
@@ -260,75 +274,108 @@ echo $style;
 
     <!--    News & Social-->
     <div class="project">
-        <div class="container">
-            <h3 style="color:red"><?= $trans['NEWS'][$l] ?></h3>
-            <div class="project-top">
-                <div class="row">
-                    <?php
-                    foreach ($pages as $news) {
+        <?php
+        if (!empty($all_news) && count($all_news) > 0) {
+            ?>
+            <div class="container">
+                <h3 style="color:red"><?= $trans['NEWS'][$l] ?></h3>
+                <div class="project-top">
+                    <div class="row news-section">
+                        <div class="col-md-7 col-sm-12 col-xs-12" style="float:<?= $trans['ALIGN'][$l] ?>;padding: 0">
+                            <?php
+                            foreach ($pages as $news) {
+                                ?>
+                                <div class="News_box" dir="<?= $trans['DIR'][$l] ?>">
 
-                        ?>
-                        <div class="col-md-3 col-sm-12 col-xs-12" style="float:<?= $trans['ALIGN'][$l] ?>">
-                            <div class="News_box" dir="<?= $trans['DIR'][$l] ?>">
-
-                                <div class="col-md-12" style="padding: 0"><img
-                                            src="images/pages/<?= $fun->GetCoverMedia($news['id'], 'pages') ?>"
-                                            class="img"></div>
-                                <div class="col-md-12">
-                                    <div class="share_buttons">
-                                        <ul>
-                                            <li>Share on:</li>
-                                            <li class="social-share facebook">
-                                                <a href="javascript:;"
-                                                   onclick="setShareLinks('Page/<?= $news['id'] ?>/<?= $fun->CreateUrlName($news['title']) ?>')"><img
-                                                            src="images/share_icons/facebook.png"
-                                                            alt="Share Page on Facebook"/></a></li>
-                                            <li class="social-share twitter">
-                                                <a href="javascript:;"
-                                                   onclick="setShareLinks('Page/<?= $news['id'] ?>/<?= $fun->CreateUrlName($news['title']) ?>')"><img
-                                                            src="images/share_icons/twitter.png"
-                                                            alt="Share Page on Twitter"/></a></li>
-                                        </ul>
+                                    <div class="col-md-12" style="padding: 0"><img
+                                                src="images/pages/<?= $fun->GetCoverMedia($news['id'], 'pages') ?>"
+                                                class="img"></div>
+                                    <div class="col-md-12">
+                                        <div class="share_buttons">
+                                            <ul>
+                                                <li>Share on:</li>
+                                                <li class="social-share facebook">
+                                                    <a href="javascript:;"
+                                                       onclick="setShareLinks('Page/<?= $news['id'] ?>/<?= $fun->CreateUrlName($news['title']) ?>')"><img
+                                                                src="images/share_icons/facebook.png"
+                                                                alt="Share Page on Facebook"/></a></li>
+                                                <li class="social-share twitter">
+                                                    <a href="javascript:;"
+                                                       onclick="setShareLinks('Page/<?= $news['id'] ?>/<?= $fun->CreateUrlName($news['title']) ?>')"><img
+                                                                src="images/share_icons/twitter.png"
+                                                                alt="Share Page on Twitter"/></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="title_head"><?= $news['title'] ?></div>
+                                        <p class="news_contact"><?= nl2br($news['content']) ?></p>
                                     </div>
-                                    <div class="title_head"><?= $news['title'] ?></div>
-                                    <p class="news_contact"><?= nl2br($news['content']) ?></p>
-                                </div>
-                                <div class="footer">
+                                    <div class="footer">
 
-                                    <a href="Page/<?= $news['id'] ?>/<?= $fun->CreateUrlName($news['title']) ?>"><?= $trans['READ_MORE'][$l] ?></a>
+                                        <a href="Page/<?= $news['id'] ?>/<?= $fun->CreateUrlName($news['title']) ?>"><?= $trans['READ_MORE'][$l] ?></a>
+                                    </div>
                                 </div>
-                            </div>
+                                <?php
+                            }
+                            ?>
                         </div>
-                        <?php
-                    }
-                    ?>
+                        <div class="col-md-5" style="float:<?= $trans['ALIGN_NATIVE'][$l] ?>;padding: 0">
+                            <?php
+                            if (empty($all_news) || count($news) < 1) {
+                                ?>
+                                <div class="empty-news">No News Available</div>
+                                <?php
+                            } else {
+                                ?>
+                                <table class="table table-hover table-striped table-news" style="background: white">
+                                    <tbody>
+                                    <?php
+                                    foreach ($all_news as $n) {
+                                        echo '
+                                <tr>
+                               <td>
+                                   <a href="#">
+                                   ' . $n['title'] . '  
+                                   <span class="date" style="float:' . $trans['ALIGN_NATIVE'][$l] . '">
+                                   ' . date('d-m-Y', strtotime($n['date'])) . '
+                                   </span>
+                                   </a>
+                               </td>
 
+                           </tr>
+                               ';
+                                    }
+                                    ?>
+
+
+                                    </tbody>
+                                </table>
+                                <?php
+                            }
+                            ?>
+                            <!--                        -->
+
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
                 </div>
-                <div class="clearfix"></div>
             </div>
-        </div>
-        <div class="our_links">
-            <h4>Follow us on:</h4>
-            <a href="#">
-                <img src="images/share_icons/facebook256.png" alt="facebook">
-                <img src="images/share_icons/twitter256.png" alt="facebook">
-                <img src="images/share_icons/instagram256.png" alt="facebook">
-            </a>
-        </div>
+            <?php
+        }
+        ?>
+        <!--        <div class="our_links">-->
+        <!--            <h4>Follow us on:</h4>-->
+        <!--            <a href="#">-->
+        <!--                <img src="images/share_icons/facebook256.png" alt="facebook">-->
+        <!--                <img src="images/share_icons/twitter256.png" alt="facebook">-->
+        <!--                <img src="images/share_icons/instagram256.png" alt="facebook">-->
+        <!--            </a>-->
+        <!--        </div>-->
     </div>
 
     <!--partners-->
     <div class="content-bottom1">
         <!--        <h3>--><? //= $trans['Partners'][$l] ?><!--</h3>-->
-        <div class="container">
-            <ul>
 
-            </ul>
-            <ul>
-
-                <div class="clearfix"></div>
-            </ul>
-        </div>
     </div>
     <!--//partners-->
 </div>

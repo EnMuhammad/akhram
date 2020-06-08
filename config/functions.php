@@ -583,6 +583,24 @@ class functions
         }
         return $options;
     }
+
+    function BranchesMainCenter($l)
+    {
+        prs::unSetData();
+        prs::$table = BRAN_TABLE;
+        prs::$select_cond = array('mc' => 1);
+        prs::$limit = 1;
+        foreach (prs::select__record() as $t => $x) {
+            $this->return[] = array(
+                'phone' => $x['phone'],
+                'whatsapp' => $x['whatsapp'],
+                'fax' => $x['fax'],
+                'email' => $x['email'],
+                'address' => $x['address_' . $l],
+            );
+        }
+        return $this->return;
+    }
 }
 
 class AdminFunctions

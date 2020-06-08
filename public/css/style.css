@@ -698,21 +698,43 @@ ul.callbacks_tabs.callbacks1_tabs {
 }
 
 .News_box {
-    -webkit-border-top-left-radius: 50px;
-    -webkit-border-top-right-radius: 50px;
-    -moz-border-radius-topleft: 50px;
-    -moz-border-radius-topright: 50px;
-    border-top-left-radius: 50px;
-    border-top-right-radius: 50px;
-
     overflow: hidden;
     padding: 0px;
     min-height: 500px;
     max-height: 500px;
-    background: #fff8f8;
+    background: white;
     position: relative;
 }
 
+.news-section {
+
+}
+
+.table-news {
+    width: 100%;
+    background: white;
+    font-family: 'Cairo', 'Montserrat-Regular';
+    font-size: 14px;
+}
+
+.table-news tr td {
+    border-bottom: 1px solid #cac5cb;
+    padding: 5px 0;
+}
+
+.table-news tr td span.date {
+    font-size: 10px;
+    color: #6f6c6f
+}
+
+.empty-news {
+    text-align: center;
+
+    color: #6f6c6f;
+    font-size: 25px;
+    padding: 10px 0;
+    margin: 15% auto;
+}
 .News_box .share_buttons {
     top: 15px;
     left: 5px;
@@ -761,7 +783,7 @@ ul.callbacks_tabs.callbacks1_tabs {
     position: relative;
     width: 100%;
     height: 200px;
-    object-fit: cover;
+    object-fit: fill;
     object-position: center;
 }
 
@@ -1281,7 +1303,7 @@ a.more:hover {
 .project {
     padding: 0;
     background-color: #F7F7F7;
-    border-bottom: 1px solid #b7b7b7;
+
 }
 
 .project .our_links {
@@ -2213,7 +2235,7 @@ span.fur-money {
 }
 
 .future {
-    padding: 5em 0;
+    padding: 4em 0 0 0;
 }
 
 #flexiselDemo1 {
