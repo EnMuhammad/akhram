@@ -118,7 +118,7 @@ echo $style;
             <?php
             foreach ($sec as $da) {
                     ?>
-                <div class="box_2 col-md-3" style="margin: 10px 0;max-height: 375px;overflow: hidden;">
+                <div class="box_2 col-md-3" style="margin: 10px 0;max-height: 340px;overflow: hidden;">
                         <?php
                         if (isset($_SESSION['AdminLogin']) && isset($_SESSION['AdminId'])) {
                             ?>
