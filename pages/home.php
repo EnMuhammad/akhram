@@ -118,7 +118,7 @@ echo $style;
             <?php
             foreach ($sec as $da) {
                     ?>
-                <div class="box_2 col-md-3" style="margin: 10px 0">
+                <div class="box_2 col-md-3" style="margin: 10px 0;max-height: 375px;overflow: hidden;">
                         <?php
                         if (isset($_SESSION['AdminLogin']) && isset($_SESSION['AdminId'])) {
                             ?>
@@ -137,7 +137,7 @@ echo $style;
                             <span class="four">View</span>
                         </a>
                         <div class="most-1">
-                            <h5>
+                            <h5 style="font-size: 14px">
                                 <a href="Sectors/<?= $da['id'] ?>/<?= $fun->CreateUrlName($da['title']) ?>"><?= $da['title'] ?></a>
                             </h5>
                         </div>
