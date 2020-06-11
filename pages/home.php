@@ -112,32 +112,29 @@ echo $style;
     </div>
 </div>
 <div class="content">
-    <div class="content-grid background-sector">
+    <div class="content-grid background-sector-null">
         <div class="container">
-            <h3><?= $trans['SECTORS'][$l] ?></h3>
+            <h3 style="color: red"><?= $trans['SECTORS'][$l] ?></h3>
             <?php
             foreach ($sec as $da) {
                     ?>
                 <div class="box_2 col-md-3" style="margin: 10px 0;max-height: 340px;overflow: hidden;">
-                        <?php
-                        if (isset($_SESSION['AdminLogin']) && isset($_SESSION['AdminId'])) {
-                            ?>
-                            <div class="trash_btn">
-                                <a class="btn btn-danger" href="javascript:;"
-                                   onclick="DeleteData('sectors',<?= $da['id'] ?>)">
-                                    <i class="fa fa-trash"></i>
-                                </a>
-                            </div>
-                            <?php
-                        }
-                        ?>
                         <a href="Sectors/<?= $da['id'] ?>/<?= $fun->CreateUrlName($da['title']) ?>" class="mask">
                             <img class="img-responsive zoom-img"
                                  src="images/sectors/<?= $fun->GetCoverMedia($da['id'], 'sectors') ?>" alt="">
-                            <span class="four">View</span>
                         </a>
+                    <?php
+                    if (isset($_SESSION['AdminLogin']) && isset($_SESSION['AdminId'])) {
+                        ?>
+                        <span class="four" onclick="DeleteData('sectors',<?= $da['id'] ?>)">
+                                    <i class="fa fa-trash"></i>
+                            </span>
+                        <?php
+                    }
+                    ?>
+
                         <div class="most-1">
-                            <h5 style="font-size: 14px">
+                            <h5 style="font-size: 14px;font-weight: bold">
                                 <a href="Sectors/<?= $da['id'] ?>/<?= $fun->CreateUrlName($da['title']) ?>"><?= $da['title'] ?></a>
                             </h5>
                         </div>

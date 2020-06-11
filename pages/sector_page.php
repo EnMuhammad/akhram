@@ -18,9 +18,9 @@ if (isset($_GET['sid'])) {
     $data = $fun->GetSectorFullData($l);
 
     ?>
-    <div class=" banner-buying">
+    <div class="about_sector banner-buying ">
         <div class=" container">
-            <h3><?= $data['title'] ?></h3>
+            <h3 style="color: black"><?= $data['title'] ?></h3>
             <!---->
         </div>
     </div>

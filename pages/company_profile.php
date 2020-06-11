@@ -16,9 +16,9 @@ $l = $lang->GetLanguage();
 $sectors = $fun->GetSectorsFullData($l);
 ?>
 
-<div class=" banner-buying">
+<div class="company_profile banner-buying">
     <div class=" container">
-        <h3>Company Profile</h3>
+        <h3 style="color: black">Company Profile</h3>
         <!---->
 
 
