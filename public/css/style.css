@@ -4144,6 +4144,19 @@ h3.typo1:after, h3.typo1:before {
     border-top: none;
 }
 
+.media-edit {
+    position: relative;
+    border: 1px inset #cac5cb;
+
+}
+
+.media-edit a.delete {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: red;
+    font-size: 14px;
+}
 ul.nav.nav-pills {
     margin: 1.5em 0 0;
 }

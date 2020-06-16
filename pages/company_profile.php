@@ -20,16 +20,11 @@ $sectors = $fun->GetSectorsFullData($l);
     <div class=" container">
         <h3 style="color: black">Company Profile</h3>
         <!---->
-
-
         <!--initiate accordion-->
-
-
     </div>
 </div>
 <!--//header-->
 <div class="container ">
-
     <div class="buy-single-single">
         <div class="col-md-12 single-box">
             <div class="col-md-12 profile">

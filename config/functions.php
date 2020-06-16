@@ -379,6 +379,44 @@ class functions
         return $options;
     }
 
+    function ServicesListAsArray($id)
+    {
+        prs::unSetData();
+        prs::$table = SERVICES_TABLE;
+        prs::$select_cond = array('id' => $id);
+        foreach (prs::select__record() as $t => $op) {
+            $this->return = array(
+                'id' => $op['id'],
+                'name_ar' => $op['service_ar'],
+                'name_en' => $op['service_en'],
+                'city' => $op['city_id'],
+                'about_ar' => $op['about_service_ar'],
+                'about_en' => $op['about_service_en']
+            );
+        }
+        return $this->return;
+    }
+
+    function ProjectListAsArray($id)
+    {
+        prs::unSetData();
+        prs::$table = PROJECTS_TABLE;
+        prs::$select_cond = array('id' => $id);
+        foreach (prs::select__record() as $t => $op) {
+            $this->return = array(
+                'id' => $op['id'],
+                'name_ar' => $op['title_ar'],
+                'name_en' => $op['title_en'],
+                'city' => $op['city_id'],
+                'startOn' => $op['date_start'],
+                'endOn' => $op['date_end'],
+                'client' => $op['client_id'],
+                'contract' => $op['contract_type'],
+                'adv' => $op['advisor'],
+            );
+        }
+        return $this->return;
+    }
     function ClientsListAsOptions($all = false)
     {
         prs::unSetData();
@@ -394,7 +432,7 @@ class functions
         return $options;
     }
 
-    function ProjectsListAsOptions($all = false)
+    function ProjectsListAsOptions($all = false, $serv_id = 0)
     {
         prs::unSetData();
         prs::$table = PROJECTS_TABLE;
@@ -402,6 +440,9 @@ class functions
             $options = '<option value="0">All - الكل</option>';
         } else {
             $options = '';
+        }
+        if ($serv_id != 0) {
+            prs::$select_cond['service_id'] = $serv_id;
         }
         foreach (prs::select__record() as $t => $op) {
             $options .= '<option value="' . $op['id'] . '">' . $op['title_ar'] . ' - ' . $op['title_en'] . '</option>';

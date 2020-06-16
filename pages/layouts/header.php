@@ -90,6 +90,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <li><a href="javascript:;" class="BranShowAdd"><i class="fa fa-users"></i> Branches</a></li>
         <li><a href="https://dashboard.tawk.to/" target="_blank"><i class="fa fa-comments"></i> Chat Dashboard</a></li>
 <li><a href="javascript:;" class="ClientShowAdd"><i class="fa fa-users"></i> Add Clients</a></li>
+<li><a href="javascript:;" class="ShowUpdateDi"><i class="fa fa-pen"></i> Update / Delete</a></li>
 <li><a href="javascript:;" class="PageDi"><i class="fa fa-pager"></i> Add Page</a></li>
 
 <li><a href="javascript:;" onclick="Logout();"><i class="fa fa-arrow-left"></i> Logout</a></li>

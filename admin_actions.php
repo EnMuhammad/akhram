@@ -314,16 +314,31 @@ if (isset($_GET['formAction'])) {
             } else {
                 $sid = false;
             }
+            if (isset($_GET['LoadAll'])) {
+                $all = true;
+            } else {
+                $all = false;
+            }
             $fun = new fun();
-            echo $fun->ServicesListAsOptions(false, $sid);
+            echo $fun->ServicesListAsOptions($all, $sid);
             break;
         case 'clients':
             $fun = new fun();
             echo $fun->ClientsListAsOptions(false);
             break;
         case 'projects':
+            if (isset($_GET['LoadAll'])) {
+                $all = true;
+            } else {
+                $all = false;
+            }
+            if (isset($_GET['service'])) {
+                $sid = $_GET['service'];
+            } else {
+                $sid = 0;
+            }
             $fun = new fun();
-            echo $fun->ProjectsListAsOptions(false);
+            echo $fun->ProjectsListAsOptions($all, $sid);
             break;
         case 'items':
             $fun = new fun();
@@ -358,6 +373,107 @@ if (isset($_GET['formAction'])) {
             echo $other->BranchesList();
             break;
     }
+} else if (isset($_GET['LoadUpdates'])) {
+    $type = $_GET['type'];
+    $fun = new fun();
+    switch ($type) {
+        case 'services':
+            if (isset($_GET['service_id'])) {
+                $service = $_GET['service_id'];
+                echo json_encode($fun->ServicesListAsArray($service));
+            }
+            break;
+        case 'project':
+            if (isset($_GET['pid'])) {
+                $pid = $_GET['pid'];
+                echo json_encode($fun->ProjectListAsArray($pid));
+            }
+            break;
+        case 'media':
+            if (isset($_GET['MediaType'])) {
+                $media = $_GET['MediaType'];
+                $admin = new AdminFun();
+                $admin->inputData['type'] = $media;
+                echo json_encode($admin->GetMedia());
+            }
+            break;
+    }
+    exit();
+} else if (isset($_GET['updateData'])) {
+    $admin = new AdminFun();
+    if (isset($_GET['type'])) {
+        $type = $_GET['type'];
+        switch ($type) {
+            case 'sectors':
+                if (isset($_POST['sector_id'])) {
+                    $id = intval($_POST['sector_id']);
+                    if (
+                        isset($_POST['sector_en'])
+                        && isset($_POST['sector_ar'])
+                    ) {
+
+                        $admin->inputID = $id;
+                        $admin->inputData = array(
+                            'title_en' => $_POST['sector_en'],
+                            'title_ar' => $_POST['sector_ar'],
+                        );
+                        $admin->UpdateSector();
+                    }
+                }
+                break;
+            case 'service':
+                if (
+                    isset($_POST['service_id'])
+                    && isset($_POST['service_en'])
+                    && isset($_POST['service_ar'])
+                    && isset($_POST['city'])
+                    && isset($_POST['about_en'])
+                    && isset($_POST['about_ar'])
+                ) {
+                    $ser = new ser();
+                    $ser->inputID = $_POST['service_id'];
+                    $ser->inputData = array(
+                        'service_ar' => $_POST['service_ar'],
+                        'service_en' => $_POST['service_en'],
+                        'city_id' => $_POST['city'],
+                        'about_service_ar' => $_POST['about_ar'],
+                        'about_service_en' => $_POST['about_en'],
+                    );
+                    $ser->UpdateServices();
+                }
+                break;
+            case 'project':
+                print_r($_REQUEST);
+                if (
+                    isset($_POST['project_id'])
+                    && isset($_POST['project_name_en'])
+                    && isset($_POST['project_name_ar'])
+                    && isset($_POST['project_city'])
+                    && isset($_POST['start'])
+                    && isset($_POST['end'])
+                    && isset($_POST['client_project'])
+                    && isset($_POST['contract'])
+                    && isset($_POST['adv'])
+                ) {
+                    $item = new items();
+                    $item->inputID = $_POST['project_id'];
+                    $item->inputData = array(
+                        'title_ar' => $_POST['project_name_ar'],
+                        'title_en' => $_POST['project_name_en'],
+                        'city_id' => $_POST['project_city'],
+                        'date_start' => $_POST['start'],
+                        'date_end' => $_POST['end'],
+                        'client_id' => $_POST['client_project'],
+                        'contract_type' => $_POST['contract'],
+                        'advisor' => $_POST['adv'],
+                    );
+                    $item->UpdateProjectItems();
+                }
+                break;
+        }
+    }
+
+    exit();
 } else if (isset($_GET['Delete'])) {
     $admin = new AdminFun();
     $type = $_GET['Delete'];

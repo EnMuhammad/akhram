@@ -14,7 +14,7 @@ $(function () {
         height: ($(window).height() - 200),
         resizable: "auto"
     });
-    $("#PagesDialog").dialog({
+    $("#PagesDialog,#UpdateContents").dialog({
         autoOpen: false,
         width: ($(window).width() - 200),
         modal: true,
@@ -122,11 +122,124 @@ $(function () {
             }
         });
     });
+    $('.ShowUpdateDi').on("click", function () {
+        let $activeDialogs = $(".ui-dialog:visible").find('.ui-dialog-content');
+        $activeDialogs.dialog('close');
+        $("#UpdateContents").parent().css({position: "fixed"}).end().dialog('open');
+        $('select[name=typeUpdate]').on('change', function () {
+            let t = $(this).val();
+            if (t === 'ssp') {
+                $('.media_section,.pages_section').hide();
+                $('.ssp_section').show();
+                $.get('index.php?adminAction&Load=sectors', function (data) {
+                    $('select[name=sectors]').html(data);
+                    $('select[name=sectors]').on('change', function () {
+                        let textData = $('select[name=sectors] option:selected').text().split('-');
 
+                        let sid = $(this).val();
+                        if (sid != 0) {
+
+                            $('input[name=sector_id]').val($.trim(sid));
+                            $('input[name=sector_ar]').val($.trim(textData[0]));
+                            $('input[name=sector_en]').val($.trim(textData[1]));
+                            $('.sector_edit_f').show();
+                            $.get('index.php?adminAction&Load=services&LoadAll&sid=' + sid, function (cl) {
+                                $('select[name=services]').removeAttr('disabled').html(cl).on('change', function () {
+                                    let ser_id = $(this).val();
+                                    if (ser_id != 0) {
+                                        $.ajax({
+                                            type: 'GET',
+                                            url: 'index.php?adminAction&LoadUpdates&type=services&service_id=' + ser_id,
+                                            success: function (result) {
+                                                var data = jQuery.parseJSON(result);
+                                                $('input[name=service_id]').val(data.id);
+                                                $('input[name=service_en]').val(data.name_en);
+                                                $('input[name=service_ar]').val(data.name_ar);
+                                                $('select[name=city]').val(data.city);
+                                                $('textarea[name=about_en]').val(data.about_en);
+                                                $('textarea[name=about_ar]').val(data.about_ar);
+                                                $('.service_edit_f').show();
+                                            }
+                                        });
+                                        $.get('index.php?adminAction&Load=projects&LoadAll&service=' + ser_id, function (projects) {
+                                            $('select[name=projects]').html(projects).removeAttr('disabled');
+                                            $.get('index.php?adminAction&Load=clients', function (cl) {
+                                                $('select[name=client_project]').html(cl);
+                                            });
+                                            $('select[name=projects]').on('change', function () {
+                                                let pid = $(this).val();
+                                                $.ajax({
+                                                    type: 'GET',
+                                                    url: 'index.php?adminAction&LoadUpdates&type=project&pid=' + pid,
+                                                    success: function (result) {
+                                                        var proj = jQuery.parseJSON(result);
+                                                        $('input[name=project_id]').val(proj.id);
+                                                        $('input[name=project_name_en]').val(proj.name_en);
+                                                        $('input[name=project_name_ar]').val(proj.name_ar);
+                                                        $('input[name=start]').val(proj.startOn);
+                                                        $('input[name=end]').val(proj.endOn);
+                                                        $('input[name=contract]').val(proj.contract);
+                                                        $('input[name=adv]').val(proj.adv);
+                                                        $('select[name=project_city]').val(proj.city);
+                                                        $('select[name=client_project]').val(proj.client);
+
+                                                        $('.project_edit_f').show();
+                                                    }
+                                                });
+                                            })
+                                        });
+                                    } else {
+                                        $('select[name=projects]').html('').attr('disabled', 'disabled');
+                                        $('.service_edit_f,.project_edit_f').hide();
+                                    }
+                                });
+                            });
+                        } else {
+                            $('input[name=sector_ar]').val('');
+                            $('input[name=sector_en]').val('');
+                            $('.service_edit_f,.project_edit_f,.sector_edit_f').hide();
+                            $('select[name=services]').html('').attr('disabled', 'disabled');
+                            $('select[name=projects]').html('').attr('disabled', 'disabled');
+                        }
+                    });
+                });
+
+            } else if (t === 'media') {
+                $('.media_section').show();
+                $('.ssp_section,.pages_section').hide();
+            }
+        });
+    });
+    $('.viewAlbum').on('click', function (e) {
+        e.preventDefault();
+        let tr = $(this).parent().parent(), tmedia = $(this).attr('id');
+        if ($('.media_' + tmedia).length === 0) {
+            $.ajax({
+                type: 'GET',
+                url: 'index.php?adminAction&LoadUpdates&type=media&MediaType=' + tmedia,
+                success: function (result) {
+                    let media = jQuery.parseJSON(result);
+                    let xtr = '<tr class="media_' + tmedia + '"><td colspan=2>';
+                    $.each($(media), function (index, value) {
+                        xtr += '<div class="col-md-2 media-edit" id="media_id_' + value.id + '" style="background:url(images/' + value.folder + '/' + value.name + ');height:100px;background-repeat:no-repeat;background-size: cover;background-position:center;">' +
+                            '<a href="javascript:;" onclick="DeleteData(\'media\',' + value.id + ')" class="delete"><i class="fa fa-trash"></i></a>' +
+                            '</div>';
+                    });
+                    xtr += '</td></tr>';
+                    $(xtr).insertAfter(tr);
+                }
+            });
+        }
+    });
     $('form[name=actionForm]').on('submit', function (e) {
         e.preventDefault();
         let type = $(this).find('input[name=type]').val(), form = $(this);
         UpdateEditForm(form, type, {showSuccess: true});
+    });
+    $('form[name=updateForm]').on('submit', function (e) {
+        e.preventDefault();
+        let type = $(this).find('input[name=type]').val(), form = $(this);
+        UpdateContentForm(form, type);
     });
     $('select[name=projectType]').on('change', function () {
         let vl = $(this).val();
@@ -222,6 +335,11 @@ let UpdateEditForm = function (form, type, options) {
     }
 
 };
+let UpdateContentForm = function (form, type) {
+    $.post('index.php?adminAction&updateData&type=' + type, form.serialize(), function (x) {
+        alert('Updated !');
+    });
+};
 let CloneText = function (x) {
     let newData = $(x).parent().find('.clone-this').clone(),
         old = $(x).parent().find('.clone-this');
@@ -232,7 +350,12 @@ let DeleteData = function (type, id) {
     let con = confirm('Are you sure?');
     if (con) {
         $.post('index.php?adminAction&Delete=' + type + '&id=' + id, function () {
-            window.location.href = '';
+            if (type === 'media') {
+                $('#media_id_' + id).remove();
+            } else {
+                window.location.href = '';
+            }
+
         });
     }
 };

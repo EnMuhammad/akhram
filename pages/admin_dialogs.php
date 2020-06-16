@@ -12,6 +12,186 @@ use Fun\functions as fun;
 $fun = new fun();
 ?>
 
+<div id="UpdateContents" title="Update/Delete Website content">
+    <form class="UpdateContactInformation" name="actionForm">
+        <input type="hidden" name="type" value="UpdateData">
+        <div class="form-group">
+            <label style="display: block" for="updateType">Select Data Type</label>
+            <select class="form-control" name="typeUpdate" id="updateType">
+                <option value="0">Select Type</option>
+                <option value="ssp">Sector/Services/Projects</option>
+                <option value="media">Media</option>
+                <option value="pages">Pages</option>
+            </select>
+        </div>
+    </form>
+    <div class="ssp_section" style="display: none">
+
+        <div class="form-group">
+            <label>Sector</label>
+            <select class="form-control" name="sectors">
+                <option>Sector name</option>
+            </select>
+        </div>
+
+        <!--                Update Sector -->
+        <div class="sector_edit_f" style="display: none">
+            <form class="UpdateContactInformation" name="updateForm">
+                <input type="hidden" name="type" value="sectors">
+                <input type="hidden" name="sector_id" value="0">
+                <div class="form-group update-sector">
+                    <label>Sector name</label>
+                    <input type="text" name="sector_en" class="form-control">
+                </div>
+                <div class="form-group update-sector">
+                    <label>أسم القطاع</label>
+                    <input type="text" name="sector_ar" class="form-control">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" type="submit">Save Sector</button>
+                </div>
+            </form>
+        </div>
+
+        <!--                End Sector -->
+        <div class="form-group">
+
+            <label>Service</label>
+            <select class="form-control" name="services" disabled>
+            </select>
+            <!--                    Update Service -->
+            <div class="service_edit_f" style="display: none">
+                <form class="UpdateContactInformation" name="updateForm">
+                    <input type="hidden" name="type" value="service">
+                    <input type="hidden" name="service_id" value="0">
+                    <div class="form-group ">
+                        <label>Service name</label>
+                        <input type="text" name="service_en" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>أسم الخدمة</label>
+                        <input type="text" name="service_ar" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>City</label>
+                        <select name="city" class="form-control">
+                            <?= $fun->CityListAsOptions(false) ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>About</label>
+                        <textarea name="about_en" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>نبذة عن الخدمة</label>
+                        <textarea name="about_ar" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit">Save Service</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Project</label>
+            <select class="form-control" name="projects" disabled>
+            </select>
+            <div class="project_edit_f" style="display: none">
+                <form class="UpdateContactInformation" name="updateForm">
+                    <input type="hidden" name="type" value="project">
+                    <input type="hidden" name="project_id" value="0">
+                    <div class="form-group ">
+                        <label>Project name</label>
+                        <input type="text" name="project_name_en" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>أسم المشروع</label>
+                        <input type="text" name="project_name_ar" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>City</label>
+                        <select name="project_city" class="form-control">
+                            <?= $fun->CityListAsOptions(false) ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>start on</label>
+                        <input type="date" name="start" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>end on</label>
+                        <input type="date" name="end" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Client</label>
+                        <select name="client_project" class="form-control">
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Contract Type</label>
+                        <input type="text" name="contract" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Consultant</label>
+                        <input type="text" name="adv" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit">Save Project</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <div class="media_section" style="display: none">
+        <table class="table table-hover table-news">
+            <thead>
+            <tr>
+                <th>Folder</th>
+                <th>Options</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Clients</td>
+                <td><a href="javascript:;" id="clients" class="viewAlbum">View</a></td>
+            </tr>
+
+            <tr>
+                <td>Pages</td>
+                <td><a href="javascript:;" id="pages" class="viewAlbum">View</a></td>
+
+            </tr>
+            <tr>
+                <td>Projects</td>
+                <td><a href="javascript:;" id="projects" class="viewAlbum">View</a></td>
+            </tr>
+            <tr>
+                <td>Sectors</td>
+                <td><a href="javascript:;" id="sectors" class="viewAlbum">View</a></td>
+            </tr>
+            <tr>
+
+                <td>Services</td>
+                <td><a href="javascript:;" id="services" class="viewAlbum">View</a></td>
+            </tr>
+            <tr>
+
+                <td>Slides</td>
+                <td><a href="javascript:;" id="slides" class="viewAlbum">View</a></td>
+            </tr>
+            <tr>
+
+                <td>Item / Equipments</td>
+                <td><a href="javascript:;" id="items" class="viewAlbum">View</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="pages_section" style="display: none"></div>
+</div>
 <!--Update Contact Information-->
 <div id="dialog" title="Contact Information">
     <form class="UpdateContactInformation" name="actionForm">

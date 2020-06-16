@@ -18,7 +18,7 @@ class AdminFunctions
     var $inputCont = array();
     var $file = array();
     var $inputID = 0;
-
+    var $output;
     function AddContactInfo()
     {
         prs::unSetData();
@@ -103,6 +103,30 @@ class AdminFunctions
         }
     }
 
+    function GetMedia()
+    {
+        $folders = array(
+            /// Type  => Folder
+            'sectors' => 'sectors',
+            'services' => 'services',
+            'projects' => 'project_media',
+            'slides' => 'slides',
+            'items' => 'equipments',
+            'clients' => 'clients',
+            'pages' => 'pages',
+        );
+        prs::unSetData();
+        prs::$table = MEDIA_TABLE;
+        prs::$select_cond = array('type' => $this->inputData['type']);
+        foreach (prs::select__record() as $t => $m) {
+            $this->output[] = array(
+                'folder' => (($this->inputData['type'] == 'projects') ? $folders[$this->inputData['type']] . '/' . $m['media_id'] : $folders[$this->inputData['type']]),
+                'name' => $m['url'],
+                'id' => $m['id']
+            );
+        }
+        return $this->output;
+    }
     function AddPage()
     {
         prs::unSetData();
@@ -156,6 +180,15 @@ class AdminFunctions
         prs::add__record();
     }
 
+    function UpdateSector()
+    {
+        prs::unSetData();
+        prs::$table = SECTORS_TABLE;
+        prs::$update_cond = array('id' => $this->inputID);
+        prs::$update_value = $this->inputData;
+        prs::update__record();
+    }
+
     function DeleteData($id, $type)
     {
         switch ($type) {
@@ -182,6 +215,12 @@ class AdminFunctions
                 prs::$cond = array('id' => $id);
                 prs::delete__record();
                 break;
+            case 'media':
+                prs::unSetData();
+                prs::$table = MEDIA_TABLE;
+                prs::$cond = array('id' => $id);
+                prs::delete__record();
+                break;
         }
     }
 }
@@ -198,7 +237,11 @@ class Services extends AdminFunctions
 
     function UpdateServices()
     {
-
+        prs::unSetData();
+        prs::$table = SERVICES_TABLE;
+        prs::$update_cond = array('id' => $this->inputID);
+        prs::$update_value = $this->inputData;
+        prs::update__record();
     }
 
     function DeleteServices()
@@ -249,7 +292,11 @@ class ProjectsItems extends AdminFunctions
 
     function UpdateProjectItems()
     {
-
+        prs::unSetData();
+        prs::$table = PROJECTS_TABLE;
+        prs::$update_cond = array('id' => $this->inputID);
+        prs::$update_value = $this->inputData;
+        prs::update__record();
     }
 
     function DeleteProjectItems()
