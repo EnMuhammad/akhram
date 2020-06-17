@@ -372,6 +372,10 @@ if (isset($_GET['formAction'])) {
             $other = new other();
             echo $other->BranchesList();
             break;
+        case 'Pages':
+            $other = new other();
+            echo $other->PagesList(true);
+            break;
     }
 } else if (isset($_GET['LoadUpdates'])) {
     $type = $_GET['type'];
@@ -395,6 +399,13 @@ if (isset($_GET['formAction'])) {
                 $admin = new AdminFun();
                 $admin->inputData['type'] = $media;
                 echo json_encode($admin->GetMedia());
+            }
+            break;
+        case 'page':
+            if (isset($_GET['pid'])) {
+                $id = $_GET['pid'];
+                $fun = new fun();
+                echo json_encode($fun->PageAsArray($id));
             }
             break;
     }
@@ -468,6 +479,27 @@ if (isset($_GET['formAction'])) {
                         'advisor' => $_POST['adv'],
                     );
                     $item->UpdateProjectItems();
+                }
+                break;
+            case 'pages':
+                if (
+                    isset($_POST['page_id'])
+                    && isset($_POST['title_en'])
+                    && isset($_POST['title_ar'])
+                    && isset($_POST['related'])
+                    && isset($_POST['content_en'])
+                    && isset($_POST['content_ar'])
+                ) {
+                    $page = new other();
+                    $page->inputID = $_POST['page_id'];
+                    $page->inputData = array(
+                        'title_ar' => $_POST['title_ar'],
+                        'title_en' => $_POST['title_en'],
+                        'related_to' => $_POST['related'],
+                        'content_ar' => $_POST['content_ar'],
+                        'content_en' => $_POST['content_en'],
+                    );
+                    $page->UpdatePage();
                 }
                 break;
         }

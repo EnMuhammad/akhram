@@ -38,6 +38,7 @@ minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <script src="js/jquery.min.js"></script>
 <script src="jquery-ui/jquery-ui.min.js"></script>
 
+
 <!-- Custom Theme files -->
 <!--menu-->
 
@@ -49,13 +50,15 @@ minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <!--theme-style-->
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
 ' . ((isset($_SESSION['AdminLogin']) && isset($_SESSION['AdminId'])) ? '
-<link href="css/admin.css" rel="stylesheet" type="text/css" media="all" />	' : '') . '
+<link href="css/admin.css" rel="stylesheet" type="text/css" media="all" />	
+<script src="js/jquery-te-1.4.0.min.js"></script>
+<link href="js/jquery-te-1.4.0.css" rel="stylesheet" type="text/css" media="all" />	
+' : '') . '
 <!--//theme-style-->
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Real Home Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<meta name="keywords" content="" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- slide -->
 <script src="js/responsiveslides.min.js"></script>
@@ -81,18 +84,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="bottom_tools">
 <ul>
 <!--<li><a href="javascript:;" class="OpenDi"><i class="fa fa-pen"></i> Contact Information</a></li>-->
-<li><a href="javascript:;" class="MetaUpdate"><i class="fa fa-cogs"></i> Web Settings</a></li>
-<li><a href="javascript:;" class="SectorShowAdd"><i class="fa fa-plus"></i> Add Sector</a></li>
-<li><a href="javascript:;" class="show-service-da"><i class="fa fa-plus"></i> Add Service</a></li>
-<li><a href="javascript:;" class="showAddProjects"><i class="fa fa-plus"></i> Add Project - Item</a></li>
-<li><a href="javascript:;" class="ShowAddMedia"><i class="fa fa-photo-video"></i> Add Media</a></li>
-<li><a href="javascript:;" class="SuppliersShowAdd"><i class="fa fa-users"></i> Add Suppliers</a></li>
-        <li><a href="javascript:;" class="BranShowAdd"><i class="fa fa-users"></i> Branches</a></li>
-        <li><a href="https://dashboard.tawk.to/" target="_blank"><i class="fa fa-comments"></i> Chat Dashboard</a></li>
-<li><a href="javascript:;" class="ClientShowAdd"><i class="fa fa-users"></i> Add Clients</a></li>
-<li><a href="javascript:;" class="ShowUpdateDi"><i class="fa fa-pen"></i> Update / Delete</a></li>
-<li><a href="javascript:;" class="PageDi"><i class="fa fa-pager"></i> Add Page</a></li>
 
+<li><a href="javascript:;" class="AddMethod"><i class="fa fa-plus"></i> Add Contents</a></li>
+<li><a href="javascript:;" class="ShowUpdateDi"><i class="fa fa-pen"></i> Update / Delete Contents</a></li>
+<li><a href="javascript:;" class="SuppliersShowAdd"><i class="fa fa-users"></i>  Suppliers</a></li>
+        <li><a href="javascript:;" class="BranShowAdd"><i class="fa fa-users"></i> Branches</a></li>
+        <li><a href="javascript:;" class="ClientShowAdd"><i class="fa fa-users"></i> Clients</a></li>
+        <li><a href="https://dashboard.tawk.to/" target="_blank"><i class="fa fa-comments"></i> Chat Dashboard</a></li>
+<li><a href="javascript:;" class="MetaUpdate"><i class="fa fa-cogs"></i> About & Settings</a></li>
 <li><a href="javascript:;" onclick="Logout();"><i class="fa fa-arrow-left"></i> Logout</a></li>
 </ul>
 </div>

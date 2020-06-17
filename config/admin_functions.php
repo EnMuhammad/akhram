@@ -389,6 +389,29 @@ class AddOthers extends AdminFunctions
         return $options;
     }
 
+    function PagesList($show_all = false)
+    {
+        prs::unSetData();
+        prs::$table = PAGES_TABLE;
+        $options = '';
+        if ($show_all) {
+            $options = '<option value="0">Select Page - أختر صفحة</option>';
+        }
+        foreach (prs::select__record() as $t => $op) {
+            $options .= '<option value="' . $op['id'] . '">' . $op['title_ar'] . ' - ' . $op['title_en'] . '</option>';
+
+        }
+        return $options;
+    }
+
+    function UpdatePage()
+    {
+        prs::unSetData();
+        prs::$table = PAGES_TABLE;
+        prs::$update_cond = array('id' => $this->inputID);
+        prs::$update_value = $this->inputData;
+        prs::update__record();
+    }
     function UpdateBrMC($id)
     {
         prs::unSetData();

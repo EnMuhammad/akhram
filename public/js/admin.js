@@ -14,6 +14,13 @@ $(function () {
         height: ($(window).height() - 200),
         resizable: "auto"
     });
+    $("#addAdmin").dialog({
+        autoOpen: false,
+        width: "auto",
+        modal: true,
+        height: "auto",
+        resizable: "auto"
+    });
     $("#PagesDialog,#UpdateContents").dialog({
         autoOpen: false,
         width: ($(window).width() - 200),
@@ -79,6 +86,12 @@ $(function () {
         let $activeDialogs = $(".ui-dialog:visible").find('.ui-dialog-content');
         $activeDialogs.dialog('close');
         $("#ProjectsItems").parent().css({position: "fixed"}).end().dialog('open');
+    });
+    $('.AddMethod').on("click", function (e) {
+        e.preventDefault();
+        let $activeDialogs = $(".ui-dialog:visible").find('.ui-dialog-content');
+        $activeDialogs.dialog('close');
+        $("#addAdmin").parent().css({position: "fixed"}).end().dialog('open');
     });
     $('.ClientShowAdd').on("click", function (e) {
         e.preventDefault();
@@ -156,8 +169,8 @@ $(function () {
                                                 $('input[name=service_en]').val(data.name_en);
                                                 $('input[name=service_ar]').val(data.name_ar);
                                                 $('select[name=city]').val(data.city);
-                                                $('textarea[name=about_en]').val(data.about_en);
-                                                $('textarea[name=about_ar]').val(data.about_ar);
+                                                $('textarea[name=about_en]').jqteVal(data.about_en);
+                                                $('textarea[name=about_ar]').jqteVal(data.about_ar);
                                                 $('.service_edit_f').show();
                                             }
                                         });
@@ -207,6 +220,31 @@ $(function () {
             } else if (t === 'media') {
                 $('.media_section').show();
                 $('.ssp_section,.pages_section').hide();
+            } else if (t === 'pages') {
+                $('.pages_section').show();
+                $('.ssp_section,.media_section').hide();
+                $.get('index.php?adminAction&Load=Pages', function (pages) {
+                    $('select[name=pages_select]').html(pages).on('change', function () {
+                        let pid = $(this).val();
+                        $.ajax(
+                            {
+                                type: 'GET',
+                                url: 'index.php?adminAction&LoadUpdates&type=page&pid=' + pid,
+                                success: function (data) {
+                                    let page_data = jQuery.parseJSON(data);
+                                    $('.update-page input[name=title_en]').val(page_data.name_en);
+                                    $('.update-page input[name=title_ar]').val(page_data.name_ar);
+                                    $('.update-page select[name=related]').val(page_data.related);
+                                    $('.update-page textarea[name=content_en]').jqteVal(page_data.con_en);
+                                    $('.update-page textarea[name=content_ar]').jqteVal(page_data.con_ar);
+                                    $('input[name=page_id]').val(page_data.id);
+                                    $('.page_edit_f').show();
+
+                                }
+                            }
+                        );
+                    });
+                })
             }
         });
     });
@@ -287,6 +325,7 @@ $(function () {
         }
 
     });
+    $('textarea').jqte();
 });
 
 function Logout() {

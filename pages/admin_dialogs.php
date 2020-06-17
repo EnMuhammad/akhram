@@ -11,7 +11,19 @@ use Fun\functions as fun;
 
 $fun = new fun();
 ?>
+<div id="addAdmin" title="Add Contents">
+    <div class="col-md-4" style="text-align: center;padding: 45px 0;"><a href="javascript:;" class="SectorShowAdd"><i
+                    class="fa fa-plus"></i> Sectors</a></div>
+    <div class="col-md-4" style="text-align: center;padding: 45px 0;"><a href="javascript:;" class="show-service-da"><i
+                    class="fa fa-plus"></i> Services</a></div>
+    <div class="col-md-4" style="text-align: center;padding: 45px 0;"><a href="javascript:;" class="showAddProjects"><i
+                    class="fa fa-plus"></i> Projects & Items</a></div>
+    <div class="col-md-4" style="text-align: center;padding: 45px 0;"><a href="javascript:;" class="ShowAddMedia"><i
+                    class="fa fa-photo-video"></i> Media</a></div>
+    <div class="col-md-4" style="text-align: center;padding: 45px 0;"><a href="javascript:;" class="PageDi"><i
+                    class="fa fa-pager"></i> Menu & Pages</a></div>
 
+</div>
 <div id="UpdateContents" title="Update/Delete Website content">
     <form class="UpdateContactInformation" name="actionForm">
         <input type="hidden" name="type" value="UpdateData">
@@ -190,7 +202,50 @@ $fun = new fun();
             </tbody>
         </table>
     </div>
-    <div class="pages_section" style="display: none"></div>
+    <div class="pages_section" style="display: none">
+        <div class="form-group">
+            <label for="pages">Select Page</label>
+            <select class="form-control" id="pages" name="pages_select">
+                <option>Page Title</option>
+            </select>
+        </div>
+        <!--                Update Sector -->
+        <div class="page_edit_f" style="display: none">
+            <form class="UpdateContactInformation" name="updateForm">
+                <input type="hidden" name="type" value="pages">
+                <input type="hidden" name="page_id" value="0">
+                <div class="form-group update-page">
+                    <label>Page name</label>
+                    <input type="text" name="title_en" class="form-control">
+                </div>
+                <div class="form-group update-page">
+                    <label>أسم الصفحة</label>
+                    <input type="text" name="title_ar" class="form-control">
+                </div>
+                <div class="form-group update-page">
+                    <label>Move to</label>
+                    <select class="form-control" name="related">
+                        <optgroup label="Menu"></optgroup>
+                        <option value="about">About Group</option>
+                        <option value="contact">Contact Us</option>
+                        <optgroup label="Pages"></optgroup>
+                        <option value="news">News & Activities</option>
+                    </select>
+                </div>
+                <div class="form-group update-page">
+                    <label>Page content</label>
+                    <textarea name="content_en" class="form-control"></textarea>
+                </div>
+                <div class="form-group update-page">
+                    <label>محتوى الصفحة</label>
+                    <textarea name="content_ar" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" type="submit">Save Page</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 <!--Update Contact Information-->
 <div id="dialog" title="Contact Information">

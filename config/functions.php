@@ -417,6 +417,24 @@ class functions
         }
         return $this->return;
     }
+
+    function PageAsArray($id)
+    {
+        prs::unSetData();
+        prs::$table = PAGES_TABLE;
+        prs::$select_cond = array('id' => $id);
+        foreach (prs::select__record() as $t => $op) {
+            $this->return = array(
+                'id' => $op['id'],
+                'name_ar' => $op['title_ar'],
+                'name_en' => $op['title_en'],
+                'related' => $op['related_to'],
+                'con_ar' => $op['content_ar'],
+                'con_en' => $op['content_en'],
+            );
+        }
+        return $this->return;
+    }
     function ClientsListAsOptions($all = false)
     {
         prs::unSetData();
