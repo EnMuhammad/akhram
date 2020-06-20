@@ -76,22 +76,24 @@ $sectors = $fun->GetSectorsFullData($l);
                     <div class="col-md-12 sector_box">
                         <h3><?= $s['title']; ?></h3>
                         <ul>
-                            <li class="head">Services</li>
-                            <?php
 
-                            foreach ($s['services'] as $data) {
-                                echo '
+                            <?php
+                            if (!empty($s['services'])) {
+                                echo '   <li class="head">Services</li>';
+                                foreach ($s['services'] as $data) {
+                                    echo '
                     <li><a href="Sectors/' . $data['id'] . '/' . $fun->CreateUrlName($data['title']) . '">' . $data['title'] . '</a>
                    <ul class="projects">
                    ';
-                                if (!empty($data['projects']) || isset($data['projects'])) {
-                                    foreach ($data['projects'] as $pro) {
-                                        echo '<li>Project: <a href="Project/' . $pro['id'] . '/' . $fun->CreateUrlName($pro['title']) . '">' . $pro['title'] . '</a></li>';
+                                    if (!empty($data['projects']) || isset($data['projects'])) {
+                                        foreach ($data['projects'] as $pro) {
+                                            echo '<li>Project: <a href="Project/' . $pro['id'] . '/' . $fun->CreateUrlName($pro['title']) . '">' . $pro['title'] . '</a></li>';
+                                        }
                                     }
-                                }
-                                echo '</ul>
+                                    echo '</ul>
                </li>
                    ';
+                                }
                             }
                             ?>
                         </ul>

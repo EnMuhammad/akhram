@@ -122,15 +122,16 @@ ul.Point li {
     transition: all 1s ease-in-out;
     z-index: 1000;
     width: 100%;
-
+    font-family: 'Cairo', 'Montserrat-Regular';
 }
 
 .header.active {
-    background: white;
+    background: #1c164e;
     color: red;
     -webkit-box-shadow: 0px 5px 13px -4px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 0px 5px 13px -4px rgba(0, 0, 0, 0.75);
     box-shadow: 0px 5px 13px -4px rgba(0, 0, 0, 0.75);
+
 }
 
 .header.active .right-icons li span, .header.active .right-icons li a {
@@ -619,10 +620,29 @@ ul.callbacks_tabs.callbacks1_tabs {
     display: inline-block;
     vertical-align: middle;
     content: "";
-    background: #ff2e1f;
+    background: white;
     margin: 0 1%;
 }
 
+h3.white:before, h3.white:after {
+    width: 200px;
+    height: 1px;
+    display: inline-block;
+    vertical-align: middle;
+    content: "";
+    background: white !important;
+    margin: 0 1%;
+}
+
+h3.red:before, h3.red:after {
+    width: 200px;
+    height: 1px;
+    display: inline-block;
+    vertical-align: middle;
+    content: "";
+    background: red !important;
+    margin: 0 1%;
+}
 .content-grid {
     padding: 1em 0 2em;
 }
@@ -749,7 +769,7 @@ ul.callbacks_tabs.callbacks1_tabs {
 }
 
 .News_box .title_head {
-    background: red;
+    background: #1c164e;
     color: white;
     text-align: center;
     padding: 5px;
@@ -768,7 +788,7 @@ ul.callbacks_tabs.callbacks1_tabs {
     position: absolute;
     bottom: 0;
     width: 100%;
-    background: red;
+    background: #1c164e;
     text-align: center;
 }
 
@@ -1336,11 +1356,11 @@ a.more:hover {
 }
 
 .counter-projects {
-    background: url("../images/projects_background.jpg");
+    /*background: url("../images/projects_background.jpg");*/
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-
+    background: #1c164e;
 }
 
 .project-section ul.country_taps {
@@ -1381,7 +1401,7 @@ a.more:hover {
     color: white;
     font-size: 28px;
     font-weight: bolder;
-    background: rgba(0, 0, 0, 0.7);
+
 
 }
 
@@ -1411,7 +1431,7 @@ a.more:hover {
     }
 }
 .mid-content {
-    background: #fe0001;
+    background: #1c164e;
     padding: 2em;
     width: 100%;
     margin: 5em auto 0;
@@ -1619,7 +1639,7 @@ i.dolor {
 
 /*--footer--*/
 .footer {
-    background: #141414;
+    background: #1c164e;
 }
 
 .amet-sed h4 {
@@ -1656,12 +1676,12 @@ ul.nav-bottom li a:hover {
 }
 
 .footer-class p {
-    color: #fff;
+    color: #1c164e;
     font-size: 0.9em;
 }
 
 .footer-class p a {
-    color: #27da93;
+    color: #1c164e;
     text-decoration: none;
 }
 
@@ -1671,7 +1691,7 @@ ul.nav-bottom li a:hover {
 
 .footer-bottom {
     padding: 1.5em 0;
-    background: #000;
+    background: white;
 }
 
 .footer-class {
@@ -1684,7 +1704,7 @@ ul.nav-bottom li a:hover {
 }
 
 .footer-logo h2 a {
-    color: #fff;
+    color: #1c164e;
     text-decoration: none;
 }
 
@@ -4130,7 +4150,7 @@ h3.typo1:after, h3.typo1:before {
 
 .navbar-nav > li > a, .nav > li > a {
     color: white;
-    font-size: 17px;
+    font-size: 15px;
     font-weight: bold;
 }
 

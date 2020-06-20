@@ -123,6 +123,7 @@ class Page_Footer
 </div>
 
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="js/jquery.fancybox.min.js"></script>
 
 <script src="js/scripts.js"></script>
    

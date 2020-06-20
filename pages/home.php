@@ -52,17 +52,18 @@ foreach (prs::select__record() as $t => $back) {
     $company_background = $back['data_' . $l];
 }
 prs::unSetData();
-prs::$table = SLIDES_TABLE;
+prs::$table = MEDIA_TABLE;
+prs::$select_cond = array('type' => 'slides');
 $i = 1;
 $sliders = prs::select__record();
-$style = "<style>";
+$style = "";
 $div = "";
 if (!empty(prs::select__record())) {
-
+    $style = "<style>";
     foreach ($sliders as $t => $s) {
         $style .= '
         .banner' . $i . '{
-	background: url(images/slides/' . $s['image'] . ') no-repeat;
+	background: url(images/slides/' . $s['url'] . ') no-repeat;
 	width:100%;
 	min-height: 550px;
 	background-size: cover;
@@ -75,7 +76,7 @@ if (!empty(prs::select__record())) {
              <li>
                         <div class="banner' . $i . ' banners_">
                             <div class="caption" style="' . $trans['ALIGN'][$l] . ':13%;">
-                                <h3><span>' . $s['slide_text_' . $l] . '</span></h3>
+                                <h3><span>' . $s['name_' . $l] . '</span></h3>
                              
                             </div>
                         </div>
@@ -112,15 +113,15 @@ echo $style;
     </div>
 </div>
 <div class="content">
-    <div class="content-grid background-sector-null">
+    <div class="content-grid background-sector-null" style="background: #1c164e">
         <div class="container">
-            <h3 style="color: red"><?= $trans['SECTORS'][$l] ?></h3>
+            <h3 style="color: white"><?= $trans['SECTORS'][$l] ?></h3>
             <?php
             foreach ($sec as $da) {
                     ?>
                 <div class="box_2 col-md-3" style="margin: 10px 0;max-height: 340px;overflow: hidden;">
                         <a href="Sectors/<?= $da['id'] ?>/<?= $fun->CreateUrlName($da['title']) ?>" class="mask">
-                            <img class="img-responsive zoom-img"
+                            <img class="img-responsive zoom-img" style="width: 100%;min-height: 200px"
                                  src="images/sectors/<?= $fun->GetCoverMedia($da['id'], 'sectors') ?>" alt="">
                         </a>
                     <?php
@@ -158,7 +159,7 @@ echo $style;
     <div class="content-grid ">
 
         <div class="container ">
-            <h3 style="padding: 0;color: black">Projects</h3>
+            <h3 style="padding: 0;color: red" class="red">Projects</h3>
             <div class="row counter-projects hideme">
                 <div class="col-md-4 counter-box">
                     <h1><span class="counter">2,523</span></h1>
@@ -268,17 +269,46 @@ echo $style;
     $('h3').addClass('animated fadeIn');
 
 </script>
-
+<!--project--->
+<?php
+prs::unSetData();
+prs::$table = MEDIA_TABLE;
+//prs::$select_cond = array('type'=>'projects');
+$data_media = prs::select__record();
+?>
+<div class="project" style="padding: 65px 0;background: #1c164e">
+    <div class="container">
+        <h3 style="color:white" class="white">Media Library</h3>
+        <div class="project-top">
+            <?php
+            foreach ($data_media as $k => $v) {
+                if ($v['type'] == 'projects' || $v['type'] == 'items') {
+                    $url = (($v['type'] == 'projects') ? 'images/project_media/' . $v['media_id'] . '/' . $v['url'] : 'images/equipments/' . $v['url']);
+                    echo '
+                  <div class="col-md-3 project-grid">
+                <div class="project-grid-top">
+                    <a data-options=\'{"caption" : "' . $v['name_' . $l] . '"}\' data-fancybox="gallery" href="' . $url . '" class="mask"><img src="' . $url . '" style="height: auto;width: 100%" class="img-responsive zoom-img" alt=""/></a>
+                </div>
+            </div>
+                ';
+                }
+            }
+            ?>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<!--//project-->
     <!--    News & Social-->
     <div class="project">
         <?php
         if (!empty($all_news) && count($all_news) > 0) {
             ?>
             <div class="container">
-                <h3 style="color:red"><?= $trans['NEWS'][$l] ?></h3>
+                <h3 style="color:red;padding: 40px 0;" class="red"><?= $trans['NEWS'][$l] ?></h3>
                 <div class="project-top">
                     <div class="row news-section">
-                        <div class="col-md-7 col-sm-12 col-xs-12" style="float:<?= $trans['ALIGN'][$l] ?>;padding: 0">
+                        <div class="col-md-5 col-sm-12 col-xs-12" style="float:<?= $trans['ALIGN'][$l] ?>;padding: 0">
                             <?php
                             foreach ($pages as $news) {
                                 ?>
@@ -315,7 +345,7 @@ echo $style;
                             }
                             ?>
                         </div>
-                        <div class="col-md-5" style="float:<?= $trans['ALIGN_NATIVE'][$l] ?>;padding: 0">
+                        <div class="col-md-7" style="float:<?= $trans['ALIGN_NATIVE'][$l] ?>;padding: 0">
                             <?php
                             if (empty($all_news) || count($news) < 1) {
                                 ?>

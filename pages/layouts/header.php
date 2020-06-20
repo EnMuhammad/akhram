@@ -46,6 +46,7 @@ minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="css/fontawesome.min.css" rel="stylesheet">
 <link href="jquery-ui/jquery-ui.min.css" rel="stylesheet">
 <link href="css/styles.css" rel="stylesheet">
+<link href="css/jquery.fancybox.min.css" rel="stylesheet" type="text/css" media="all" />	
 <!--//menu-->
 <!--theme-style-->
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
