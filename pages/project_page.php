@@ -103,60 +103,30 @@ if (isset($_GET['pid'])) {
 
         </div>
 
+        <?php
 
+        ?>
         <div class="col-md-3">
             <div class="single-box-right right-immediate">
                 <h4>Latest Projects</h4>
-                <div class="single-box-img ">
-                    <div class="box-img">
-                        <a href="single.html"><img class="img-responsive" src="images/sl.jpg" alt=""></a>
+
+                <?php
+                foreach ($fun->GetRandomProject($l, $fun->project_id) as $key => $v) {
+                    echo '
+                         <div class="single-box-img ">
+                           <div class="box-img">
+                        <a href="Project/' . $v['id'] . '/' . $fun->CreateUrlName($v['title']) . '">
+                        <img class="img-responsive" src="images/project_media/' . $fun->GetCoverMedia($v['id'], 'projects') . '" alt=""></a>
                     </div>
                     <div class="box-text">
-                        <p><a href="single.html">Lorem ipsum dolor sit amet</a></p>
-                        <a href="single.html" class="in-box">More Info</a>
+                        <p><a href="Project/' . $v['id'] . '/' . $fun->CreateUrlName($v['title']) . '">' . $v['title'] . '</a></p>
+                        <a href="Project/' . $v['id'] . '/' . $fun->CreateUrlName($v['title']) . '" class="in-box">More Info</a>
                     </div>
                     <div class="clearfix"></div>
                 </div>
-                <div class="single-box-img">
-                    <div class="box-img">
-                        <a href="single.html"><img class="img-responsive" src="images/sl1.jpg" alt=""></a>
-                    </div>
-                    <div class="box-text">
-                        <p><a href="single.html">Lorem ipsum dolor sit amet</a></p>
-                        <a href="single.html" class="in-box">More Info</a>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="single-box-img">
-                    <div class="box-img">
-                        <a href="single.html"><img class="img-responsive" src="images/sl2.jpg" alt=""></a>
-                    </div>
-                    <div class="box-text">
-                        <p><a href="single.html">Lorem ipsum dolor sit amet</a></p>
-                        <a href="single.html" class="in-box">More Info</a>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="single-box-img">
-                    <div class="box-img">
-                        <a href="single.html"><img class="img-responsive" src="images/sl3.jpg" alt=""></a>
-                    </div>
-                    <div class="box-text">
-                        <p><a href="single.html">Lorem ipsum dolor sit amet</a></p>
-                        <a href="single.html" class="in-box">More Info</a>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="single-box-img">
-                    <div class="box-img">
-                        <a href="single.html"><img class="img-responsive" src="images/sl4.jpg" alt=""></a>
-                    </div>
-                    <div class="box-text">
-                        <p><a href="single.html">Lorem ipsum dolor sit amet</a></p>
-                        <a href="single.html" class="in-box">More Info</a>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
+                        ';
+                }
+                ?>
             </div>
 
         </div>

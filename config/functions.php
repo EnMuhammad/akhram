@@ -94,6 +94,30 @@ class functions
         }
         return $image;
     }
+
+    function GetRandomProject($lang, $id)
+    {
+        prs::unSetData();
+        prs::$table = PROJECTS_TABLE;
+        prs::$select_cond = array('id' => 'NOT:' . $id);
+        prs::$order = ' RAND() LIMIT 4';
+        $projects = array();
+        foreach (prs::select__record() as $t => $p) {
+            $projects[] = array(
+                'id' => $p['id'],
+                'title' => $p['title_' . $lang],
+            );
+//            $projects[]['title'] = $p['title_' . $lang];
+//            $projects[]['city'] = $this->GetCityName($p['city_id']);
+//            $projects[]['service'] = $this->GetServiceName($p['service_id'], $lang);
+//            $projects[]['date_start'] = $p['date_start'];
+//            $projects[]['date_end'] = $p['date_end'];
+//            $projects[]['Client'] = $this->GetClientName($p['client_id'], $lang);
+//            $projects[]['contract'] = $p['contract_type'];
+//            $projects[]['ads'] = $p['advisor'];
+        }
+        return $projects;
+    }
     function GetCoverMedia($pid, $type = "projects")
     {
         prs::unSetData();
