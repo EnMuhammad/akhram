@@ -48,7 +48,8 @@ if (isset($_GET['sid'])) {
                     foreach ($data['services'] as $key => $p) {
                         $url_name = str_replace(' ', '_', trim($p['title']));
                         ?>
-                        <div class="row" dir="<?= $trans['DIR'][$l] ?>">
+                        <div class="row" dir="<?= $trans['DIR'][$l] ?>"
+                             style="margin: 37px 0;border-top: 1px solid #dcc0c0;padding: 20px 0;">
                             <div class="col-md-8 about-mid" <?= (($x == 1) ? "style='float:right;'" : "style='float:left;'") ?>>
                                 <h4><a href="Services/<?= $p['id'] ?>/<?= $url_name ?>"><?= $p['title'] ?></a></h4>
 

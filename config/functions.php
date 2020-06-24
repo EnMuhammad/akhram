@@ -81,6 +81,19 @@ class functions
         }
     }
 
+    function GetProjectsAlbumMedia($pid)
+    {
+        prs::unSetData();
+        prs::$table = MEDIA_TABLE;
+        prs::$select_cond['media_id'] = $pid;
+        prs::$select_cond['type'] = 'projects';
+        prs::$order = 'id DESC';
+        $image = array();
+        foreach (prs::select__record() as $item => $key) {
+            $image[] = $key['url'];
+        }
+        return $image;
+    }
     function GetCoverMedia($pid, $type = "projects")
     {
         prs::unSetData();

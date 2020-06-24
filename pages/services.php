@@ -46,134 +46,83 @@ if (isset($_GET['id'])) {
             <h3><?= $trans['ABOUT_SERVICE'][$l] ?></h3>
             <p class="fonter" style="font-size: 19px"><?= $service_array['about'] ?>
             </p>
-            <div class="col-md-8 col-xs-12 " style="float:<?= $trans['ALIGN'][$l] ?> ">
-                <h4 class="onLine" style="text-align:<?= $trans['ALIGN'][$l] ?>"><?= $trans['STR_SERVICES'][$l] ?></h4>
-                <ul class="Point" dir="<?= $trans['DIR'][$l] ?>">
-                    <?php
-                    foreach ($fun->GetServicesStr($id) as $str) {
-                        echo '<li>' . $str['point_' . $l] . '</li>';
-                    }
-                    ?>
-                </ul>
-            </div>
         </div>
     </div>
 </div>
 <div class="clearfix"></div>
 <div class="container">
-    <h3>كافة المشاريع</h3>
-    <!--price-->
-    <div class="price" dir="rtl">
+    <?php
+    $fun->service_id = $id;
 
-        <div class="price-grid">
-            <div class="col-sm-4 col-xs-12 price-top" style="<?= (($l == 'ar') ? "float:right;" : "") ?>">
-                <h4>الخدمة</h4>
-                <select class="in-drop service-list">
-                    <option value="0">أختر خدمة</option>
-                    <?php
-                    foreach ($fun->GetServices() as $k => $serv) {
-                        echo '<option ' . (($serv['id'] == $id) ? "selected='selected'" : "") . ' value="' . $serv['id'] . '">' . $serv['service_' . $l] . '</option>';
-                    }
-                    ?>
-                </select>
-            </div>
-            <div class="col-sm-4 col-xs-12 price-top" style="<?= (($l == 'ar') ? "float:right;" : "") ?>">
-                <h4>المدينة</h4>
-                <select class="in-drop project-list" disabled>
-                    <option value="0">Select</option>
-                </select>
-            </div>
-            <div class="col-sm-4 col-xs-12 price-top" style="<?= (($l == 'ar') ? "float:right" : "") ?>">
-                <h4>المشروع</h4>
-                <select class="in-drop" disabled>
-                    <option>Select</option>
-                </select>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-
-    </div>
-    <!---->
-    <div class="container">
-        <div class="future" style="padding: 0 0 12px 0;">
-            <h3>كافة المشاريع</h3>
-            <div class="content-bottom-in">
-                <ul id="flexiselDemo1">
-                    <?php
-                    $fun->service_id = $id;
-                    foreach ($fun->GetProjectListByServiceID() as $t => $proj) {
-                        //                echo ;
-                        ?>
-                        <li>
-                            <div class="project-fur">
-                                <a href="single.html"><img class="img-responsive"
-                                                           src="<?= 'images/project_media/' . $proj['id'] . '/' . $fun->GetProjectsMedia($proj['id'], true) ?>"
-                                                           alt=""/> </a>
-                                <div class="fur">
-                                    <div class="fur1">
-                                        <span class="fur-money"> مكتب الأمم المتحدة لخدمات المشاريع</span>
-                                        <h6 class="fur-name"><a href="single.html">عدن - المعلا</a></h6>
-                                        <span><?= $proj['title_' . $l] ?></span>
-                                    </div>
-                                    <div class="fur2">
-                                        <span><a href="#">مشاهدة</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
+    if (!empty($fun->GetProjectListByServiceID())) {
+        ?>
+        <div class="container">
+            <div class="future" style="padding: 0 0 12px 0; margin: 20px 0">
+                <h3>كافة المشاريع</h3>
+                <div class="content-bottom-in">
+                    <ul id="flexiselDemo1">
                         <?php
-                    }
-                    ?>
 
-                    <li>
-                        <div class="project-fur">
-                            <a href="single.html"><img class="img-responsive" src="images/pi1.jpg" alt=""/> </a>
-                            <div class="fur">
-                                <div class="fur1">
-                                    <span class="fur-money">$2.44 Lacs - 5.28 Lacs </span>
-                                    <h6 class="fur-name"><a href="single.html">Contrary to popular</a></h6>
-                                    <span>Paris</span>
+                        foreach ($fun->GetProjectListByServiceID() as $t => $proj) {
+                            //                echo ;
+                            ?>
+                            <li>
+                                <div class="project-fur">
+                                    <a href="#"><img class="img-responsive"
+                                                     src="<?= 'images/project_media/' . $proj['id'] . '/' . $fun->GetProjectsMedia($proj['id'], true) ?>"
+                                                     alt=""/> </a>
+                                    <div class="fur">
+                                        <div class="fur1">
+                                            <span class="fur-money"> <?= $proj['contract_type'] ?></span>
+
+                                            <span><?= $proj['title_' . $l] ?></span>
+                                        </div>
+                                        <div class="fur2">
+                                            <span><a href="Project/<?= $proj['id'] ?>/<?= $fun->CreateUrlName($proj['title_' . $l]) ?>">مشاهدة</span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="fur2">
-                                    <span>2 BHK</span>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
+                            </li>
+                            <?php
+                        }
+                        ?>
 
-                </ul>
-                <script type="text/javascript">
-                    $(window).load(function () {
-                        $("#flexiselDemo1").flexisel({
-                            visibleItems: 4,
+                    </ul>
+                    <script type="text/javascript">
+                        $(window).load(function () {
+                            $("#flexiselDemo1").flexisel({
+                                visibleItems: 4,
 
-                            animationSpeed: 1000,
-                            autoPlay: true,
-                            autoPlaySpeed: 3000,
-                            pauseOnHover: true,
-                            enableResponsiveBreakpoints: true,
-                            responsiveBreakpoints: {
-                                portrait: {
-                                    changePoint: 480,
-                                    visibleItems: 1
-                                },
-                                landscape: {
-                                    changePoint: 640,
-                                    visibleItems: 2
-                                },
-                                tablet: {
-                                    changePoint: 768,
-                                    visibleItems: 3
+                                animationSpeed: 1000,
+                                autoPlay: true,
+                                autoPlaySpeed: 3000,
+                                pauseOnHover: true,
+                                enableResponsiveBreakpoints: true,
+                                responsiveBreakpoints: {
+                                    portrait: {
+                                        changePoint: 480,
+                                        visibleItems: 1
+                                    },
+                                    landscape: {
+                                        changePoint: 640,
+                                        visibleItems: 2
+                                    },
+                                    tablet: {
+                                        changePoint: 768,
+                                        visibleItems: 3
+                                    }
                                 }
-                            }
-                        });
+                            });
 
-                    });
-                </script>
-                <script type="text/javascript" src="js/jquery.flexisel.js"></script>
+                        });
+                    </script>
+                    <script type="text/javascript" src="js/jquery.flexisel.js"></script>
+                </div>
             </div>
         </div>
-    </div>
+        <?php
+    }
+    ?>
 </div>
 <!---->
 

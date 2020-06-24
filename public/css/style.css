@@ -1662,7 +1662,7 @@ ul.nav-bottom li a {
     color: #989696;
     font-size: 0.8em;
     display: inline-block;
-    margin: 0.5em 0;
+    /*margin: 0.5em 0;*/
 }
 
 ul.nav-bottom li a:hover {

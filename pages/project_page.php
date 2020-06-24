@@ -16,6 +16,7 @@ $l = $lang->GetLanguage();
 if (isset($_GET['pid'])) {
     $fun->project_id = intval($_GET['pid']);
     $proj = $fun->GetProjectInfo($l);
+    $project_media = $fun->GetProjectsAlbumMedia($fun->project_id);
 } else {
     exit();
 }
@@ -23,14 +24,9 @@ if (isset($_GET['pid'])) {
 <div class=" banner-buying">
     <div class=" container">
         <h3><?= $proj['title'] ?></h3>
-        <!---->
-
-
-        <!--initiate accordion-->
-
-
     </div>
 </div>
+
 <!--//header-->
 <div class="container">
 
@@ -40,19 +36,19 @@ if (isset($_GET['pid'])) {
 
             <div class=" buying-top">
                 <div class="flexslider">
+                    <?php
+
+                    ?>
                     <ul class="slides">
-                        <li data-thumb="images/ss.jpg">
-                            <img src="images/ss.jpg"/>
+                        <?php
+                        foreach ($project_media as $k) {
+                            echo '
+                               <li data-thumb="images/project_media/' . $fun->project_id . '/' . $k . '">
+                            <img src="images/project_media/' . $fun->project_id . '/' . $k . '" height="100"/>
                         </li>
-                        <li data-thumb="images/ss1.jpg">
-                            <img src="images/ss1.jpg"/>
-                        </li>
-                        <li data-thumb="images/ss2.jpg">
-                            <img src="images/ss2.jpg"/>
-                        </li>
-                        <li data-thumb="images/ss3.jpg">
-                            <img src="images/ss3.jpg"/>
-                        </li>
+                            ';
+                        }
+                        ?>
                     </ul>
                 </div>
                 <!-- FlexSlider -->
@@ -110,7 +106,7 @@ if (isset($_GET['pid'])) {
 
         <div class="col-md-3">
             <div class="single-box-right right-immediate">
-                <h4>Featured Communities</h4>
+                <h4>Latest Projects</h4>
                 <div class="single-box-img ">
                     <div class="box-img">
                         <a href="single.html"><img class="img-responsive" src="images/sl.jpg" alt=""></a>
