@@ -119,7 +119,7 @@ echo $style;
             <?php
             foreach ($sec as $da) {
                     ?>
-                <div class="box_2 col-md-3" style="margin: 10px 0;height: 250px;overflow: hidden;">
+                <div class=" col-md-3 col-sm-12 col-xs-12" style="margin: 10px 0;height: 250px;overflow: hidden;">
                         <a href="Sectors/<?= $da['id'] ?>/<?= $fun->CreateUrlName($da['title']) ?>" class="mask">
                             <img class="img-responsive zoom-img" style="width: 100%;min-height: 200px"
                                  src="images/sectors/<?= $fun->GetCoverMedia($da['id'], 'sectors') ?>" alt="">
