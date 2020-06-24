@@ -736,17 +736,25 @@ $fun = new fun();
                     </div>
                     <div class="form-group">
                         <label>Land Phone</label>
-                        <input type="text" name="phone" class="form-control" required>
+                        <input type="text" name="phone" value="(00) 967" class="form-control phone-action-land"
+                               required>
                     </div>
                     <div class="form-group">
                         <label>Fax</label>
-                        <input type="text" name="fax" class="form-control" required>
+                        <input type="text" name="fax" value="(00) 967" class="form-control phone-action" required>
                     </div>
                     <div class="form-group">
                         <label>Whatsapp Number</label>
-                        <input type="text" name="whatsapp" class="form-control" required>
+                        <input type="text" name="whatsapp" value="(00) 967" class="form-control phone-action" required>
                     </div>
                 </div>
+                <script>
+                    $(function () {
+                        $('.phone-action-land').mask('(00) 000-0-000000');
+                        $('.phone-action').mask('(00) 000-000000000');
+                    });
+
+                </script>
                 <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
                     <div class="ui-dialog-buttonset">
                         <button type="submit" class="ui-button ui-corner-all ui-widget">Add</button>

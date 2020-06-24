@@ -58,6 +58,7 @@ class Page_Footer
             $this->contact .= '<p>Land-Phone: ' . $info['phone'] . '</p>';
             $this->contact .= '<p>Fax: ' . $info['fax'] . '</p>';
             $this->contact .= '<p>Whatsapp: ' . $info['whatsapp'] . '</p>';
+            $this->contact .= '<p>Address: ' . $info['address'] . '</p>';
         }
         echo $this->footer();
     }
@@ -131,7 +132,10 @@ class Page_Footer
   <link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
             <script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
            ' . ((isset($_SESSION['AdminLogin']) && isset($_SESSION['AdminId']) && empty($_GET)) ? '
-<script src="js/admin.js"></script>' : '') . ' 
+           
+<script src="js/jquery.mask.min.js"></script>
+<script src="js/admin.js"></script>
+' : '') . ' 
         <!--Start of Tawk.to Script-->
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
