@@ -697,6 +697,40 @@ class functions
         }
         return $this->return;
     }
+
+    function PageTitles($pageType, $id, $lang)
+    {
+        $title = '';
+        $table = '';
+        switch ($pageType) {
+            case 'sectors':
+                $table = SECTORS_TABLE;
+                $dataSelect = 'title_';
+                break;
+            case 'services':
+                $table = SERVICES_TABLE;
+                $dataSelect = 'service_';
+                break;
+            case 'project':
+                $table = PROJECTS_TABLE;
+                $dataSelect = 'title_';
+                break;
+            case 'page':
+                $table = PAGES_TABLE;
+                $dataSelect = 'title_';
+                break;
+        }
+        if ($table != '') {
+            prs::unSetData();
+            prs::$table = $table;
+            prs::$select_cond = array('id' => $id);
+            prs::$data_select = array($dataSelect . $lang);
+            foreach (prs::select__record() as $t => $d) {
+                $title = $d[$dataSelect . $lang];
+            }
+        }
+        return $title;
+    }
 }
 
 class AdminFunctions

@@ -63,6 +63,7 @@ class Lang_database
             //// Sectors ///
             'SECTOR_OVERVIEW' => array('ar' => 'نبذة عن القطاع', 'en' => 'About Sector'),
             'RELATED_PROJECT' => array('ar' => 'مشاريع متعلقة', 'en' => 'Related Projects'),
+            'COMPANY_PROFILE' => array('ar' => 'الشــركة', 'en' => 'Company Profile'),
         );
         $this->GetLanguage();
         return $this->data_set;

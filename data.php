@@ -6,12 +6,17 @@
  *
  */
 
+use Fun\functions as fun;
+use Languages\Lang_database as lang;
 use PagesControl\Pages as page;
 use PROCESS\prs as prs;
 
 require_once 'pages.php';
 require_once 'pages/layouts/page_error.php';
-
+$lang = new lang();
+$fun = new fun();
+$trans = $lang->Translations();
+$l = $lang->GetLanguage();
 prs::unSetData();
 prs::$table = WEB_SETTINGS;
 $colsed = 0;
@@ -44,49 +49,70 @@ if ($colsed == 1 && !isset($_SESSION['AdminLogin']) && !isset($_SESSION['AdminId
         $p->page_title = PAGE_DEF_TITLE;
         $p->Action();
     } else if (isset($_GET['Serv'])) {
-        $p = new page();
-        $p->page_get = 'Services';
-        $p->page_title = 'Services';
-        $p->Action();
+        if (isset($_GET['id'])) {
+            $id = intval($_GET['id']);
+            $p = new page();
+            $p->page_get = 'Services';
+            $p->page_title = $fun->PageTitles('services', $id, $l);
+            $p->Action();
+        } else {
+            new Page_Errors\ErrorsPages();
+        }
     } else if (isset($_GET['Sections'])) {
+
         $p = new page();
         $p->page_get = 'SectorsBranches';
         $p->page_title = SECBRAN_TITLE;
         $p->Action();
     } else if (isset($_GET['Page'])) {
-        $p = new page();
-        $p->page_get = 'Pages';
-        $p->page_title = 'Pages';
-        $p->Action();
+        if (isset($_GET['id'])) {
+            $id = intval($_GET['id']);
+            $p = new page();
+            $p->page_get = 'Pages';
+            $p->page_title = $fun->PageTitles('page', $id, $l);
+            $p->Action();
+        } else {
+            new Page_Errors\ErrorsPages();
+        }
     } else if (isset($_GET['Project'])) {
-        $p = new page();
-        $p->page_get = 'Project_Page';
-        $p->page_title = 'Project';
-        $p->Action();
+        if (isset($_GET['pid'])) {
+            $id = intval($_GET['pid']);
+            $p = new page();
+            $p->page_get = 'Project_Page';
+            $p->page_title = $fun->PageTitles('project', $id, $l);
+            $p->Action();
+        } else {
+            new Page_Errors\ErrorsPages();
+        }
     } else if (isset($_GET['Lists'])) {
         $p = new page();
         $p->page_get = 'AllList';
         $p->page_title = 'All';
         $p->Action();
     } else if (isset($_GET['Sector'])) {
-        $p = new page();
-        $p->page_get = 'SectorPage';
-        $p->page_title = 'Sector';
-        $p->Action();
+        if (isset($_GET['sid'])) {
+            $id = intval($_GET['sid']);
+            $p = new page();
+            $p->page_get = 'SectorPage';
+            $p->page_title = $fun->PageTitles('sectors', $id, $l);
+            $p->Action();
+        } else {
+            new Page_Errors\ErrorsPages();
+        }
     } else if (isset($_GET['Profile'])) {
         $p = new page();
         $p->page_get = 'CompanyProfile';
-        $p->page_title = 'Company Profile';
+        $p->page_title = $trans['COMPANY_PROFILE'][$l];
         $p->Action();
     } else if (isset($_GET['Contact_us'])) {
         $p = new page();
         $p->page_get = 'Contact';
-        $p->page_title = 'Contact & Branches';
+        $p->page_title = $trans['CONTACT'][$l];
         $p->Action();
     } else if (isset($_GET['Suppliers'])) {
         $p = new page();
         $p->page_get = 'suppliers';
-        $p->page_title = 'Business suppliers';
+        $p->page_title = $trans['SUPP_BUSI'][$l];
         $p->Action();
     } else {
         new Page_Errors\ErrorsPages();

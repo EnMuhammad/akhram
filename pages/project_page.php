@@ -26,19 +26,12 @@ if (isset($_GET['pid'])) {
         <h3><?= $proj['title'] ?></h3>
     </div>
 </div>
-
 <!--//header-->
 <div class="container">
-
     <div class="buy-single-single">
-
         <div class="col-md-9 single-box">
-
             <div class=" buying-top">
                 <div class="flexslider">
-                    <?php
-
-                    ?>
                     <ul class="slides">
                         <?php
                         foreach ($project_media as $k) {
@@ -84,8 +77,10 @@ if (isset($_GET['pid'])) {
                     <p>
                     <ul>
                         <?php
-                        for ($i = 0; $i < count($proj['Task']); $i++) {
-                            echo '<li>' . $proj['Task'][$i] . '</li>';
+                        if (!empty($proj['Task'])) {
+                            for ($i = 0; $i < count($proj['Task']); $i++) {
+                                echo '<li>' . $proj['Task'][$i] . '</li>';
+                            }
                         }
                         ?>
                     </ul>
@@ -100,12 +95,7 @@ if (isset($_GET['pid'])) {
             <!---->
             <!--                </div>-->
             <!--            </div>-->
-
         </div>
-
-        <?php
-
-        ?>
         <div class="col-md-3">
             <div class="single-box-right right-immediate">
                 <h4>Latest Projects</h4>
