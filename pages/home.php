@@ -279,23 +279,61 @@ $data_media = prs::select__record();
 <div class="project" style="padding: 65px 0;background: #1c164e">
     <div class="container">
         <h3 style="color:white" class="white">Media Library</h3>
-        <div class="project-top">
-            <?php
+        <div class="content-bottom-in">
+            <div class="loadProjects">
+                <ul id="flexiselMedia1">
+                    <?php
             foreach ($data_media as $k => $v) {
                 if ($v['type'] == 'projects' || $v['type'] == 'items') {
                     $url = (($v['type'] == 'projects') ? 'images/project_media/' . $v['media_id'] . '/' . $v['url'] : 'images/equipments/' . $v['url']);
-                    echo '
-                  <div class="col-md-3 project-grid">
-                <div class="project-grid-top">
-                    <a data-options=\'{"caption" : "' . $v['name_' . $l] . '"}\' data-fancybox="gallery" href="' . $url . '" class="mask"><img src="' . $url . '" style="height: auto;width: 100%" class="img-responsive zoom-img" alt=""/></a>
-                </div>
-            </div>
-                ';
+                    ?>
+                    <li>
+                        <div class="project-fur">
+                            <a href="<?= $url ?>" data-options='{"caption": "<?= $v['name_' . $l] ?>"}'
+                               data-fancybox="gallery"><img class="img-responsive"
+                                                            src="<?= $url ?>" height="200"
+                                                            alt=""/> </a>
+
+                        </div>
+                    </li>
+                    <?php
                 }
             }
-            ?>
-            <div class="clearfix"></div>
+                    ?>
+
+                </ul>
+                <script type="text/javascript">
+                    $(window).load(function () {
+                        $("#flexiselMedia1").flexisel({
+                            visibleItems: 4,
+                            animationSpeed: 1000,
+                            autoPlay: true,
+                            autoPlaySpeed: 3000,
+                            pauseOnHover: true,
+                            enableResponsiveBreakpoints: true,
+                            responsiveBreakpoints: {
+                                portrait: {
+                                    changePoint: 480,
+                                    visibleItems: 1
+                                },
+                                landscape: {
+                                    changePoint: 640,
+                                    visibleItems: 2
+                                },
+                                tablet: {
+                                    changePoint: 768,
+                                    visibleItems: 3
+                                }
+                            }
+                        });
+
+                    });
+                </script>
+            </div>
+
+
         </div>
+
     </div>
 </div>
 <!--//project-->
