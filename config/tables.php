@@ -43,4 +43,5 @@ DEFINE('CITY_BRANCH_TABLE', 'city_branchs');
 DEFINE('WEB_SETTINGS', 'web_settings');
 DEFINE('PAGES_TABLE', 'pages');
 DEFINE('SUPP_TABLE', 'suppliers');
+define('MENU_ORDER_TABLE', 'menu_order');
 

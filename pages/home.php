@@ -4,6 +4,7 @@ use Fun\functions as fun;
 use Languages\Lang_database as lang;
 use PROCESS\prs as prs;
 
+
 $fun = new fun();
 $lang = new lang();
 $trans = $lang->Translations();

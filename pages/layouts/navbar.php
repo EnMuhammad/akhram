@@ -8,6 +8,7 @@
 
 namespace HEADER;
 
+use Fun\functions as fun;
 use Languages\Lang_database as lang;
 use PROCESS\prs as prs;
 
@@ -30,6 +31,7 @@ class Page_Banner
         $l = $lang->GetLanguage();
         prs::unSetData();
         prs::$table = SECTORS_TABLE;
+        prs::$order = 'menu_order';
         foreach (prs::select__record() as $t => $s) {
             $url_name = str_replace(' ', '_', trim($s['title_' . $l]));
             $this->sectors .= '
@@ -61,37 +63,75 @@ class Page_Banner
         $lang = new lang();
         $trans = $lang->Translations();
         $l = $lang->GetLanguage();
+        $fun = new fun();
         prs::unSetData();
-        prs::$table = PAGES_TABLE;
-        prs::$select_cond = array('related_to' => 'about');
+        prs::$table = MENU_ORDER_TABLE;
+        prs::$select_cond = array('page_type' => 'about');
+        prs::$order = 'order_number';
         $ul_about = $ul_contact = '';
-        if (!empty(prs::select__record())) {
-            foreach (prs::select__record() as $t => $about) {
-                $url_name = str_replace(' ', '_', trim($about['title_' . $l]));
-                $ul_about .= '
-              <li><a href="Page/' . $about['id'] . '/' . $url_name . '">' . $about['title_' . $l] . '</a>
+        $about_order = prs::select__record();
+        prs::$select_cond = array('page_type' => 'contact');
+        $order_co = prs::select__record();
+        if (!empty($about_order)) {
+            $o = 0;
+
+            foreach ($about_order as $u => $order) {
+                $about_page = $fun->PageInfo($order['page_id']);
+                foreach ($about_page as $z => $about) {
+                    $url_name = str_replace(' ', '_', trim($about['title_' . $l]));
+                    $ul_about .= '
+              <li class="modify"><a href="Page/' . $about['id'] . '/' . $url_name . '">' . $about['title_' . $l] . '</a>
               ' . (($delete) ? '
-              <a href="javascript:;" onclick="DeleteData(\'pages\',' . $about['id'] . ')" style="float:right;"><i class="fa fa-trash"></i></a>
+              <a href="javascript:;" class="actions"  onclick="DeleteData(\'pages\',' . $about['id'] . ')" ><i class="fa fa-trash"></i></a>
+              ' . (($o != 0) ? '
+              <a href="javascript:;" class="actions up-button"  onclick="MoveLiUp(' . $about['id'] . ',this,\'about\')" ><i class="fa fa-arrow-up"></i></a>
+              ' : '
+              <a href="javascript:;" style="display:none;" class="actions up-button"  onclick="MoveLiUp(' . $about['id'] . ',this,\'about\')" ><i class="fa fa-arrow-up"></i></a>
+              ') . '
+              ' . (($o != (count($about_order) - 1)) ? '
+               <a href="javascript:;" class="actions down-button"  onclick="MoveLiDown(' . $about['id'] . ',this,\'about\')" ><i class="fa fa-arrow-down"></i></a>
+              ' : '
+              <a href="javascript:;" style="display:none;" class="actions down-button"  onclick="MoveLiDown(' . $about['id'] . ',this,\'about\')" ><i class="fa fa-arrow-down"></i></a>
+              ') . '
+             
               ' : '') . '
               </li>
             ';
 
+                }
+                $o++;
             }
             $ul_about .= ' <li class="divider"></li>';
         }
         $drop_down = false;
-        prs::$select_cond = array('related_to' => 'contact');
-        if (!empty(prs::select__record())) {
+
+        if (!empty($order_co)) {
+            $o = 0;
             $drop_down = true;
-            foreach (prs::select__record() as $t => $contact) {
-                $url_name = str_replace(' ', '_', trim($contact['title_' . $l]));
-                $ul_contact .= '
-             <li><a href="Page/' . $about['id'] . '/' . $url_name . '">' . $contact['title_' . $l] . '</a>
+            foreach ($order_co as $t => $order_contact) {
+                $contact_info = $fun->PageInfo($order_contact['page_id']);
+                foreach ($contact_info as $r => $contact) {
+                    $url_name = str_replace(' ', '_', trim($contact['title_' . $l]));
+                    $ul_contact .= '
+             <li class="modify"><a href="Page/' . $contact['id'] . '/' . $url_name . '">' . $contact['title_' . $l] . '</a>
               ' . (($delete) ? '
+              
+               ' . (($o != 0) ? '
+              <a href="javascript:;" class="actions up-button"  onclick="MoveLiUp(' . $contact['id'] . ',this,\'contact\')" ><i class="fa fa-arrow-up"></i></a>
+              ' : '
+              <a href="javascript:;" style="display:none;" class="actions up-button"  onclick="MoveLiUp(' . $contact['id'] . ',this,\'contact\')" ><i class="fa fa-arrow-up"></i></a>
+              ') . '
+                 ' . (($o != (count($order_co) - 1)) ? '
+               <a href="javascript:;" class="actions down-button"  onclick="MoveLiDown(' . $contact['id'] . ',this,\'contact\')" ><i class="fa fa-arrow-down"></i></a>
+              ' : '
+              <a href="javascript:;" style="display:none;" class="actions down-button"  onclick="MoveLiDown(' . $contact['id'] . ',this,\'contact\')" ><i class="fa fa-arrow-down"></i></a>
+              ') . '
               <a href="javascript:;" onclick="DeleteData(\'pages\',' . $contact['id'] . ')" style="float:right;"><i class="fa fa-trash"></i></a>
               ' : '') . '
               </li>
             ';
+                }
+                $o++;
             }
             $ul_contact .= ' <li class="divider"></li>';
         }
@@ -119,8 +159,7 @@ class Page_Banner
                 <li class="active" style="float:' . $trans['ALIGN'][$l] . '"><a href="#">' . $trans['HOME'][$l] . '</a></li>
               <li class="dropdown" style="float:' . $trans['ALIGN'][$l] . '">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">' . $trans['ABOUT'][$l] . ' <b class="caret"></b></a>
-      <ul class="dropdown-menu" role="menu">
-     
+      <ul class="dropdown-menu about_ul" role="menu">
       ' . $ul_about . '
         <li style="float:' . $trans['ALIGN'][$l] . '"><a href="Company/Profile/">Company Profile</a></li>
         <li style="float:' . $trans['ALIGN'][$l] . '"><a href="#">' . $trans['TERMS'][$l] . '</a></li>

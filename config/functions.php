@@ -472,6 +472,14 @@ class functions
         }
         return $this->return;
     }
+
+    function PageInfo($id)
+    {
+        prs::unSetData();
+        prs::$table = PAGES_TABLE;
+        prs::$select_cond = array('id' => $id);
+        return prs::select__record();
+    }
     function ClientsListAsOptions($all = false)
     {
         prs::unSetData();

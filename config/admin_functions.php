@@ -19,6 +19,7 @@ class AdminFunctions
     var $file = array();
     var $inputID = 0;
     var $output;
+    var $output_id = 0;
     function AddContactInfo()
     {
         prs::unSetData();
@@ -134,35 +135,50 @@ class AdminFunctions
         prs::$data_in = $this->inputData;
         prs::add__record();
         $pid = prs::$last_id;
+        $this->output_id = $pid;
         if (!empty($this->file)) {
-
             for ($i = 0; $i < count($this->file); $i++) {
-                $file = $this->file;
-                $name = $file['name'][$i];
-                $tmp = $file['tmp_name'][$i];
-                $type = $file['type'][$i];
-                $ext = pathinfo($name, PATHINFO_EXTENSION);
-                $new_name = time() . uniqid() . '-ALAKHRAM.' . $ext;
-                $dir = DIR . DS . 'public' . DS . 'images' . DS . 'pages';
-                if (!is_dir($dir)) {
-                    mkdir($dir, 777);
-                }
-                if (in_array($type, prs::$accepted_files)) {
-                    if (move_uploaded_file($tmp, $dir . DS . $new_name)) {
-                        prs::unSetData();
-                        prs::$table = MEDIA_TABLE;
-                        prs::$data_in = array(
-                            'type' => 'pages',
-                            'name_ar' => $this->inputData['title_ar'],
-                            'name_en' => $this->inputData['title_en'],
-                            'url' => $new_name,
-                            'media_id' => $pid,
-                        );
-                        prs::add__record();
+                if (isset($file['name'][$i])) {
+                    $file = $this->file;
+                    $name = $file['name'][$i];
+                    $tmp = $file['tmp_name'][$i];
+                    $type = $file['type'][$i];
+                    $ext = pathinfo($name, PATHINFO_EXTENSION);
+                    $new_name = time() . uniqid() . '-ALAKHRAM.' . $ext;
+                    $dir = DIR . DS . 'public' . DS . 'images' . DS . 'pages';
+                    if (!is_dir($dir)) {
+                        mkdir($dir, 777);
+                    }
+                    if (in_array($type, prs::$accepted_files)) {
+                        if (move_uploaded_file($tmp, $dir . DS . $new_name)) {
+                            prs::unSetData();
+                            prs::$table = MEDIA_TABLE;
+                            prs::$data_in = array(
+                                'type' => 'pages',
+                                'name_ar' => $this->inputData['title_ar'],
+                                'name_en' => $this->inputData['title_en'],
+                                'url' => $new_name,
+                                'media_id' => $pid,
+                            );
+                            prs::add__record();
+
+                        }
                     }
                 }
             }
         }
+    }
+
+    function addMenuOrder($id, $type, $order_number)
+    {
+        prs::unSetData();
+        prs::$table = MENU_ORDER_TABLE;
+        prs::$data_in = array(
+            'page_id' => $id,
+            'page_type' => $type,
+            'order_number' => $order_number
+        );
+        prs::add__record();
     }
     function AddClients()
     {
@@ -178,8 +194,30 @@ class AdminFunctions
         prs::$table = SECTORS_TABLE;
         prs::$data_in = $this->inputData;
         prs::add__record();
+
     }
 
+    function GetLastSectorNumber()
+    {
+        prs::unSetData();
+        prs::$own_sql = "SELECT MAX( menu_order ) AS max FROM " . SECTORS_TABLE . "";
+        $max = 0;
+        foreach (prs::select__record() as $t => $m) {
+            $max = $m['max'];
+        }
+        return $max;
+    }
+
+    function GetLastMenuNumber($type)
+    {
+        prs::unSetData();
+        prs::$own_sql = "SELECT MAX( order_number ) AS max FROM " . MENU_ORDER_TABLE . " WHERE page_type='" . $type . "'";
+        $max = 0;
+        foreach (prs::select__record() as $t => $m) {
+            $max = $m['max'];
+        }
+        return $max;
+    }
     function UpdateSector()
     {
         prs::unSetData();
@@ -425,5 +463,37 @@ class AddOthers extends AdminFunctions
         prs::$update_cond = array('id' => $id);
         prs::$update_value = array('mc' => 1);
         prs::update__record();
+    }
+
+    function UpdateOrder($id, $type, $page_type = 'about')
+    {
+        prs::unSetData();
+        prs::$table = MENU_ORDER_TABLE;
+        prs::$select_cond = array('page_id' => $id, 'page_type' => $page_type);
+        $current_order = prs::select__record();
+        $c_order = 0;
+        foreach ($current_order as $t => $o) {
+            $c_order = $o['order_number'];
+        }
+        if ($type == 'up') {
+            $new_order = $c_order + 1;
+        } else {
+            if (($c_order - 1) == 0) {
+                $new_order = $c_order + 1;
+            } else {
+                $new_order = $c_order - 1;
+            }
+        }
+        prs::$table = MENU_ORDER_TABLE;
+        prs::$select_cond = array('order_number' => $new_order, 'page_type' => $page_type);
+        if (!empty(prs::select__record())) {
+            prs::$table = MENU_ORDER_TABLE;
+            prs::$update_cond = array('order_number' => $new_order, 'page_type' => $page_type);
+            prs::$update_value = array('order_number' => $c_order, 'page_type' => $page_type);
+            prs::update__record();
+            prs::$update_cond = array('page_id' => $id, 'page_type' => $page_type);
+            prs::$update_value = array('order_number' => $new_order, 'page_type' => $page_type);
+            prs::update__record();
+        }
     }
 }

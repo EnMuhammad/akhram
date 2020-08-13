@@ -34,6 +34,7 @@ $fun = new fun();
                 <option value="ssp">Sector/Services/Projects</option>
                 <option value="media">Media</option>
                 <option value="pages">Pages</option>
+                <option value="menus">Menu Order</option>
             </select>
         </div>
     </form>

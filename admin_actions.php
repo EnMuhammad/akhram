@@ -219,11 +219,14 @@ if (isset($_GET['formAction'])) {
                 isset($_POST['about_en'])
                 && isset($_POST['about_ar'])
             ) {
+                $max_order = $admin->GetLastSectorNumber();
+                $new_order = $max_order + 1;
                 $admin->inputData = array(
                     'title_en' => $_POST['title_en'],
                     'title_ar' => $_POST['title_ar'],
                     'about_en' => $_POST['about_en'],
                     'about_ar' => $_POST['about_ar'],
+                    'menu_order' => $new_order
                 );
                 $admin->AddSector();
             }
@@ -244,10 +247,17 @@ if (isset($_GET['formAction'])) {
                     'content_en' => $_POST['content_en'],
                 );
                 if (isset($_FILES['page_media'])) {
-
-                    $admin->file = $_FILES['page_media'];
+                    if (!empty($_FILES['page_media'])) {
+                        $admin->file = $_FILES['page_media'];
+                    }
                 }
                 $admin->AddPage();
+                if ($_POST['related'] == 'about' || $_POST['related'] == 'contact') {
+                    $order_num = $admin->GetLastMenuNumber($_POST['related']) + 1;
+                    $id = $admin->output_id;
+                    $type = $_POST['related'];
+                    $admin->addMenuOrder($id, $type, $order_num);
+                }
             }
             break;
         case 'suppliers':
@@ -500,6 +510,23 @@ if (isset($_GET['formAction'])) {
                         'content_en' => $_POST['content_en'],
                     );
                     $page->UpdatePage();
+                }
+                break;
+            case 'updateMenuOrder':
+                if (isset($_GET['id'])) {
+                    $id = intval($_GET['id']);
+                    if (isset($_GET['order_up'])) {
+                        $type = 'up';
+                    } else {
+                        $type = 'down';
+                    }
+                    if (isset($_GET['ptype'])) {
+                        $page_type = $_GET['ptype'];
+                    } else {
+                        $page_type = 'about';
+                    }
+                    $order = new other();
+                    $order->UpdateOrder($id, $type, $page_type);
                 }
                 break;
         }

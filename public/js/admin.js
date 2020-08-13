@@ -248,6 +248,7 @@ $(function () {
             }
         });
     });
+
     $('.viewAlbum').on('click', function (e) {
         e.preventDefault();
         let tr = $(this).parent().parent(), tmedia = $(this).attr('id');
@@ -412,4 +413,40 @@ let UpdateMC = function (id) {
     $.get('index.php?adminAction&formAction=branches&update_mc&id=' + id, function (data) {
         LoadBranches();
     });
+};
+let MoveLiDown = function (id, el, page_type) {
+    $(el).parent().moveDown();
+    ul = $(el).parent().parent();
+    ul.find('li.modify').find('.down-button').show();
+    ul.find('li.modify').find('.up-button').show();
+
+    ul.find('li.modify:first-child').find('.up-button').hide();
+    ul.find('li.modify:first').find('.down-button').show();
+
+    ul.find('li.modify:last').find('.down-button').hide();
+    ul.find('li.modify:last').find('.up-button').show();
+    // $('.about_ul:first-child:last-child').hide();
+
+    $.get('index.php?adminAction&updateData&type=updateMenuOrder&order_up&id=' + id + '&ptype=' + page_type);
+};
+let MoveLiUp = function (id, el, page_type) {
+    $(el).parent().moveUp();
+    // alert($(el).parent().eq());
+    ul.find('li.modify').find('.down-button').show();
+    ul.find('li.modify').find('.up-button').show();
+
+    ul.find('li.modify:first-child').find('.up-button').hide();
+    ul.find('li.modify:first-child').find('.down-button').show();
+
+    ul.find('li.modify:last').find('.down-button').hide();
+    ul.find('li.modify:last').find('.up-button').show();
+    $.get('index.php?adminAction&updateData&type=updateMenuOrder&id=' + id + '&ptype=' + page_type);
+};
+$.fn.moveUp = function () {
+    let before = $(this).prev();
+    $(this).insertBefore(before);
+};
+$.fn.moveDown = function () {
+    let after = $(this).next('.modify');
+    $(this).insertAfter(after);
 };
