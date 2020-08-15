@@ -784,3 +784,33 @@ $fun = new fun();
         </div>
     </div>
 </div>
+<div id="UpdateCompanyVMG" title="Update Vision/Mission/Goals">
+    <form class="UpdateContactInformation" name="actionForm">
+        <input type="hidden" name="type" value="page_info_mvg">
+        <div class="form-group">
+            <label>Page For</label>
+            <select name="page_for_select" class="form-control">
+                <option value="0">Select data type</option>
+                <option value="Vision">Vision</option>
+                <option value="Mission">Mission</option>
+                <option value="Goals">Goals</option>
+            </select>
+        </div>
+        <div class="form-group select-page-info" style="display: none">
+            <label for="pages">Select Page</label>
+            <select class="form-control" id="pages" name="pages_select_id">
+                <option>Page Title</option>
+            </select>
+        </div>
+        <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+            <div class="ui-dialog-buttonset">
+                <button type="submit" class="ui-button ui-corner-all ui-widget update-comp-button"
+                        style="display: none">
+                    Update
+                </button>
+            </div>
+        </div>
+    </form>
+
+
+</div>

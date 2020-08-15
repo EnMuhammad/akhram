@@ -102,15 +102,91 @@ echo $style;
         </div>
     </div>
 </div>
+<?php
+$fun = new fun();
+$mission = $vision = $goals = '';
+prs::unSetData();
+prs::$table = VMG_TABLE;
+prs::$select_cond = array('id' => 1);
+if (!empty(prs::select__record())) {
+    $mission = $vision = $goals = '';
+    foreach (prs::select__record() as $t => $p) {
+        $mission = (($p['metho'] != 0) ? $mission_data = $fun->PageInfo($p['metho'])[0]['content_' . $l] : "");
+        $vision = (($p['vision'] != 0) ? $vision_data = $fun->PageInfo($p['vision'])[0]['content_' . $l] : "");
+        $goals = (($p['goals'] != 0) ? $goals_data = $fun->PageInfo($p['goals'])[0]['content_' . $l] : "");;
+    }
+}
+?>
 <!--features-->
 <div class="content-middle">
     <div class="container">
         <div class="mid-content" dir="<?= $trans['DIR'][$l] ?>" style="float: <?= $trans['ALIGN_NATIVE'][$l] ?>">
-            <h3><?= $trans['ABOUT_COMPANY'][$l] ?></h3>
-            <p><?= mb_substr($company_background, 0, 300, 'UTF8') . '...' ?>
-            </p>
-            <a class="hvr-sweep-to-right more-in" href="Company/Profile/"><?= $trans['READ_MORE'][$l] ?></a>
+            <div class="col-md-4 box_2">
+                <div class="most-1"
+                     style="
+-webkit-border-radius: 30px;
+-moz-border-radius: 30px;
+border-radius: 30px;
+-webkit-box-shadow: 0px 1px 13px 2px rgba(255,255,255,1);
+-moz-box-shadow: 0px 1px 13px 2px rgba(255,255,255,1);
+box-shadow: 0px 1px 13px 2px rgba(255,255,255,1);
+"
+                >
+                    <h5><a href="single.html">Our Vision</a></h5>
+                    <p style="color:#000000"><?= mb_substr($vision, 0, 200, 'UTF8') ?> ..</p>
+
+                </div>
+            </div>
+
+            <div class="col-md-4 box_2">
+                <div class="most-1"
+                     style="
+-webkit-border-radius: 30px;
+-moz-border-radius: 30px;
+border-radius: 30px;
+-webkit-box-shadow: 0px 1px 13px 2px rgba(255,255,255,1);
+-moz-box-shadow: 0px 1px 13px 2px rgba(255,255,255,1);
+box-shadow: 0px 1px 13px 2px rgba(255,255,255,1);
+"
+                >
+                    <h5><a href="single.html">Our Mission</a></h5>
+                    <p style="color:#000000"><?= mb_substr($mission, 0, 200, 'UTF8') ?></p>
+                </div>
+            </div>
+
+            <div class="col-md-4 box_2">
+                <div class="most-1"
+                     style="
+-webkit-border-radius: 30px;
+-moz-border-radius: 30px;
+border-radius: 30px;
+-webkit-box-shadow: 0px 1px 13px 2px rgba(255,255,255,1);
+-moz-box-shadow: 0px 1px 13px 2px rgba(255,255,255,1);
+box-shadow: 0px 1px 13px 2px rgba(255,255,255,1);
+"
+                >
+                    <h5><a href="single.html">Our Goals</a></h5>
+                    <p style="color:#000000"><?= mb_substr($goals, 0, 200, 'UTF8') ?></p>
+                </div>
+            </div>
+
+            <!--            <h3>--><? //= $trans['ABOUT_COMPANY'][$l] ?><!--</h3>-->
+            <!--            <p>--><? //= mb_substr($company_background, 0, 300, 'UTF8') . '...' ?>
+            <!--            </p>-->
+            <!--
+             <a class="hvr-sweep-to-right more-in" href="Company/Profile/">--><? //= $trans['READ_MORE'][$l] ?><!--</a>-->
         </div>
+        <?php
+        if (isset($_SESSION['AdminLogin']) && isset($_SESSION['AdminId'])) {
+            ?>
+            <div class="row">
+                <div class="col-md-12">
+                    <button type="button" class="btn btn-danger btn-lg updateVMG">Update Info</button>
+                </div>
+            </div>
+            <?php
+        }
+        ?>
     </div>
 </div>
 <div class="content">

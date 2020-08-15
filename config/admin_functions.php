@@ -442,6 +442,23 @@ class AddOthers extends AdminFunctions
         return $options;
     }
 
+    function UpdatePageInfoMVG($type, $page_id)
+    {
+        prs::unSetData();
+        prs::$table = VMG_TABLE;
+
+        prs::$select_cond = array('id' => 1);
+        if (empty(prs::select__record())) {
+            prs::$data_in = array(
+                $type => $page_id
+            );
+            prs::add__record();
+        } else {
+            prs::$update_cond = array('id' => 1);
+            prs::$update_value = array($type => $page_id);
+            prs::update__record();
+        }
+    }
     function UpdatePage()
     {
         prs::unSetData();

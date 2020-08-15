@@ -7,7 +7,7 @@
 
 $(function () {
     $("#dialog,#MetaData,#Slides,#ServicesDialog,#ProjectsItems,#MediaDialog,#ClientsDialog,#SectorDialog" +
-        ",#Suppliers,#branches").dialog({
+        ",#Suppliers,#branches,#UpdateCompanyVMG").dialog({
         autoOpen: false,
         width: "auto",
         modal: true,
@@ -27,6 +27,28 @@ $(function () {
         modal: true,
         height: ($(window).height() - 200),
         resizable: "auto"
+    });
+    $('.updateVMG').on('click', function () {
+        let $activeDialogs = $(".ui-dialog:visible").find('.ui-dialog-content');
+        $activeDialogs.dialog('close');
+        $('.select-page-info').hide();
+        $("#UpdateCompanyVMG").parent().css({position: "fixed"}).end().dialog('open');
+        $('select[name=page_for_select]').on('change', function () {
+            if ($(this).val() !== '0') {
+                $.get('index.php?adminAction&Load=Pages', function (pages) {
+                    $('select[name=pages_select_id]').html(pages).on('change', function () {
+                        if ($(this).val() !== '0') {
+                            $('.update-comp-button').show();
+                        } else {
+                            $('.update-comp-button').hide();
+                        }
+                    });
+                    $('.select-page-info').show();
+                });
+            } else {
+                $('.select-page-info').hide();
+            }
+        });
     });
     $('.PageDi').on("click", function () {
         let $activeDialogs = $(".ui-dialog:visible").find('.ui-dialog-content');

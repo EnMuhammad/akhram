@@ -74,7 +74,6 @@ class Page_Banner
         $order_co = prs::select__record();
         if (!empty($about_order)) {
             $o = 0;
-
             foreach ($about_order as $u => $order) {
                 $about_page = $fun->PageInfo($order['page_id']);
                 foreach ($about_page as $z => $about) {
@@ -183,8 +182,6 @@ class Page_Banner
     ' : '
     <li style="float:' . $trans['ALIGN'][$l] . '"><a href="Company/Contact/">' . $trans['CONTACT'][$l] . '</a></li>
     ') . '
-     
-                  
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li style="float:' . $trans['ALIGN'][$l] . '"><a href="javascript:;" class="change_lang"><span class="fa fa-language fa-lg"></span> ' . $trans['CHANGE_LANG'][$l] . '</a></li>
@@ -193,11 +190,9 @@ class Page_Banner
         </div>
     </div>
 </nav>
-
         <div class="clearfix"> </div>
     </div>
 </div>
- 
 ';
         return $this->banner;
     }

@@ -44,4 +44,5 @@ DEFINE('WEB_SETTINGS', 'web_settings');
 DEFINE('PAGES_TABLE', 'pages');
 DEFINE('SUPP_TABLE', 'suppliers');
 define('MENU_ORDER_TABLE', 'menu_order');
+define('VMG_TABLE', 'goals_vision_point');
 

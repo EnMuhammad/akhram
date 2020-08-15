@@ -280,6 +280,21 @@ if (isset($_GET['formAction'])) {
                 echo 'Added';
             }
             break;
+        case 'page_info_mvg':
+            if (isset($_POST['page_for_select']) && isset($_POST['pages_select_id'])) {
+                $t = $_POST['page_for_select'];
+                if ($t == 'Vision') {
+                    $uType = 'vision';
+                } else if ($t == 'Mission') {
+                    $uType = 'metho';
+                } else if ($t == 'Goals') {
+                    $uType = 'goals';
+                }
+                $pid = $_POST['pages_select_id'];
+                $other = new other();
+                $other->UpdatePageInfoMVG($uType, $pid);
+            }
+            break;
         case 'branches':
             $other = new other();
             if (isset($_GET['update_mc'])) {
