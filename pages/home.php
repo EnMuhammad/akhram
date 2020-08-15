@@ -104,16 +104,20 @@ echo $style;
 </div>
 <?php
 $fun = new fun();
-$mission = $vision = $goals = '';
+$mission = $vision = $goals = $mission_url = $vision_url = $goal_url = '';
 prs::unSetData();
 prs::$table = VMG_TABLE;
 prs::$select_cond = array('id' => 1);
+
 if (!empty(prs::select__record())) {
-    $mission = $vision = $goals = '';
+
     foreach (prs::select__record() as $t => $p) {
+        $mission_url = (($p['metho'] != 0) ? "Page/" . $p['metho'] . '/' . $fun->CreateUrlName($fun->PageInfo($p['metho'])[0]['title_' . $l]) : "#");
+        $vision_url = (($p['vision'] != 0) ? "Page/" . $p['vision'] . '/' . $fun->CreateUrlName($fun->PageInfo($p['vision'])[0]['title_' . $l]) : "#");
+        $goal_url = (($p['goals'] != 0) ? "Page/" . $p['goals'] . '/' . $fun->CreateUrlName($fun->PageInfo($p['goals'])[0]['title_' . $l]) : "#");
         $mission = (($p['metho'] != 0) ? $mission_data = $fun->PageInfo($p['metho'])[0]['content_' . $l] : "");
         $vision = (($p['vision'] != 0) ? $vision_data = $fun->PageInfo($p['vision'])[0]['content_' . $l] : "");
-        $goals = (($p['goals'] != 0) ? $goals_data = $fun->PageInfo($p['goals'])[0]['content_' . $l] : "");;
+        $goals = (($p['goals'] != 0) ? $goals_data = $fun->PageInfo($p['goals'])[0]['content_' . $l] : "");
     }
 }
 ?>
@@ -132,7 +136,7 @@ border-radius: 30px;
 box-shadow: 0px 1px 13px 2px rgba(255,255,255,1);
 "
                 >
-                    <h5><a href="single.html">Our Vision</a></h5>
+                    <h5><a href="<?= $vision_url ?>">Our Vision</a></h5>
                     <p style="color:#000000"><?= mb_substr($vision, 0, 200, 'UTF8') ?> ..</p>
 
                 </div>
@@ -149,8 +153,8 @@ border-radius: 30px;
 box-shadow: 0px 1px 13px 2px rgba(255,255,255,1);
 "
                 >
-                    <h5><a href="single.html">Our Mission</a></h5>
-                    <p style="color:#000000"><?= mb_substr($mission, 0, 200, 'UTF8') ?></p>
+                    <h5><a href="<?= $mission_url ?>">Our Mission</a></h5>
+                    <p style="color:#000000"><?= mb_substr($mission, 0, 200, 'UTF8') ?> ..</p>
                 </div>
             </div>
 
@@ -165,8 +169,8 @@ border-radius: 30px;
 box-shadow: 0px 1px 13px 2px rgba(255,255,255,1);
 "
                 >
-                    <h5><a href="single.html">Our Goals</a></h5>
-                    <p style="color:#000000"><?= mb_substr($goals, 0, 200, 'UTF8') ?></p>
+                    <h5><a href="<?= $goal_url ?>">Our Goals</a></h5>
+                    <p style="color:#000000"><?= mb_substr($goals, 0, 200, 'UTF8') ?> ..</p>
                 </div>
             </div>
 
